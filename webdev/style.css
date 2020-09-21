@@ -101,7 +101,7 @@ a {
 }
 
 .menu-item:nth-child(1) {
-  border-bottom: 1px solid;
+  border-bottom: 1px solid #ffffff;
 }
 
 .menu-item:nth-child(2) {

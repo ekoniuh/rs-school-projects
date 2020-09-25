@@ -31,46 +31,57 @@ function numberPress(number) {
   if (MemoryNewNumber) {
     display.value = number;
     MemoryNewNumber = false;
+  } else {
+    if (display.value === '0') {
+      display.value = number;
+    } else {
+      display.value += number;
+    }
   }
-  if (display.value === '0') {
-    display.value = number;
-  }
-  display.value += number;
 }
 
-function operationPress(operator) {
+function operationPress(op) {
   let localOperationMemory = display.value;
 
   if (MemoryNewNumber && MemoryPendingOperation !== '=') {
     display.value = MemoryCurrentNumber;
-  } else {
+  }
+  // else if (MemoryPendingOperation === '13' && MemoryNewNumber) {
+  //   MemoryCurrentNumber = Math.sqrt(+localOperationMemory);
+  // }
+  else {
     MemoryNewNumber = true;
     if (MemoryPendingOperation === '+') {
-      MemoryCurrentNumber += +localOperationMemory;
+      MemoryCurrentNumber += (+localOperationMemory).toFixed(12);
     } else if (MemoryPendingOperation === '-') {
       MemoryCurrentNumber -= +localOperationMemory;
     } else if (MemoryPendingOperation === '*') {
       MemoryCurrentNumber *= +localOperationMemory;
     } else if (MemoryPendingOperation === '/') {
       MemoryCurrentNumber /= +localOperationMemory;
+    } else if (MemoryPendingOperation === 'x**y') {
+      MemoryCurrentNumber = Math.pow(
+        MemoryCurrentNumber,
+        +localOperationMemory
+      );
     } else {
       MemoryCurrentNumber = +localOperationMemory;
     }
     display.value = MemoryCurrentNumber;
-    MemoryPendingOperation = operator;
+    MemoryPendingOperation = op;
   }
 }
 
-function decimal(arg) {
+function decimal(argument) {
   let localDecimalMemory = display.value;
 
   if (MemoryNewNumber) {
     localDecimalMemory = '0.';
     MemoryNewNumber = false;
-  }
-
-  if (localDecimalMemory.indexOf('.') === -1) {
-    localDecimalMemory += '.';
+  } else {
+    if (localDecimalMemory.indexOf('.') === -1) {
+      localDecimalMemory += '.';
+    }
   }
   display.value = localDecimalMemory;
 }
@@ -79,9 +90,7 @@ function clear(id) {
   if (id === 'ce') {
     display.value = '0';
     MemoryNewNumber = true;
-  }
-
-  if (id === 'c') {
+  } else if (id === 'c') {
     display.value = '0';
     MemoryNewNumber = true;
     MemoryCurrentNumber = 0;

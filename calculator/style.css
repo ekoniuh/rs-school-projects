@@ -57,6 +57,11 @@ body {
 .btn-exponentiation {
   text-transform: none;
 }
+.btn-equal {
+  width: 100%;
+  font-size: 60px;
+  color: black;
+}
 input,
 button {
   padding: 5px 15px;

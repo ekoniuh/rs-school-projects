@@ -41,34 +41,49 @@ function numberPress(number) {
 }
 
 function operationPress(op) {
-  let localOperationMemory = display.value;
-
-  if (MemoryNewNumber && MemoryPendingOperation !== '=') {
-    display.value = MemoryCurrentNumber;
+  if (display.value === 'Учи математику') {
+    display.value = 0;
   }
-  // else if (MemoryPendingOperation === '13' && MemoryNewNumber) {
-  //   MemoryCurrentNumber = Math.sqrt(+localOperationMemory);
-  // }
-  else {
-    MemoryNewNumber = true;
-    if (MemoryPendingOperation === '+') {
-      MemoryCurrentNumber += (+localOperationMemory).toFixed(12);
-    } else if (MemoryPendingOperation === '-') {
-      MemoryCurrentNumber -= +localOperationMemory;
-    } else if (MemoryPendingOperation === '*') {
-      MemoryCurrentNumber *= +localOperationMemory;
-    } else if (MemoryPendingOperation === '/') {
-      MemoryCurrentNumber /= +localOperationMemory;
-    } else if (MemoryPendingOperation === 'x**y') {
-      MemoryCurrentNumber = Math.pow(
-        MemoryCurrentNumber,
-        +localOperationMemory
-      );
-    } else {
-      MemoryCurrentNumber = +localOperationMemory;
-    }
+  let localOperationMemory = +display.value;
+
+  if (
+    MemoryNewNumber &&
+    MemoryPendingOperation !== '=' &&
+    MemoryPendingOperation !== '√' &&
+    MemoryPendingOperation !== '±'
+  ) {
     display.value = MemoryCurrentNumber;
-    MemoryPendingOperation = op;
+  } else {
+    MemoryNewNumber = true;
+
+    if (MemoryPendingOperation === '+') {
+      MemoryCurrentNumber += localOperationMemory;
+    } else if (MemoryPendingOperation === '-') {
+      MemoryCurrentNumber -= localOperationMemory;
+    } else if (MemoryPendingOperation === '*') {
+      MemoryCurrentNumber *= localOperationMemory;
+    } else if (MemoryPendingOperation === '/') {
+      MemoryCurrentNumber /= localOperationMemory;
+    } else if (op === '√' && localOperationMemory >= 0) {
+      console.log(MemoryPendingOperation);
+      MemoryCurrentNumber = Math.sqrt(localOperationMemory);
+      display.value = MemoryCurrentNumber;
+    } else if (MemoryPendingOperation === 'x**y') {
+      MemoryCurrentNumber = Math.pow(MemoryCurrentNumber, localOperationMemory);
+    } else {
+      MemoryCurrentNumber = localOperationMemory;
+    }
+    if (op === '±' && MemoryNewNumber) {
+      MemoryCurrentNumber = localOperationMemory * -1;
+      display.value = MemoryCurrentNumber + '';
+    }
+    if (op === '√' && localOperationMemory < 0) {
+      display.value = 'Учи математику';
+      localOperationMemory = '0';
+    } else if (op !== '√' && !(localOperationMemory < 0)) {
+      display.value = MemoryCurrentNumber;
+      MemoryPendingOperation = op;
+    }
   }
 }
 

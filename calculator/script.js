@@ -40,17 +40,15 @@ function numberPress(number) {
   }
 }
 
+let sqrt = false;
+
 function operationPress(op) {
-  if (display.value === 'Учи математику') {
-    display.value = 0;
-  }
   let localOperationMemory = +display.value;
 
   if (
     MemoryNewNumber &&
     MemoryPendingOperation !== '=' &&
-    MemoryPendingOperation !== '√' &&
-    MemoryPendingOperation !== '±'
+    MemoryPendingOperation !== '√'
   ) {
     display.value = MemoryCurrentNumber;
   } else {
@@ -64,8 +62,13 @@ function operationPress(op) {
       MemoryCurrentNumber *= localOperationMemory;
     } else if (MemoryPendingOperation === '/') {
       MemoryCurrentNumber /= localOperationMemory;
-    } else if (op === '√' && localOperationMemory >= 0) {
-      console.log(MemoryPendingOperation);
+    } else if (op === '√') {
+      if (localOperationMemory < 0) {
+        display.value = 'Учи математику';
+        localOperationMemory = '0';
+        return;
+      }
+
       MemoryCurrentNumber = Math.sqrt(localOperationMemory);
       display.value = MemoryCurrentNumber;
     } else if (MemoryPendingOperation === 'x**y') {
@@ -73,18 +76,46 @@ function operationPress(op) {
     } else {
       MemoryCurrentNumber = localOperationMemory;
     }
-    if (op === '±' && MemoryNewNumber) {
-      MemoryCurrentNumber = localOperationMemory * -1;
-      display.value = MemoryCurrentNumber + '';
-    }
-    if (op === '√' && localOperationMemory < 0) {
-      display.value = 'Учи математику';
-      localOperationMemory = '0';
-    } else if (op !== '√' && !(localOperationMemory < 0)) {
-      display.value = MemoryCurrentNumber;
-      MemoryPendingOperation = op;
-    }
+
+    display.value = Number(MemoryCurrentNumber.toFixed(12));
+    MemoryPendingOperation = op;
   }
+}
+
+window.addEventListener('keydown', function (event) {
+  if (event.key === 'Escape') {
+    clear('c');
+  }
+  if (event.key === 'Backspace') {
+    clear('ce');
+  }
+
+  if (event.key === 'Enter') {
+    operationPress('=');
+  }
+});
+
+window.addEventListener('keypress', function (event) {
+  if (!isNaN(event.key * 1)) {
+    numberPress(event.key);
+  }
+
+  if (event.key.match(/[+\-*/]/)) {
+    operationPress(event.key);
+  }
+
+  if (event.key === '.') {
+    decimal('.');
+  }
+});
+
+const changeNum = document.getElementById('plus-minus');
+changeNum.addEventListener('click', isPositiveNum);
+
+function isPositiveNum(event) {
+  let numSign = display.value;
+  numSign = numSign * -1;
+  display.value = numSign;
 }
 
 function decimal(argument) {
@@ -105,7 +136,9 @@ function clear(id) {
   if (id === 'ce') {
     display.value = '0';
     MemoryNewNumber = true;
-  } else if (id === 'c') {
+  }
+
+  if (id === 'c') {
     display.value = '0';
     MemoryNewNumber = true;
     MemoryCurrentNumber = 0;

@@ -15,9 +15,10 @@ html {
 }
 
 body {
-  width: 100vw;
+  width: 100%;
   font-size: 1.6rem;
   font-family: Georgia;
+  transition: ease-in-out 1s;
 }
 
 button {
@@ -26,6 +27,18 @@ button {
   letter-spacing: 0.06em;
   padding: 1.5rem 4.5rem;
   font-size: 1.7rem;
+}
+
+.our-friends_768 {
+  display: none;
+}
+
+.our-friends_320 {
+  display: none;
+}
+
+.our-friends_1280 {
+  display: none;
 }
 
 button:focus {
@@ -70,7 +83,7 @@ button:focus {
 }
 
 .header {
-  width: 100vw;
+  width: 100%;
   position: absolute;
   top: 6rem;
 }
@@ -83,7 +96,7 @@ button:focus {
 
 .menu {
   display: flex;
-  padding-left: 10rem;
+  padding-left: 6rem;
 }
 
 .logo {
@@ -137,11 +150,11 @@ button:focus {
 }
 
 .main {
-  width: 100vw;
+  width: 100%;
 }
 
 .not-only {
-  background: url(./assets/noise_transparent@2x.png),
+  background: url(./../../noise_transparent@2x.png),
     radial-gradient(100% 215.42% at 0% 0%, #5b483a 0%, #262425 100%), #211f20;
   padding-top: 18rem;
 }
@@ -262,7 +275,7 @@ button:focus {
 
 .slider-item {
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   width: 27rem;
   height: 43.5rem;
   background: #fafafa;
@@ -274,6 +287,7 @@ button:focus {
 }
 
 .slider-item__title {
+  padding: 3rem 0;
   font-size: 2rem;
   color: #545454;
 }
@@ -418,14 +432,14 @@ button:focus {
   font-size: 2rem;
   line-height: 115%;
   color: #f1cdb3;
-  background: url(/shelter/assets/noise_transparent@2x.png),
+  background: url(./../../assets/noise_transparent@2x.png),
     radial-gradient(100% 215.42% at 0% 0%, #5b483a 0%, #262425 100%), #211f20;
 }
 
 .footer-box {
   display: flex;
   width: 100%;
-  padding-top: 4rem;
+  padding-top: 3.5rem;
   justify-content: space-between;
 }
 

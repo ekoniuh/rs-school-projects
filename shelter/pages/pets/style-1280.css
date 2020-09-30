@@ -1,10 +1,18 @@
 @media screen and (max-width: 1280px) {
+  body {
+    transition: ease-in-out 1s;
+  }
   .not-only,
   .about,
   .help,
   .donation,
-  .our-friends {
+  .our-friends,
+  .our-friends_768,
+  .our-friends_320 {
     display: none;
+  }
+  .our-friends_1280 {
+    display: block;
   }
 
   .header {
@@ -20,10 +28,6 @@
 
   .list__link:first-child {
     border: none;
-  }
-
-  .list__link_active_1280 {
-    border-bottom: 2px solid #f1cdb3;
   }
 
   .slider {
@@ -82,5 +86,28 @@
 
   .footer-box {
     padding-top: 3.5rem;
+  }
+
+  .slider-item:nth-child(2),
+  .slider-item:nth-child(3),
+  .slider-item:nth-child(4),
+  .slider-item:nth-child(6),
+  .slider-item:nth-child(7),
+  .slider-item:nth-child(8) {
+    margin-left: 1rem;
+  }
+}
+
+@media screen and (max-width: 930px) {
+  .slider-box {
+    justify-content: space-around;
+  }
+  .footer-box {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .footer__img {
+    padding-top: 5.6rem;
   }
 }

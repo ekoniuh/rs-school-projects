@@ -8,21 +8,24 @@
 	<title>webdev</title>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="./style.css" />
+	<link rel="stylesheet" type="text/css" href="./pages/style-1280.css" />
+	<link rel="stylesheet" type="text/css" href="./pages/style-768.css" />
 </head>
 
 <body>
 
 	<header class="header">
-		<div class="wrapper wrapper__padding-disabled">
-			<div class="header-row">
+		<div class="wrapper wrapper_padding_disabled">
+			<div class="header_row">
 				<div class="logo">
-					<div class="logo__title">Cozy House</div>
-					<h1 class="logo__subtitle">Shelter for pets in Boston</h1>
+					<h1 class="logo__title">Cozy House</h1>
+					<div class="logo__subtitle">Shelter for pets in Boston</div>
 				</div>
 				<nav class="menu">
 					<ul class="list">
 						<li class="list__item"><a class="list__link list__link_active" href="#">About the shelter</a></li>
-						<li class="list__item"><a class="list__link list__link_disabled" href="#">Our pets</a></li>
+						<li class="list__item"><a class="list__link list__link_disabled list__link_active_1280" href="#">Our
+								pets</a></li>
 						<li class="list__item"><a class="list__link list__link_disabled" href="#">Help the shelter</a></li>
 						<li class="list__item"><a class="list__link list__link_disabled" href="#">Contacts</a>
 						</li>
@@ -36,22 +39,24 @@
 	<main class="main">
 
 		<section class="not-only">
-			<div class="wrapper wrapper__padding-disabled">
+			<div class="wrapper wrapper_padding_disabled">
 				<div class="hero">
 					<div class="hero__content">
 						<div class="content-section">
 							<h2 class="content-section__title">
-								Not only people </br> need a house
+								<span>Not only people</span>
+								<span>need a house</span>
 							</h2>
 							<p class="content-section__subtitle">
-								We offer to give a chance to a little and nice puppy with an extremely <br> wide and open
-								heart. He or she will love you more than anybody else <br> in the world, you will see!
+								We offer to give a chance to a little and nice puppy with an extremely wide and open
+								heart. He or she will love you more than anybody else in the world, you will see!
 							</p>
 							<button type="button" class="content-section__button">
 								Make a friend
 							</button>
 						</div>
 					</div>
+
 					<img src="/shelter/assets/start-screen-puppy.png" alt="Start screen puppy" class="hero__image">
 
 				</div>
@@ -64,8 +69,9 @@
 				<div class="about__box">
 					<img src="./assets/about-pets.png" alt="about-pets" class="about__image">
 					<div class="about-content">
-						<h2 class="about-content__title">About the shelter<br>&#8220Cozy House&#8221</h2>
-						<p class="about-content__text">Currently we have 121 dogs and 342 cats on our hands and statistics show that
+						<h2 class="about-content__title">About the shelter <span>&#8220Cozy House&#8221</span></h2>
+						<p class="about-content__text about-content__text_padding">Currently we have 121 dogs and 342 cats on our
+							hands and statistics show that
 							only 20% of them will find a family. The others will continue to live with us and will be waiting for a
 							lucky chance to become dearly loved.</p>
 						<p class="about-content__text">We feed our wards with the best food and make sure that they do not get sick,
@@ -83,29 +89,30 @@
 				<div class="our-friends__box">
 					<div class="pets-content">
 						<h2 class="pets-content__title">
-							Our friends who<br>
-							are looking for a house
+							Our friends who <span>are looking for a house</span>
 						</h2>
 					</div>
 
 					<div class="slider">
-						<button class="slider__btn_prev slider__btn_act" type="button"></button>
+						<button class="slider_btn_prev slider_btn_act" type="button">
+							<img src="./assets/icon/arrow.svg" alt="">
+						</button>
 						<div class="slider-box">
 							<div class="slider-item">
 								<img src="./assets/pets-cat-katrine.png" alt="pets-cat-katrine" class="slider-item__img">
 								<h3 class="slider-item__title">
 									Katrine
 								</h3>
-								<button class="slider-item__btn" type="button">
+								<button class="slider-item_btn" type="button">
 									Learn more
 									</a>
 							</div>
-							<div class="slider-item">
+							<div class="slider-item slider__item_padding">
 								<img src="./assets/pets-dog-jennifer.png" alt="pets-dog-jennifer" class="slider-item__img">
 								<h3 class="slider-item__title">
 									Jennifer
 								</h3>
-								<button class="slider-item__btn" type="button">
+								<button class="slider-item_btn" type="button">
 									Learn more
 									</a>
 							</div>
@@ -114,21 +121,117 @@
 								<h3 class="slider-item__title">
 									Woody
 								</h3>
-								<button class="slider-item__btn" type="button">
+								<button class="slider-item_btn" type="button">
 									Learn more
 									</a>
 							</div>
 						</div>
 
-						<button class="slider__btn_next slider__btn_act" type="button"></button>
+						<button class="slider_btn_next slider_btn_act" type="button">
+							<img src="./assets/icon/arrow.svg" alt="">
+						</button>
 
 					</div>
-					<button class="slider-item__btn_all" type="button">
+					<button class="slider-item_btn_all" type="button">
 						Get to know the rest
 					</button>
 				</div>
 			</div>
 		</section>
+
+		<section class="our-friends_1280">
+			<div class="wrapper">
+				<div class="our-friends__box">
+					<div class="pets-content">
+						<h2 class="pets-content__title">
+							Our friends who <span>are looking for a house</span>
+						</h2>
+					</div>
+
+					<div class="slider">
+						<div class="slider-box">
+							<div class="slider-item">
+								<img src="./assets/1280/pets-katrine-2.png" alt="pets-cat-katrine" class="slider-item__img">
+								<h3 class="slider-item__title">
+									Katrine
+								</h3>
+								<button class="slider-item_btn" type="button">
+									Learn more
+									</a>
+							</div>
+							<div class="slider-item slider__item_padding">
+								<img src="./assets/1280/pets-jennifer.png" alt="pets-dog-jennifer" class="slider-item__img">
+								<h3 class="slider-item__title">
+									Jennifer
+								</h3>
+								<button class="slider-item_btn" type="button">
+									Learn more
+									</a>
+							</div>
+							<div class="slider-item">
+								<img src="./assets/1280/pets-woody.png" alt="pets-dog-woody.png" class="slider-item__img">
+								<h3 class="slider-item__title">
+									Woody
+								</h3>
+								<button class="slider-item_btn" type="button">
+									Learn more
+									</a>
+							</div>
+							<div class="slider-item">
+								<img src="./assets/1280/pets-katrine-1.png" alt="pets-katrine" class="slider-item__img">
+								<h3 class="slider-item__title">
+									Katrine
+								</h3>
+								<button class="slider-item_btn" type="button">
+									Learn more
+									</a>
+							</div>
+							<div class="slider-item">
+								<img src="./assets/1280/pets-timmy.png" alt="pets-timmy" class="slider-item__img">
+								<h3 class="slider-item__title">
+									Timmy
+								</h3>
+								<button class="slider-item_btn" type="button">
+									Learn more
+									</a>
+							</div>
+							<div class="slider-item">
+								<img src="./assets/1280/pets-charly.png" alt="Charly" class="slider-item__img">
+								<h3 class="slider-item__title">
+									Charly
+								</h3>
+								<button class="slider-item_btn" type="button">
+									Learn more
+									</a>
+							</div>
+
+						</div>
+
+
+
+					</div>
+					<div class="slider-wrap__btn">
+						<button class="slider_btn_act" type="button" disabled>
+							<img src="./assets/1280/icon/slider-first-item.svg" alt="slider-first-item">
+						</button>
+						<button class="slider_btn_act" type="button" disabled>
+							<img src="./assets/1280/icon/slider-item-prev.svg" alt="slider-item-prev">
+						</button>
+						<button class="slider_btn_act btn_pagination" type="button">
+							1
+						</button>
+						<button class="slider_btn_act" type="button">
+							<img src="./assets/1280/icon/slider-item-next.svg" alt="slider-item-next">
+						</button>
+						<button class="slider_btn_act" type="button">
+							<img src="./assets/1280/icon/slider-last-item.svg" alt="slider-item-last">
+						</button>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
 		<section class="help">
 			<div class="wrapper">
 				<div class="help-box">
@@ -141,66 +244,71 @@
 
 
 					<div class="help-list">
-						<div class="help-list__item">
-							<img src="./assets/icon/help/pet-food.svg" alt="help-image" class="help__item_img">
-							<h4 class="help__item_title">
-								Pet food
-							</h4>
+						<div class="help-list__box_top">
+							<div class="help-list__item">
+								<img src="./assets/icon/help/pet-food.svg" alt="help-image" class="help__item_img">
+								<h4 class="help__item_title">
+									Pet food
+								</h4>
+							</div>
+							<div class="help-list__item">
+								<img src="./assets/icon/help/transportation.svg" alt="help-image" class="help__item_img">
+								<h4 class="help__item_title">
+									Transportation
+								</h4>
+							</div>
+							<div class="help-list__item">
+								<img src="./assets/icon/help/toys.svg" alt="help-image" class="help__item_img">
+								<h4 class="help__item_title">
+									Toys
+								</h4>
+							</div>
+							<div class="help-list__item">
+								<img src="./assets/icon/help/bowl.svg" alt="help-image" class="help__item_img">
+								<h4 class="help__item_title">
+									Bowls and cups
+								</h4>
+							</div>
+							<div class="help-list__item">
+								<img src="./assets/icon/help/shampoo.svg" alt="help-image" class="help__item_img">
+								<h4 class="help__item_title">
+									Shampoos
+								</h4>
+							</div>
 						</div>
-						<div class="help-list__item">
-							<img src="./assets/icon/help/transportation.svg" alt="help-image" class="help__item_img">
-							<h4 class="help__item_title">
-								Transportation
-							</h4>
+						<div class="help-list__box_bottom">
+							<div class="help-list__item">
+								<img src="./assets/icon/help/vitamins.svg" alt="help-image" class="help__item_img">
+								<h4 class="help__item_title">
+									Vitamins
+								</h4>
+							</div>
+							<div class="help-list__item">
+								<img src="./assets/icon/help/medicines.svg" alt="help-image" class="help__item_img">
+								<h4 class="help__item_title">
+									Medicines
+								</h4>
+							</div>
+							<div class="help-list__item">
+								<img src="./assets/icon/help/collars.svg" alt="help-image" class="help__item_img">
+								<h4 class="help__item_title">
+									Collars / leashes
+								</h4>
+							</div>
+							<div class="help-list__item">
+								<img src="./assets/icon/help/sleeping-area.svg" alt="help-image" class="help__item_img">
+								<h4 class="help__item_title">
+									Sleeping areas
+								</h4>
+							</div>
 						</div>
-						<div class="help-list__item">
-							<img src="./assets/icon/help/toys.svg" alt="help-image" class="help__item_img">
-							<h4 class="help__item_title">
-								Toys
-							</h4>
-						</div>
-						<div class="help-list__item">
-							<img src="./assets/icon/help/bowl.svg" alt="help-image" class="help__item_img">
-							<h4 class="help__item_title">
-								Bowls and cups
-							</h4>
-						</div>
-						<div class="help-list__item">
-							<img src="./assets/icon/help/shampoo.svg" alt="help-image" class="help__item_img">
-							<h4 class="help__item_title">
-								Shampoos
-							</h4>
-						</div>
-						<div class="help-list__item">
-							<img src="./assets/icon/help/vitamins.svg" alt="help-image" class="help__item_img">
-							<h4 class="help__item_title">
-								Vitamins
-							</h4>
-						</div>
-						<div class="help-list__item">
-							<img src="./assets/icon/help/medicines.svg" alt="help-image" class="help__item_img">
-							<h4 class="help__item_title">
-								Medicines
-							</h4>
-						</div>
-						<div class="help-list__item">
-							<img src="./assets/icon/help/collars.svg" alt="help-image" class="help__item_img">
-							<h4 class="help__item_title">
-								Collars / leashes
-							</h4>
-						</div>
-						<div class="help-list__item">
-							<img src="./assets/icon/help/sleeping-area.svg" alt="help-image" class="help__item_img">
-							<h4 class="help__item_title">
-								Sleeping areas
-							</h4>
-						</div>
+
 					</div>
 				</div>
 
 			</div>
 		</section>
-		<section class="donation">
+		<section id="donation" class="donation">
 			<div class="wrapper">
 				<div class="donation-box">
 					<img src="./assets/donation-dog.png" alt="dog" class="donation__img">
@@ -229,162 +337,51 @@
 	</main>
 
 	<footer class="footer">
-		<div class="wrapper">
+		<div class="wrapper wrapper_padding_disabled">
 			<div class="footer-box">
-				<div class="footer-content">
-					<div class="footer__contact">
-						<h3 class="footer__contact_subtitle">
-							For questions and suggestions
-						</h3>
-						<a class="contact-link__mail" href="mailto:email@shelter.com">
-							<img class="contact__icon" src="/shelter/assets/icon/mail.svg" alt="mail-icon">
+
+				<div class="footer__contact">
+					<h3 class="footer-contact__subtitle">
+						For questions <br> and suggestions
+					</h3>
+					<div class="footer-form__box">
+						<a class="footer-link__mail footer__icon_mr20" href="mailto:email@shelter.com">
+							<img class="contact__icon" src="/shelter/assets/icon/mail.png" alt="mail-icon">
+						</a>
+						<a class="footer-form" href="mailto:email@shelter.com">
+							email@shelter.com
 						</a>
 
-						<form action="mailto:email@shelter.com" enctype="text/plain">
-							<p>
-								<input type="submit" value="email@shelter.com">
-							</p>
-						</form>
-						<a class="contact-link__tel" href="tel:+13 674 567 75 54">
-							<img class="contact__icon" src="/shelter/assets/icon/telephone.svg" alt="call-icon">
-						</a>
-						<a class="social-list__link" href="tel:+13 674 567 75 54">+13 674 567 75 54</a>
 					</div>
-					<div class="footer__adress">
 
+					<div class="footer-tel__box">
+						<a class="contact-link__tel footer__icon_mr20" href="tel:+13 674 567 75 54">
+							<img class="contact__icon" src="/shelter/assets/icon/phone.png" alt="call-icon">
+						</a>
+						<a class="contact-link__tel" href="tel:+13 674 567 75 54">+13 674 567 75 54</a>
 					</div>
+
 				</div>
-				<img src="" alt="" class="footer__img">
+				<div class="footer__adress">
+					<h3 class="footer__contact_subtitle">
+						We are waiting <br> for your visit
+					</h3>
+
+					<a class="link__map link__map_second_margin" href="https://goo.gl/maps/rEySb9bpNRVSYAiB7" target="_blank">
+						<img class="contact__icon footer__icon_mr20" src="/shelter/assets/icon/pin.png" alt="mail-icon">
+						<p>1 Central Street, Boston <br> (entrance from the store)</p>
+					</a>
+					<a class="link__map" href="https://goo.gl/maps/rEySb9bpNRVSYAiB7" target="_blank">
+						<img class="contact__icon footer__icon_mr20" src="/shelter/assets/icon/pin.png" alt="mail-icon">
+						<p>18 South Park, London </p>
+					</a>
+
+
+				</div>
+				<img src="/shelter/assets/footer-puppy.png" alt="img-puppy" class="footer__img">
 			</div>
 		</div>
 	</footer>
-
-	<!-- 
-	<main class="main">
-		<section class="life-webdev">
-			<div class="container-center">
-				<h2>your life is WebDev</h2>
-				<p>Whatever the approach to development may be, the final <br /> program must satisfy some fundamental
-					properties</p>
-				<a href="#" target="_blank" class="btn btn-hover  btn-mail">get started</a>
-				<div class="socials">
-					<ul class="socials-list">
-						<li class="socials-item"><a href=""><img src="../webdev/assets/images/socials-icon/mail_fff.svg"
-									alt="mail"></a>
-						</li>
-						<li class="socials-item"><a href=""><img src="../webdev/assets/images/socials-icon/facebook_fff.svg"
-									alt="facebook"></a></li>
-						<li class="socials-item"><a href=""><img src="../webdev/assets/images/socials-icon/insta_fff.svg"
-									alt="instagram"></a>
-						</li>
-						<li class="socials-item"><a href=""><img src="../webdev/assets/images/socials-icon/youtube_fff.svg"
-									alt="youtube"></a>
-						</li>
-					</ul>
-				</div>
-		</section>
-
-		<section class="content-block">
-			<div class="rappresent-wrap">
-				<div class="rappresent-idea">
-					<h3>Rappresent your idea with <br /> a smart Design</h3>
-					<p>Tasks accompanying and related to programming include: testing, debugging, source code maintenance,
-						<strong>implementation of build systems</strong>, and management of derived artifacts, such as the machine
-						code of computer
-						programs.</p>
-					<a href="#" target="_blank" class="btn btn-hover  btn-mail">get started</a>
-				</div>
-				<img src="../webdev/assets/images/content-image-1.jpg" alt="content-image">
-			</div>
-		</section>
-
-		<section class="community-block">
-			<div class="our-community">
-				<div class="community-info">
-					<img src="../webdev/assets/images/icon.svg" alt="person-foto">
-					<h3>our community</h3>
-					<p>A hacker is any skilled computer expert that uses their technical knowledge to overcome a problem, but it
-						can also mean a security hacker in common language</p>
-				</div>
-				<div class="flexslider">
-					<div class="control-slide">
-						<img src="../webdev/assets/images/sliders/icon-prev.svg" alt="slide-prev" class="slide-img--prev">
-						<span class="current-numb-slide">1</span>
-						<span>/</span>
-						<span class="last-numb-slide">5</span>
-						<img src="../webdev/assets/images/sliders/icon-next.svg" alt="slide-next" class="slide-img--next">
-					</div>
-					<ul class="slides">
-						<li>
-							<img src="../webdev/assets/images/sliders/slider-item-1.jpg" />
-						</li>
-						<li>
-							<img src="../webdev/assets/images/sliders/slider-item-2.jpg" />
-						</li>
-						<li>
-							<img src="../webdev/assets/images/sliders/slider-item-3.jpg" />
-						</li>
-				</div>
-			</div>
-			</div>
-		</section>
-
-		<section class="implement-block">
-			<div class="implement-wrap">
-				<img src="../webdev/assets/images/content-image-2.jpg" alt="content-image">
-				<div class="implement-info">
-					<h3>Implement right Code</h3>
-					<p>These might be considered part of the <strong>programming process</strong>, but often the term software
-						development is used
-						for this larger process with the term programming, implementation</p>
-					<a href="#" target="_blank" class="btn btn-hover ">Learn more</a>
-				</div>
-			</div>
-		</section>
-
-		<section class="subscribe-block">
-			<div class="subscribe-wrap">
-				<h3>sign up for our newsletter</h3>
-				<form action="#" id="data" class="contact-form" method="POST">
-					<input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="E-mail" class="contact-form__input"
-						type="email" name="email" id="email" autocomplete="off" required>
-			 <input type="button" class="form-input-hover"> 
-	<button class="contact-form__btn form-btn-hover" type="submit" form="data"></button>
-	</form>
-	</section>
-	<section class="downlond-block">
-		<div class="downlond-wrap">
-			<h3>Download the App</h3>
-			<p>Machine code was the language of early programs, written in the instruction set of the particular machine,
-				often in binary notation.</p>
-			<div class="btn-dowland-wrap">
-				<a href="https://www.apple.com/shop" target="_blank" class="btn btn-hover btn-apple">apple store</a>
-				<a href="https://play.google.com/store?hl=ru" target="_blank" class="btn btn-hover btn-play-market">play
-					market</a>
-			</div>
-		</div>
-	</section>
-	</main>
-	</div>
-
-	<footer class="footer">
-		<div class="footer-wrap">
-			<div class="footer-logo">
-				<a href="#"><img src="../webdev/assets/images/logo.svg" alt="logo">
-				</a>
-			</div>
-			<div class="additional-menu">
-				<ul class="menu-list">
-					<li class="menu-item-footer menu-item-hover"><a href="#">Credits</a></li>
-					<li class="menu-item-footer menu-item-hover"><a href="#">Privacy</a></li>
-					<li class="menu-item-footer menu-item-hover"><a href="#">Our teams</a></li>
-				</ul>
-			</div>
-			<div class="copyright">
-				<p>by TonYem for RSS at 2020</p>
-			</div>
-		</div>
-	</footer> -->
 
 </body>
 

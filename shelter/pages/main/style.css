@@ -49,6 +49,7 @@ button:focus {
 .our-friends button:hover {
   background: #fddcc4;
   cursor: pointer;
+  box-shadow: 0.1rem 0rem 2.6rem rgba(0, 0, 0, 0.2);
 }
 
 .slider button:hover {
@@ -57,8 +58,8 @@ button:focus {
 
 .slider-item:hover {
   background: #ffffff;
+  box-shadow: 0.1rem 0rem 2.6rem rgba(0, 0, 0, 0.2);
 }
-
 .our-friends__box *,
 .help *,
 .donation-content *,
@@ -66,6 +67,9 @@ button:focus {
   letter-spacing: 0.06em;
 }
 
+*:hover {
+  transition: ease-in-out 0.5s;
+}
 .wrapper {
   box-sizing: initial;
   display: flex;
@@ -286,6 +290,7 @@ button:focus {
   margin: 0 4rem;
 }
 
+
 .slider-item__title {
   padding: 3rem 0;
   font-size: 2rem;
@@ -305,6 +310,7 @@ button:focus {
   align-items: center;
   padding: 0;
   border: 2px solid #f1cdb3;
+  background: #f6f6f6;
 }
 
 .slider_btn_act img {

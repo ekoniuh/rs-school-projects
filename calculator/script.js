@@ -8,6 +8,42 @@ let MemoryCurrentNumber = 0;
 let MemoryNewNumber = false;
 let MemoryPendingOperation = '';
 
+const decimal = (argument) => {
+  let localDecimalMemory = display.value;
+
+  if (MemoryNewNumber) {
+    localDecimalMemory = '0.';
+    MemoryNewNumber = false;
+  } else {
+    if (localDecimalMemory.indexOf('.') === -1) {
+      localDecimalMemory += '.';
+    }
+  }
+  display.value = localDecimalMemory;
+};
+
+
+const isPositiveNum = (event) => {
+  let numSign = display.value;
+  numSign = numSign * -1;
+  display.value = numSign;
+};
+
+const clear = (id) => {
+  if (id === 'ce') {
+    display.value = '0';
+    MemoryNewNumber = true;
+  }
+
+  if (id === 'c') {
+    display.value = '0';
+    MemoryNewNumber = true;
+    MemoryCurrentNumber = 0;
+    MemoryPendingOperation = '';
+  }
+};
+
+
 decimalBtn.addEventListener('click', decimal);
 
 for (let i = 0; i < numbers.length; i++) {
@@ -42,7 +78,7 @@ function numberPress(number) {
 
 let sqrt = false;
 
-function operationPress(op) {
+const operationPress = (op) => {
   let localOperationMemory = +display.value;
 
   if (
@@ -80,9 +116,9 @@ function operationPress(op) {
     display.value = Number(MemoryCurrentNumber.toFixed(12));
     MemoryPendingOperation = op;
   }
-}
+};
 
-window.addEventListener('keydown', function (event) {
+window.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
     clear('c');
   }
@@ -93,9 +129,6 @@ window.addEventListener('keydown', function (event) {
   if (event.key === 'Enter') {
     operationPress('=');
   }
-});
-
-window.addEventListener('keypress', function (event) {
   if (!isNaN(event.key * 1)) {
     numberPress(event.key);
   }
@@ -112,36 +145,4 @@ window.addEventListener('keypress', function (event) {
 const changeNum = document.getElementById('plus-minus');
 changeNum.addEventListener('click', isPositiveNum);
 
-function isPositiveNum(event) {
-  let numSign = display.value;
-  numSign = numSign * -1;
-  display.value = numSign;
-}
 
-function decimal(argument) {
-  let localDecimalMemory = display.value;
-
-  if (MemoryNewNumber) {
-    localDecimalMemory = '0.';
-    MemoryNewNumber = false;
-  } else {
-    if (localDecimalMemory.indexOf('.') === -1) {
-      localDecimalMemory += '.';
-    }
-  }
-  display.value = localDecimalMemory;
-}
-
-function clear(id) {
-  if (id === 'ce') {
-    display.value = '0';
-    MemoryNewNumber = true;
-  }
-
-  if (id === 'c') {
-    display.value = '0';
-    MemoryNewNumber = true;
-    MemoryCurrentNumber = 0;
-    MemoryPendingOperation = '';
-  }
-}

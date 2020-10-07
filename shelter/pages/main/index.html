@@ -21,6 +21,23 @@
 						<div class="logo__subtitle">Shelter for pets in Boston</div>
 					</div>
 				</a>
+
+				<nav class="navigation">
+					<div class="hamburger-menu">
+						<input id="menu__toggle" type="checkbox" />
+						<label class="menu__btn" for="menu__toggle">
+							<span></span>
+						</label>
+						<ul class="menu__box">
+							<li><a class="menu__item" href="./../main/index.html">About the
+									shelter</a></li>
+							<li><a class=" menu__item" href="#">Our
+									pets</a></li>
+							<li><a class="menu__item" href="#">Help the shelter</a></li>
+							<li><a class="menu__item" href="#">Contacts</a></li>
+						</ul>
+					</div>
+				</nav>
 				<nav class="menu">
 					<ul class="list">
 						<li class="list__item"><a href="#" class="list__link list__link_active" href="#">About the
@@ -71,7 +88,7 @@
 				<div class="about__box">
 					<img src="./../../assets/about-pets.png" alt="about-pets" class="about__image">
 					<div class="about-content">
-						<h2 class="about-content__title">About the shelter <span>&#8220Cozy House&#8221</span></h2>
+						<h2 class="about-content__title"><span>About the shelter</span> <span>&#8220Cozy House&#8221</span></h2>
 						<p class="about-content__text about-content__text_padding">Currently we have 121 dogs and 342 cats on our
 							hands and statistics show that
 							only 20% of them will find a family. The others will continue to live with us and will be waiting for a
@@ -118,7 +135,7 @@
 									Learn more
 									</a>
 							</div>
-							<div class="slider-item">
+							<div class="slider-item slider-item_none">
 								<img src="./../../assets/pets-dog-woody.png" alt="pets-dog-woody.png" class="slider-item__img">
 								<h3 class="slider-item__title">
 									Woody
@@ -134,6 +151,33 @@
 						</button>
 
 					</div>
+
+
+					<div class="slider_320">
+
+						<div class="slider-box">
+							<div class="slider-item">
+								<img src="./../../assets/pets-cat-katrine.png" alt="pets-cat-katrine" class="slider-item__img">
+								<h4 class="slider-item__title">
+									Katrine
+								</h4>
+
+								<button class="slider-item_btn" type="button">
+									Learn more
+									</a>
+							</div>
+						</div>
+						<div class="slider-box__button">
+							<button class="slider_btn_prev slider_btn_act" type="button">
+								<img src="./../../assets/icon/arrow.svg" alt="">
+							</button>
+							<button class="slider_btn_next slider_btn_act" type="button">
+								<img src="./../../assets/icon/arrow.svg" alt="">
+							</button>
+						</div>
+
+					</div>
+
 					<button class="slider-item_btn_all" type="button">
 						Get to know the rest
 					</button>
@@ -213,6 +257,66 @@
 						</div>
 
 					</div>
+					<div class="help-list__768">
+
+						<div class="help-list__item">
+							<img src="./../../assets/icon/help/pet-food.svg" alt="help-image" class="help__item_img">
+							<h4 class="help__item_title">
+								Pet food
+							</h4>
+						</div>
+						<div class="help-list__item">
+							<img src="./../../assets/icon/help/transportation.svg" alt="help-image" class="help__item_img">
+							<h4 class="help__item_title">
+								Transportation
+							</h4>
+						</div>
+						<div class="help-list__item">
+							<img src="./../../assets/icon/help/toys.svg" alt="help-image" class="help__item_img">
+							<h4 class="help__item_title">
+								Toys
+							</h4>
+						</div>
+						<div class="help-list__item">
+							<img src="./../../assets/icon/help/bowl.svg" alt="help-image" class="help__item_img">
+							<h4 class="help__item_title">
+								Bowls and cups
+							</h4>
+						</div>
+						<div class="help-list__item">
+							<img src="./../../assets/icon/help/shampoo.svg" alt="help-image" class="help__item_img">
+							<h4 class="help__item_title">
+								Shampoos
+							</h4>
+						</div>
+
+						<div class="help-list__item">
+							<img src="./../../assets/icon/help/vitamins.svg" alt="help-image" class="help__item_img">
+							<h4 class="help__item_title">
+								Vitamins
+							</h4>
+						</div>
+						<div class="help-list__item">
+							<img src="./../../assets/icon/help/medicines.svg" alt="help-image" class="help__item_img">
+							<h4 class="help__item_title">
+								Medicines
+							</h4>
+						</div>
+						<div class="help-list__item">
+							<img src="./../../assets/icon/help/collars.svg" alt="help-image" class="help__item_img">
+							<h4 class="help__item_title">
+								Collars / leashes
+							</h4>
+						</div>
+						<div class="help-list__item">
+							<img src="./../../assets/icon/help/sleeping-area.svg" alt="help-image" class="help__item_img">
+							<h4 class="help__item_title">
+								Sleeping areas
+							</h4>
+						</div>
+
+
+					</div>
 				</div>
 
 			</div>
@@ -223,7 +327,7 @@
 					<img src="./../../assets/donation-dog.png" alt="dog" class="donation__img">
 					<div class="donation-content">
 						<h3 class="donation__title">
-							You can also <br> make a donation
+							<span>You can also </span> <span>make a donation</span>
 						</h3>
 						<p class="donation__subtitile">Name of the bank / Type of bank account</p>
 						<a href="#">
@@ -248,44 +352,46 @@
 	<footer class="footer">
 		<div class="wrapper wrapper_padding_disabled">
 			<div class="footer-box">
+				<div class="footer-info">
 
-				<div class="footer__contact">
-					<h3 class="footer-contact__subtitle">
-						For questions <br> and suggestions
-					</h3>
-					<div class="footer-form__box">
-						<a class="footer-link__mail footer__icon_mr20" href="mailto:email@shelter.com">
-							<img class="contact__icon" src="./../../assets/icon/mail.png" alt="mail-icon">
-						</a>
-						<a class="footer-form" href="mailto:email@shelter.com">
-							email@shelter.com
-						</a>
+					<div class="footer__contact">
+						<h3 class="footer-contact__subtitle">
+							For questions <br> and suggestions
+						</h3>
+						<div class="footer-form__box">
+							<a class="footer-link__mail footer__icon_mr20" href="mailto:email@shelter.com">
+								<img class="contact__icon" src="./../../assets/icon/mail.png" alt="mail-icon">
+							</a>
+							<a class="footer-form" href="mailto:email@shelter.com">
+								email@shelter.com
+							</a>
+
+						</div>
+
+						<div class="footer-tel__box">
+							<a class="contact-link__tel footer__icon_mr20" href="tel:+13 674 567 75 54">
+								<img class="contact__icon" src="./../../assets/icon/phone.png" alt="call-icon">
+							</a>
+							<a class="contact-link__tel" href="tel:+13 674 567 75 54">+13 674 567 75 54</a>
+						</div>
 
 					</div>
+					<div class="footer__adress">
+						<h3 class="footer__contact_subtitle">
+							We are waiting <br> for your visit
+						</h3>
 
-					<div class="footer-tel__box">
-						<a class="contact-link__tel footer__icon_mr20" href="tel:+13 674 567 75 54">
-							<img class="contact__icon" src="./../../assets/icon/phone.png" alt="call-icon">
+						<a class="link__map link__map_second_margin" href="https:/goo.gl/maps/rEySb9bpNRVSYAiB7" target="_blank">
+							<img class="contact__icon footer__icon_mr20" src="./../../assets/icon/pin.png" alt="mail-icon">
+							<p>1 Central Street, Boston <br> (entrance from the store)</p>
 						</a>
-						<a class="contact-link__tel" href="tel:+13 674 567 75 54">+13 674 567 75 54</a>
+						<a class="link__map" href="https:/goo.gl/maps/rEySb9bpNRVSYAiB7" target="_blank">
+							<img class="contact__icon footer__icon_mr20" src="./../../assets/icon/pin.png" alt="mail-icon">
+							<p>18 South Park, London </p>
+						</a>
+
+
 					</div>
-
-				</div>
-				<div class="footer__adress">
-					<h3 class="footer__contact_subtitle">
-						We are waiting <br> for your visit
-					</h3>
-
-					<a class="link__map link__map_second_margin" href="https:/goo.gl/maps/rEySb9bpNRVSYAiB7" target="_blank">
-						<img class="contact__icon footer__icon_mr20" src="./../../assets/icon/pin.png" alt="mail-icon">
-						<p>1 Central Street, Boston <br> (entrance from the store)</p>
-					</a>
-					<a class="link__map" href="https:/goo.gl/maps/rEySb9bpNRVSYAiB7" target="_blank">
-						<img class="contact__icon footer__icon_mr20" src="./../../assets/icon/pin.png" alt="mail-icon">
-						<p>18 South Park, London </p>
-					</a>
-
-
 				</div>
 				<img src="./../../assets/footer-puppy.png" alt="img-puppy" class="footer__img">
 			</div>

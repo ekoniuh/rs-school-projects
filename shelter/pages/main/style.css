@@ -537,6 +537,10 @@ button:focus {
     top: 3rem;
   }
 
+  .header_row {
+    max-width: 70.8rem;
+    margin: 0 auto;
+  }
   .hero {
     display: flex;
     flex-direction: column;
@@ -621,9 +625,11 @@ button:focus {
 
   .help-list__768 {
     display: grid;
-    grid-gap: 5.5rem 0;
+    grid-gap: 5.5rem 6rem;
     grid-template-columns: repeat(3, 1fr);
     margin-top: 5.9rem;
+    max-width: 63rem;
+    margin: 5.9rem auto;
   }
 
   .donation-box {
@@ -846,9 +852,11 @@ button:focus {
 
   .help-list__768 {
     display: grid;
-    grid-gap: 3rem 1.5rem;
+    grid-gap: 3rem 3rem;
     grid-template-columns: repeat(2, 1fr);
     margin-top: 4.2rem;
+    max-width: 29rem;
+    margin-bottom: 0;
   }
 
   .help-list__item {
@@ -894,6 +902,7 @@ button:focus {
   }
 
   .donation-box {
+    max-width: 30rem;
     width: 100%;
     text-align: center;
   }

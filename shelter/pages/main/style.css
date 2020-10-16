@@ -14,12 +14,12 @@ html {
 body {
   width: 100%;
   font-size: 1.6rem;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   transition: ease-in-out 1s;
 }
 
 button {
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   border-radius: 10rem;
   border: none;
   letter-spacing: 0.06em;
@@ -136,7 +136,7 @@ button:focus {
 }
 
 .list__link_active:after {
-  content: '';
+  content: "";
   display: block;
   height: 0.3rem;
   background-color: #f1cdb3;
@@ -241,6 +241,82 @@ button:focus {
   background: #f6f6f6;
 }
 
+/* ____________POPAP start______________ */
+
+.slider-description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: rgba(41, 41, 41, 0.6);
+  position: fixed;
+  top: 0;
+  z-index: 1;
+}
+
+.description-container {
+  max-width: 90rem;
+  height: 50rem;
+  width: 100%;
+  display: flex;
+  background: white;
+  color: black;
+  text-align: left;
+  border-radius: 0.9rem;
+}
+
+.description-container img {
+  width: 50rem;
+  border-radius: 0.9rem;
+}
+
+.description-container h3 {
+  font-size: 3.5rem;
+  text-align: left;
+  letter-spacing: 0.06em;
+}
+
+.description-container h4 {
+  font-size: 2rem;
+  padding-top: 1.2rem;
+  letter-spacing: 0.06em;
+}
+
+.description-container p {
+  font-size: 1.5rem;
+  padding-top: 4.2rem;
+  line-height: 1.15;
+  letter-spacing: 0.06em;
+}
+
+.slider-item__info {
+  width: 351px;
+  height: 362px;
+  margin: 5.3rem 0 0 3rem;
+  display: flex;
+  flex-direction: column;
+  letter-spacing: 0.06em;
+}
+
+.list-description {
+  margin-top: 3.8rem;
+  margin-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 104px;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  line-height: 1.1;
+  letter-spacing: 0.06em;
+  color: #f1cdb3;
+}
+
+.list-item span {
+  font-weight: bold;
+  color: black;
+}
+/* ____________POPAP end______________ */
 .our-friends__box {
   width: 100%;
   display: flex;
@@ -571,22 +647,35 @@ button:focus {
 
   .content-section__button {
     align-self: center;
-    margin-top: 4.2rem;
-    margin-right: 0.1rem;
+    margin-top: 4.3rem;
     padding: 1.6rem 4.5rem;
   }
+
   .hero__image {
     width: 56.9rem;
     margin-top: 10rem;
     margin-left: 14rem;
   }
+
+  .description-container {
+    max-width: 63rem;
+    height: 35rem;
+  }
+
+  .description-container img {
+  }
+
+  .slider-description {
+  }
+
   .slider-item_btn_all {
     padding: 1.6rem 4.4rem;
   }
+
   .about__box {
     flex-direction: column-reverse;
     padding: 0;
-    max-width: 43.6rem;
+    max-width: 42.9rem;
   }
 
   .about-content__title {
@@ -606,6 +695,7 @@ button:focus {
   }
 
   .slider {
+    padding: 6rem 0 6rem;
     width: auto;
   }
 
@@ -624,12 +714,12 @@ button:focus {
   }
 
   .help-list__768 {
+    max-width: 63rem;
     display: grid;
     grid-gap: 5.5rem 6rem;
     grid-template-columns: repeat(3, 1fr);
-    margin-top: 5.9rem;
-    max-width: 63rem;
     margin: 5.9rem auto;
+    margin-bottom: 0.1rem;
   }
 
   .donation-box {
@@ -657,7 +747,7 @@ button:focus {
   }
 
   .footer-box {
-    padding-top: 3rem;
+    padding-top: 3.1rem;
     flex-direction: column;
     align-items: center;
   }
@@ -719,12 +809,12 @@ button:focus {
   }
 
   .menu__btn > span::before {
-    content: '';
+    content: "";
     top: -0.8rem;
   }
 
   .menu__btn > span::after {
-    content: '';
+    content: "";
     top: 0.8rem;
   }
 
@@ -748,7 +838,7 @@ button:focus {
     display: block;
     padding: 1.2rem 2.4rem;
     color: #333;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 2rem;
     font-weight: 600;
     text-decoration: none;
@@ -948,4 +1038,7 @@ button:focus {
   }
 }
 @media screen and (max-width: 726px) {
+  /* transition: opacity .15s linear; 
+ box-shadow: 0 5px 15px rgba(0,0,0,.5);
+ */
 }

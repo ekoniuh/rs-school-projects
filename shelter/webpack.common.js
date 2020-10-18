@@ -15,7 +15,7 @@ module.exports = {
     PATHS,
   },
   entry: {
-    main: PATHS.src,
+    main: path.resolve(PATHS.src, 'pages/main'),
   },
   output: {
     path: PATHS.dist,

@@ -50,19 +50,19 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.(hbs|handlebars)$/,
-        use: [
-          {
-            loader: 'handlebars-loader',
-            query: {
-              partialDirs: `${PATHS.src}/views/partials`,
-              helperDirs: `${PATHS.src}/views/helpers`,
-              inlineRequires: /\/assets\/images\//gi,
-            },
-          },
-        ],
-      },
+      // {
+      //   test: /\.(hbs|handlebars)$/,
+      //   use: [
+      //     {
+      //       loader: 'handlebars-loader',
+      //       query: {
+      //         partialDirs: `${PATHS.src}/views/partials`,
+      //         helperDirs: `${PATHS.src}/views/helpers`,
+      //         inlineRequires: /\/assets\/images\//gi,
+      //       },
+      //     },
+      //   ],
+      // },
       {
         test: /\.js$/,
         exclude: [/node_modules/],

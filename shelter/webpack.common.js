@@ -28,6 +28,10 @@ module.exports = {
         use: [{ loader: 'html-loader' }],
       },
       {
+        test: /\.(png|svg|jpe?g|gif)$/,
+        use: ['file-loader'],
+      },
+      {
         test: /\.((c|sa|sc)ss)$/i,
         use: [
           {
@@ -45,40 +49,40 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.(hbs|handlebars)$/,
-        use: [
-          {
-            loader: 'handlebars-loader',
-            query: {
-              partialDirs: `${PATHS.src}/views/partials`,
-              helperDirs: `${PATHS.src}/views/helpers`,
-              inlineRequires: /\/assets\/images\//gi,
-            },
-          },
-        ],
-      },
+      // {
+      //   test: /\.(hbs|handlebars)$/,
+      //   use: [
+      //     {
+      //       loader: 'handlebars-loader',
+      //       query: {
+      //         partialDirs: `${PATHS.src}/views/partials`,
+      //         helperDirs: `${PATHS.src}/views/helpers`,
+      //         inlineRequires: /\/assets\/images\//gi,
+      //       },
+      //     },
+      //   ],
+      // },
       {
         test: /\.js$/,
         exclude: [/node_modules/],
         use: 'babel-loader',
       },
-      {
-        test: /\.(png|jpe?g|gif)$/i,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 16 * 1024,
-              name: '[folder]/[name].[hash:4].[ext]',
-              esModule: false,
-            },
-          },
-          {
-            loader: 'image-webpack-loader',
-          },
-        ],
-      },
+      // {
+      //   test: /\.(png|jpe?g|gif)$/i,
+      //   use: [
+      //     {
+      //       loader: 'url-loader',
+      //       options: {
+      //         limit: 16 * 1024,
+      //         name: '[folder]/[name].[hash:4].[ext]',
+      //         esModule: false,
+      //       },
+      //     },
+      //     {
+      //       loader: 'image-webpack-loader',
+      //     },
+      //   ],
+      // },
       {
         test: /\.svg$/i,
         use: [

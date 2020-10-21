@@ -6,7 +6,7 @@ const buildPopupContent = (id) => {
   const pet = petsData.find((pet) => pet.id === id);
 
   return `
-  <div class="slider-description">
+  <div class="slider-description slider-description_none">
     <div class="description-container">
       <img src="${pet.img}" alt="" class="slider-item__img">
         <div class="slider-item__info">
@@ -37,4 +37,12 @@ sliderContainer.addEventListener('click', ({ target }) => {
   const popup = buildPopupContent(id);
 
   document.body.insertAdjacentHTML('beforeend', popup);
+  // const sliderContainerNone = document.querySelector('.slider-description');
+  // // debugger;
+
+  // sliderContainerNone.addEventListener('click', () =>
+  //   sliderContainerNone.classList.add('slider-description_none'),
+  // );
+
+  // sliderContainerNone.classList.toggle('slider-description_none');
 });

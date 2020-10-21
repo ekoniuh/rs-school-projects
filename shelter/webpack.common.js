@@ -1,6 +1,7 @@
 const path = require('path');
 const miniSvgDataUri = require('mini-svg-data-uri');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const PATHS = {
@@ -29,7 +30,7 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpe?g|gif)$/,
-        use: ['file-loader'],
+        use: [{ loader: 'file-loader', options: { name: 'assets/[name].[ext]' } }],
       },
       {
         test: /\.((c|sa|sc)ss)$/i,
@@ -83,20 +84,20 @@ module.exports = {
       //     },
       //   ],
       // },
-      {
-        test: /\.svg$/i,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 4 * 1024,
-              generator: (content) => miniSvgDataUri(content.toString()),
-              name: '[folder]/[name].[hash:4].[ext]',
-            },
-          },
-          { loader: 'svgo-loader' },
-        ],
-      },
+      // {
+      //   test: /\.svg$/i,
+      //   use: [
+      //     {
+      //       loader: 'url-loader',
+      //       options: {
+      //         limit: 4 * 1024,
+      //         generator: (content) => miniSvgDataUri(content.toString()),
+      //         name: '[folder]/[name].[hash:4].[ext]',
+      //       },
+      //     },
+      //     { loader: 'svgo-loader' },
+      //   ],
+      // },
       {
         test: /\.(woff(2)?|ttf|eot)$/,
         use: [
@@ -117,6 +118,9 @@ module.exports = {
       template: 'src/pages/main/index.html',
       inject: 'body',
       // favicon: `${PATHS.public}/favicon.png`,
+    }),
+    new CopyPlugin({
+      patterns: [{ from: path.resolve(PATHS.assets, 'images'), to: 'images' }],
     }),
   ],
 };

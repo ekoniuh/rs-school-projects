@@ -15,6 +15,8 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'import/no-extraneous-dependencies': [error, { devDependencies: true }],
     'lines-between-class-members': 'off',
+    'import/prefer-default-export': 'off',
   },
 };

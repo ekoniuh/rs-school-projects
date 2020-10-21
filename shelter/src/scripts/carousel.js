@@ -48,6 +48,10 @@ export class Slider {
   };
 
   swipeContainer = ({ direction, petsCards }) => {
+    while (this.slider.firstChild) {
+      this.slider.firstChild.remove();
+    }
+
     if (direction === 'forward') {
       if (this.n > petsCards.length - 2) {
         this.k = 0;

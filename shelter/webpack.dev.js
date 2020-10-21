@@ -18,6 +18,7 @@ module.exports = merge.smartStrategy(strategy)(webpackCommon, {
     contentBase: PATHS.dist,
     port: 8081,
     hot: true,
+    open: true,
     overlay: {
       warnings: true,
       errors: true,

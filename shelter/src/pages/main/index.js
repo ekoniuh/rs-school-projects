@@ -1,4 +1,5 @@
 import './style.scss';
+// import '../pets/style-pets.css';
 import '../../scripts/popup';
 import petsData from '../../data/pets.json';
 import { Slider } from '../../scripts';

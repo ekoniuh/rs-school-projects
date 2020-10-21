@@ -115,10 +115,16 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
+      filename: 'index.html',
       template: 'src/pages/main/index.html',
       inject: 'body',
       // favicon: `${PATHS.public}/favicon.png`,
     }),
+    // new HtmlWebpackPlugin({
+    //   filename: 'index-pets.html',
+    //   template: 'src/pages/pets/index-pets.html',
+    //   inject: 'body',
+    // }),
     new CopyPlugin({
       patterns: [{ from: path.resolve(PATHS.assets, 'images'), to: 'images' }],
     }),

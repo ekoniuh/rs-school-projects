@@ -355,7 +355,6 @@ button:focus {
 .slider__wrapper {
   max-width: 102rem;
   margin: 0 1rem;
-  overflow: hidden;
 
   @media screen and (max-width: 1280px) {
     max-width: 580px;
@@ -368,7 +367,16 @@ button:focus {
 
 .slider-box {
   display: flex;
-  transition: all ease-out 0.5s;
+  animation: fadeIn ease 2s;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
   & > :not(:last-child) {
     margin-right: 90px;
@@ -636,7 +644,9 @@ button:focus {
   .list__item:not(:last-child) {
     padding-right: 3.6rem;
   }
-
+  .slider-box > .slider-item:last-child {
+    display: none;
+  }
   .wrapper_padding_disabled {
     padding: 0 3rem;
   }
@@ -1017,7 +1027,9 @@ button:focus {
     text-align: center;
     letter-spacing: 0;
   }
-
+  .slider-box > .slider-item:nth-child(2) {
+    display: none;
+  }
   .donation__text {
     padding: 2rem 1rem 0;
     text-align: justify;

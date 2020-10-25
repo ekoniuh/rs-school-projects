@@ -1,2 +1,1 @@
-# ekoniuh-JS2020Q3
-Private repository for @ekoniuh
+# ready-projects

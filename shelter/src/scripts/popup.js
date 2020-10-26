@@ -1,5 +1,5 @@
 import petsData from '../data/pets.json';
-
+console.log(petsData);
 const sliderContainer = document.querySelector('.slider-box');
 
 const buildPopupContent = (id) => {

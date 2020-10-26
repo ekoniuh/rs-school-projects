@@ -1,6 +1,6 @@
 const merge = require('webpack-merge');
 const { EnvironmentPlugin } = require('webpack');
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const webpackCommon = require('./webpack.common.js');
 
@@ -39,19 +39,19 @@ module.exports = () => {
       },
     },
     module: {
-      // rules: [
-      //   {
-      //     test: /\.((c|sa|sc)ss)$/i,
-      //     use: [{ loader: MiniCssExtractPlugin.loader }],
-      //   },
-      // ],
+      rules: [
+        {
+          test: /\.((c|sa|sc)ss)$/i,
+          use: [{ loader: MiniCssExtractPlugin.loader }],
+        },
+      ],
     },
 
     plugins: [
       new EnvironmentPlugin({
         NODE_ENV: 'development',
       }),
-      // new MiniCssExtractPlugin({ filename: '[name].[contenthash:8].css' }),
+      new MiniCssExtractPlugin({ filename: '[name].[contenthash:8].css' }),
       // new BundleAnalyzerPlugin()
     ],
   });

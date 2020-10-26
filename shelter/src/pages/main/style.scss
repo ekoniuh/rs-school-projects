@@ -53,15 +53,16 @@ button:focus {
   letter-spacing: 0.06em;
 }
 
-*:hover {
-  transition: ease-in-out 0.5s;
-}
+// *:hover {
+//   transition: ease-in-out 0.5s;
+// }
 
 .help-list__768,
 .navigation,
 .slider_320 {
   display: none;
 }
+
 .wrapper {
   box-sizing: initial;
   display: flex;
@@ -318,7 +319,12 @@ button:focus {
   font-weight: 600;
   color: #000;
 }
-
+.slider-1280 {
+  display: block;
+}
+.slider-768 {
+  display: none;
+}
 /* ____________POPAP end______________ */
 .our-friends__box {
   display: flex;
@@ -364,10 +370,9 @@ button:focus {
     max-width: 270px;
   }
 }
-
 .slider-box {
   display: flex;
-  animation: fadeIn ease 2s;
+  animation: fadeIn ease 5s;
 
   @keyframes fadeIn {
     from {
@@ -377,6 +382,10 @@ button:focus {
       opacity: 1;
     }
   }
+}
+
+.slider-box {
+  display: flex;
 
   & > :not(:last-child) {
     margin-right: 90px;
@@ -644,9 +653,9 @@ button:focus {
   .list__item:not(:last-child) {
     padding-right: 3.6rem;
   }
-  .slider-box > .slider-item:last-child {
-    display: none;
-  }
+  // .slider-box > .slider-item:last-child {
+  //   display: none;
+  // }
   .wrapper_padding_disabled {
     padding: 0 3rem;
   }
@@ -716,7 +725,7 @@ button:focus {
 
   .about__box {
     flex-direction: column-reverse;
-    max-width: 42.9rem;
+    max-width: 43.5rem;
     padding: 0;
   }
 
@@ -799,8 +808,14 @@ button:focus {
 }
 
 @media screen and (max-width: 767px) {
+  .slider-1280 {
+    display: none;
+  }
+  .slider-768 {
+    display: flex;
+  }
   .main section:not(.not-only) {
-    padding: 4.2rem 0;
+    padding: 4.3rem 0;
   }
   .wrapper {
     padding: 0 1rem;
@@ -899,9 +914,6 @@ button:focus {
     width: 100%;
     visibility: visible;
   }
-  ul {
-    transition: ease-in-out 1s;
-  }
 
   .main h2,
   .main h3 {
@@ -916,6 +928,26 @@ button:focus {
   .content-section__title {
     text-align: center;
     letter-spacing: 0.15rem;
+  }
+
+  .slider {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 4rem 0 11.4rem;
+  }
+
+  .slider__btn-prev {
+    position: absolute;
+    left: 53px;
+    bottom: 41px;
+    order: 3;
+  }
+
+  .slider__btn-next {
+    position: absolute;
+    bottom: 41px;
+    right: 53px;
   }
 
   .hero {
@@ -948,7 +980,10 @@ button:focus {
   }
 
   .about-content__text_padding {
-    padding: 2.4rem 0;
+    padding: 2.4rem 0 2.2rem;
+  }
+  .content-section__button {
+    margin-top: 4.2rem;
   }
 
   //.slider {
@@ -1005,9 +1040,11 @@ button:focus {
   .donation__title span {
     display: inline;
   }
-
+  .footer-form__box {
+    margin: 3.9rem 0;
+  }
   .donation__title {
-    padding-bottom: 2.3rem;
+    padding-bottom: 2rem;
     text-align: center;
   }
 

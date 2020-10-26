@@ -15,7 +15,6 @@ body {
   width: 100%;
   font-size: 1.6rem;
   font-family: Georgia;
-  transition: ease-in-out 1s;
 }
 
 button {
@@ -59,7 +58,7 @@ button:hover {
   letter-spacing: 0.06em;
 }
 
-*:hover {
+button:hover {
   transition: ease-in-out 0.5s;
 }
 
@@ -135,7 +134,7 @@ button:hover {
 }
 
 .list__link_active_1280:after {
-  content: '';
+  content: "";
   display: block;
   height: 3px;
   background-color: #f1cdb3;
@@ -396,10 +395,6 @@ button:hover {
 }
 
 @media screen and (max-width: 1279px) {
-  body {
-    transition: ease-in-out 1s;
-  }
-
   .header_row {
     max-width: 70.8rem;
     margin: 0 auto;
@@ -546,12 +541,12 @@ button:hover {
   }
 
   .menu__btn > span::before {
-    content: '';
+    content: "";
     top: -0.8rem;
   }
 
   .menu__btn > span::after {
-    content: '';
+    content: "";
     top: 0.8rem;
   }
 
@@ -575,7 +570,7 @@ button:hover {
     display: block;
     padding: 1.2rem 2.4rem;
     color: #333;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 2rem;
     font-weight: 600;
     text-decoration: none;
@@ -603,14 +598,6 @@ button:hover {
     visibility: visible;
     right: 0;
     width: 100%;
-  }
-
-  ul {
-    transition: ease-in-out 1s;
-  }
-
-  body {
-    transition: ease-in-out 1s;
   }
 
   .slider_320 {

@@ -17,7 +17,12 @@ module.exports = {
   },
   entry: {
     main: path.resolve(PATHS.src, 'pages/main'),
+    pets: path.resolve(PATHS.src, 'pages/pets'),
   },
+  // entry: {
+  //   pets: path.resolve(__dirname, 'src/app.js'),
+  //   landingpage: path.resolve(__dirname, 'src/index.js'),
+  // },
   output: {
     path: PATHS.dist,
   },
@@ -118,12 +123,29 @@ module.exports = {
       filename: 'index.html',
       template: 'src/pages/main/index.html',
       inject: 'body',
+      chunks: ['main'],
       // favicon: `${PATHS.public}/favicon.png`,
     }),
-    // new HtmlWebpackPlugin({
-    //   filename: 'index-pets.html',
-    //   template: 'src/pages/pets/index-pets.html',
+    new HtmlWebpackPlugin({
+      filename: 'index-pets.html',
+      template: 'src/pages/pets/index-pets.html',
+      inject: 'body',
+      chunks: ['pets'],
+    }),
+    // new HtmlWebPackPlugin({
+    //   template: path.resolve(__dirname, 'src/html/app.html'),
     //   inject: 'body',
+    //   favicon: './src/assets/favicon/fav16.png',
+    //   chunksSortMode: 'manual',
+    //   filename: 'app.html',
+    //   chunks: ['main'],
+    // }),
+    // new HtmlWebPackPlugin({
+    //   template: path.resolve(__dirname, 'src/html/landingpage.html'),
+    //   inject: 'body',
+    //   favicon: './src/assets/favicon/fav16.png',
+    //   chunksSortMode: 'manual',
+    //   chunks: ['pets'],
     // }),
     new CopyPlugin({
       patterns: [{ from: path.resolve(PATHS.assets, 'images'), to: 'images' }],

@@ -22,7 +22,7 @@ module.exports = () => {
   const final = merge.smartStrategy(strategy)(webpackCommon, {
     mode: 'production',
     output: {
-      filename: '[name].[chunkhash:8].js',
+      filename: '[name].js',
     },
     optimization: {
       // minimizer: [new OptimizeCSSAssetsPlugin(), new TerserJSPlugin()],
@@ -51,7 +51,7 @@ module.exports = () => {
       new EnvironmentPlugin({
         NODE_ENV: 'development',
       }),
-      new MiniCssExtractPlugin({ filename: '[name].[contenthash:8].css' }),
+      new MiniCssExtractPlugin({ filename: '[name].css' }),
       // new BundleAnalyzerPlugin()
     ],
   });

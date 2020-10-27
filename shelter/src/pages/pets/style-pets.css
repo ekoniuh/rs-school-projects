@@ -30,9 +30,9 @@ button {
   display: none;
 }
 
-.our-friends_1280 {
+/* .our-friends_1280 {
   display: none;
-}
+} */
 
 button:focus {
   outline: none;
@@ -311,10 +311,10 @@ button:hover {
 .our-friends_768 {
   display: none;
 }
-
+/* 
 .our-friends_1280 {
   display: block;
-}
+} */
 
 .header {
   position: static;
@@ -419,10 +419,10 @@ button:hover {
     margin: 0 auto;
   }
 
-  .our-friends_1280,
+  /* .our-friends_1280,
   .slider_320 {
     display: none;
-  }
+  } */
 
   .wrapper {
     padding: 0 4.4rem;

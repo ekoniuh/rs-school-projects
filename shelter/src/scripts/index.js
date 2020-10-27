@@ -1,1 +1,2 @@
-export { Slider } from './carousel';
+export { SliderMain } from './carousel';
+export { SliderPets } from './carousel';

@@ -1,5 +1,5 @@
 import petsData from '../data/pets.json';
-console.log(petsData);
+
 const sliderContainer = document.querySelector('.slider-box');
 
 const buildPopupContent = (id) => {
@@ -7,6 +7,7 @@ const buildPopupContent = (id) => {
 
   return `
   <div class="slider-description" data-set="action">
+  <img src="../../assets/modal_close_button.png" class= "modal_close_button">
     <div class="description-container">
       <img src="${pet.img}" alt="" class="slider-item__img">
         <div class="slider-item__info">
@@ -42,7 +43,7 @@ sliderContainer.addEventListener('click', ({ target }) => {
   // debugger;
 
   sliderContainerRemove.addEventListener('click', ({ target }) => {
-    if (target.className === 'slider-description') {
+    if (!target.closest('.description-container')) {
       sliderContainerRemove.remove();
     }
   });

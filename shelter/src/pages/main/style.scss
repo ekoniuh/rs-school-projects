@@ -249,11 +249,13 @@ button:focus {
   z-index: 1;
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
   width: 100%;
   height: 100vh;
   background: rgba(41, 41, 41, 0.6);
 }
+
 .slider-description_none {
   display: none;
 }
@@ -268,19 +270,36 @@ button:focus {
   background: #fff;
   border-radius: 0.9rem;
 }
+.modal_close_button {
+  width: 52px;
+  height: 52px;
+  margin-left: 930px;
+  cursor: pointer;
+}
+
+// .description-container::after {
+//   content: "";
+//   display: block;
+//   width: 52px;
+//   position: absolute;
+//   background: url(../../assets/modal_close_button.png);
+//   top: -52px;
+//   height: 52px;
+//   right: -52px;
+// }
 
 .description-container img {
   width: 50rem;
   border-radius: 0.9rem;
 }
 
-.description-container h3 {
+.pets-name {
   font-size: 3.5rem;
   text-align: left;
   letter-spacing: 0.06em;
 }
 
-.description-container h4 {
+.pets-breed {
   padding-top: 1.2rem;
   font-size: 2rem;
   letter-spacing: 0.06em;
@@ -370,9 +389,13 @@ button:focus {
     max-width: 270px;
   }
 }
+
 .slider-box {
   display: flex;
-  animation: fadeIn ease 5s;
+}
+
+.slider-item {
+  animation: fadeIn ease 2s;
 
   @keyframes fadeIn {
     from {
@@ -452,11 +475,15 @@ button:focus {
 
 .slider-item_btn_all {
   background: #f1cdb3;
+  color: black;
+  border-radius: 100px;
+  padding: 1.6rem 4.5rem;
 }
 
 .help-box {
   width: 100%;
   text-align: center;
+  cursor: pointer;
 }
 
 .help__title {
@@ -709,14 +736,36 @@ button:focus {
   }
 
   .description-container {
-    max-width: 63rem;
+    width: 63rem;
     height: 35rem;
   }
 
   .description-container img {
+    width: 35rem;
+    height: 35rem;
   }
 
-  .slider-description {
+  .slider-item__info {
+    margin: 0;
+    padding: 1.4rem 0 0 1.1rem;
+    width: 260px;
+    height: 303px;
+  }
+
+  .modal_close_button {
+    margin-left: 663px;
+  }
+
+  .description-container p {
+    padding-top: 2.2rem;
+    font-size: 13px;
+    line-height: 110%;
+  }
+
+  .list-description {
+    height: 87px;
+    margin-top: 2rem;
+    margin-left: 1.4rem;
   }
 
   .slider-item_btn_all {
@@ -853,6 +902,7 @@ button:focus {
     width: 100%;
     height: 0.2rem;
     background-color: #616161;
+    transition-duration: 0.25s;
   }
 
   .menu__btn > span::before {
@@ -870,25 +920,33 @@ button:focus {
     top: 0;
     right: -100%;
     display: block;
-    width: 30rem;
+    width: 32rem;
     height: 100%;
     margin: 0;
     padding: 8rem 0;
     text-align: center;
     list-style: none;
     visibility: hidden;
-    background-color: #eceff1;
+    background-color: #292929;
     box-shadow: 0.1rem 0 0.6rem rgba(0, 0, 0, 0.2);
+    transition-duration: 0.25s;
+  }
+
+  .menu__box li {
+    padding: 1.2rem 2.4rem;
   }
 
   .menu__item {
-    display: block;
-    padding: 1.2rem 2.4rem;
     font-family: Roboto, sans-serif;
     font-size: 2rem;
     font-weight: 600;
-    color: #333;
     text-decoration: none;
+    color: #cdcdcd;
+    font-weight: 400;
+  }
+
+  .menu__item[href="/index.html"] {
+    border-bottom: 2px solid #f1cdb3;
   }
 
   .menu__item:hover {
@@ -896,22 +954,22 @@ button:focus {
   }
 
   #menu__toggle:checked ~ .menu__btn > span {
-    transform: rotate(45deg);
+    transform: rotate(90deg);
   }
 
   #menu__toggle:checked ~ .menu__btn > span::before {
-    top: 0;
+    bottom: 8px;
     transform: rotate(0);
   }
 
   #menu__toggle:checked ~ .menu__btn > span::after {
-    top: 0;
-    transform: rotate(90deg);
+    top: 8px;
+    transform: rotate(0deg);
   }
 
   #menu__toggle:checked ~ .menu__box {
     right: 0;
-    width: 100%;
+
     visibility: visible;
   }
 
@@ -982,10 +1040,55 @@ button:focus {
   .about-content__text_padding {
     padding: 2.4rem 0 2.2rem;
   }
+
   .content-section__button {
     margin-top: 4.2rem;
   }
 
+  .description-container {
+    width: 24rem;
+    height: initial;
+  }
+
+  .description-container img {
+    display: none;
+  }
+
+  .description-container p {
+    padding: 2.2rem 1rem;
+    text-align: justify;
+  }
+
+  .slider-item__info {
+    padding: 0;
+  }
+
+  .pets-name {
+    text-align: center;
+    padding-top: 1.3rem;
+  }
+
+  .pets-breed {
+    text-align: center;
+  }
+
+  .list-description {
+    margin: 0;
+    padding-left: 2.5rem;
+  }
+
+  .list-item {
+    padding-top: 6px;
+  }
+
+  .modal_close_button {
+    margin-left: 250px;
+  }
+
+  .slider-item__info,
+  .list-description {
+    height: initial;
+  }
   //.slider {
   //  display: none;
   //}

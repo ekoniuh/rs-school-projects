@@ -7,6 +7,7 @@ const buildPopupContent = (id) => {
 
   return `
   <div class="slider-description" data-set="action">
+  <img src="./assets/modal_close_button.png" class="modal_close_button">
     <div class="description-container">
       <img src="${pet.img}" alt="" class="slider-item__img">
         <div class="slider-item__info">
@@ -28,13 +29,12 @@ const buildPopupContent = (id) => {
 
 sliderContainer.addEventListener('click', ({ target }) => {
   const sliderItem = target.closest('.slider-item');
-
+  document.body.style.overflow = 'hidden';
   if (!sliderItem) {
     return;
   }
 
   const id = sliderItem.dataset.id;
-  console.log(sliderItem.dataset.id);
   const popup = buildPopupContent(id);
 
   document.body.insertAdjacentHTML('beforeend', popup);
@@ -42,8 +42,9 @@ sliderContainer.addEventListener('click', ({ target }) => {
   // debugger;
 
   sliderContainerRemove.addEventListener('click', ({ target }) => {
-    if (target.className === 'slider-description') {
+    if (!target.closest('.description-container')) {
       sliderContainerRemove.remove();
+      document.body.style.overflow = 'visible';
     }
   });
 });

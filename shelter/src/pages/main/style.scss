@@ -31,10 +31,17 @@ button:focus {
 }
 
 .hero button:hover,
-.our-friends button:hover {
+.our-friends button:hover,
+.content-section__button:hover,
+.slider-item_btn_all:hover,
+.donation__card_btn:hover {
   cursor: pointer;
   background: #fddcc4;
   box-shadow: 0.1rem 0 2.6rem rgba(0, 0, 0, 0.2);
+}
+
+.content-section__button:hover {
+  box-shadow: 0.1rem 0 0.6rem rgb(245 245 245 / 58%);
 }
 
 .slider button:hover {
@@ -153,6 +160,22 @@ button:focus {
   letter-spacing: 1.6;
 }
 
+.list__link:hover {
+  color: white;
+  opacity: 1;
+}
+
+.list__link_disabled:hover {
+  color: #cdcdcd;
+  cursor: default;
+  opacity: 1;
+}
+
+.list__link_active {
+  color: #fafafa;
+  opacity: 1;
+}
+
 .main {
   width: 100%;
 }
@@ -200,6 +223,9 @@ button:focus {
   height: 5.2rem;
   margin-top: 4.2rem;
   background: #f1cdb3;
+  color: #000;
+  border-radius: 100px;
+  padding: 1.6rem 4.5rem;
 }
 
 .about__box {
@@ -249,11 +275,14 @@ button:focus {
   z-index: 1;
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
   width: 100%;
   height: 100vh;
   background: rgba(41, 41, 41, 0.6);
+  cursor: pointer;
 }
+
 .slider-description_none {
   display: none;
 }
@@ -267,20 +296,39 @@ button:focus {
   text-align: left;
   background: #fff;
   border-radius: 0.9rem;
+  cursor: default;
 }
+
+.modal_close_button {
+  width: 52px;
+  height: 52px;
+  margin-left: 930px;
+  cursor: pointer;
+}
+
+// .description-container::after {
+//   content: "";
+//   display: block;
+//   width: 52px;
+//   position: absolute;
+//   background: url(../../assets/modal_close_button.png);
+//   top: -52px;
+//   height: 52px;
+//   right: -52px;
+// }
 
 .description-container img {
   width: 50rem;
   border-radius: 0.9rem;
 }
 
-.description-container h3 {
+.pets-name {
   font-size: 3.5rem;
   text-align: left;
   letter-spacing: 0.06em;
 }
 
-.description-container h4 {
+.pets-breed {
   padding-top: 1.2rem;
   font-size: 2rem;
   letter-spacing: 0.06em;
@@ -359,20 +407,17 @@ button:focus {
 }
 
 .slider__wrapper {
-  max-width: 102rem;
+  max-width: 104rem;
   margin: 0 1rem;
-
-  @media screen and (max-width: 1280px) {
-    max-width: 580px;
-  }
-
-  @media screen and (max-width: 767px) {
-    max-width: 270px;
-  }
+  width: 100%;
 }
+
 .slider-box {
   display: flex;
-  animation: fadeIn ease 5s;
+}
+
+.slider-item {
+  animation: fadeIn ease 2s;
 
   @keyframes fadeIn {
     from {
@@ -452,6 +497,9 @@ button:focus {
 
 .slider-item_btn_all {
   background: #f1cdb3;
+  color: black;
+  border-radius: 100px;
+  padding: 1.6rem 4.5rem;
 }
 
 .help-box {
@@ -653,6 +701,7 @@ button:focus {
   .list__item:not(:last-child) {
     padding-right: 3.6rem;
   }
+
   // .slider-box > .slider-item:last-child {
   //   display: none;
   // }
@@ -700,6 +749,8 @@ button:focus {
     align-self: center;
     margin-top: 4.3rem;
     padding: 1.6rem 4.5rem;
+    font-size: 1.7rem;
+    letter-spacing: 0.06em;
   }
 
   .hero__image {
@@ -709,23 +760,46 @@ button:focus {
   }
 
   .description-container {
-    max-width: 63rem;
+    width: 63rem;
     height: 35rem;
   }
 
   .description-container img {
+    width: 35rem;
+    height: 35rem;
   }
 
-  .slider-description {
+  .slider-item__info {
+    margin: 0;
+    padding: 1.4rem 0 0 1.1rem;
+    width: 260px;
+    height: 303px;
+  }
+
+  .modal_close_button {
+    margin-left: 663px;
+  }
+
+  .description-container p {
+    padding-top: 2.2rem;
+    font-size: 13px;
+    line-height: 110%;
+  }
+
+  .list-description {
+    height: 87px;
+    margin-top: 2rem;
+    margin-left: 1.4rem;
   }
 
   .slider-item_btn_all {
     padding: 1.6rem 4.4rem;
+    font-size: 1.7rem;
   }
 
   .about__box {
     flex-direction: column-reverse;
-    max-width: 43.5rem;
+    max-width: 42.7rem;
     padding: 0;
   }
 
@@ -804,9 +878,6 @@ button:focus {
   }
 }
 
-@media screen and (max-width: 930px) {
-}
-
 @media screen and (max-width: 767px) {
   .slider-1280 {
     display: none;
@@ -836,7 +907,7 @@ button:focus {
   .menu__btn {
     position: fixed;
     top: 4.5rem;
-    right: 5rem;
+    right: 5.4rem;
     z-index: 1;
     display: flex;
     align-items: center;
@@ -852,7 +923,8 @@ button:focus {
     display: block;
     width: 100%;
     height: 0.2rem;
-    background-color: #616161;
+    background-color: #f1cdb3;
+    transition-duration: 0.25s;
   }
 
   .menu__btn > span::before {
@@ -870,25 +942,33 @@ button:focus {
     top: 0;
     right: -100%;
     display: block;
-    width: 30rem;
-    height: 100%;
+    width: 32rem;
     margin: 0;
-    padding: 8rem 0;
+    padding: 25.4rem 0;
     text-align: center;
     list-style: none;
     visibility: hidden;
-    background-color: #eceff1;
+    background-color: #292929;
     box-shadow: 0.1rem 0 0.6rem rgba(0, 0, 0, 0.2);
+    transition-duration: 0.25s;
+  }
+
+  .menu__box li {
+    padding: 0 2.4rem 5.5rem;
   }
 
   .menu__item {
-    display: block;
-    padding: 1.2rem 2.4rem;
     font-family: Roboto, sans-serif;
-    font-size: 2rem;
+    font-size: 3.2rem;
     font-weight: 600;
-    color: #333;
     text-decoration: none;
+    color: #cdcdcd;
+    font-weight: 400;
+  }
+
+  .menu__item[href="/index.html"] {
+    border-bottom: 2px solid #f1cdb3;
+    color: #fafafa;
   }
 
   .menu__item:hover {
@@ -896,22 +976,22 @@ button:focus {
   }
 
   #menu__toggle:checked ~ .menu__btn > span {
-    transform: rotate(45deg);
+    transform: rotate(90deg);
   }
 
   #menu__toggle:checked ~ .menu__btn > span::before {
-    top: 0;
+    bottom: 8px;
     transform: rotate(0);
   }
 
   #menu__toggle:checked ~ .menu__btn > span::after {
-    top: 0;
-    transform: rotate(90deg);
+    top: 8px;
+    transform: rotate(0deg);
   }
 
   #menu__toggle:checked ~ .menu__box {
     right: 0;
-    width: 100%;
+
     visibility: visible;
   }
 
@@ -919,12 +999,28 @@ button:focus {
   .main h3 {
     font-size: 2.5rem;
   }
+
   .content-section__subtitle {
     margin-top: 4.2rem;
     font-size: 1.5rem;
     text-align: center;
   }
 
+  .hamburger-menu__logo {
+    position: absolute;
+    z-index: 1;
+    right: 122px;
+    width: 188px;
+    visibility: hidden;
+    top: 0;
+    /* right: -100%; */
+    visibility: hidden;
+    transition-duration: 0.25s;
+  }
+
+  .hamburger-menu__logo h1 {
+    color: #f1cdb3;
+  }
   .content-section__title {
     text-align: center;
     letter-spacing: 0.15rem;
@@ -939,7 +1035,7 @@ button:focus {
 
   .slider__btn-prev {
     position: absolute;
-    left: 53px;
+    left: 43px;
     bottom: 41px;
     order: 3;
   }
@@ -947,15 +1043,15 @@ button:focus {
   .slider__btn-next {
     position: absolute;
     bottom: 41px;
-    right: 53px;
+    right: 43px;
+  }
+
+  .slider__wrapper {
+    margin: 0;
   }
 
   .hero {
     max-width: 30rem;
-  }
-
-  .content-section__title span {
-    display: inline;
   }
 
   .hero__image {
@@ -982,23 +1078,56 @@ button:focus {
   .about-content__text_padding {
     padding: 2.4rem 0 2.2rem;
   }
+
   .content-section__button {
     margin-top: 4.2rem;
   }
 
-  //.slider {
-  //  display: none;
-  //}
-  //
-  //.slider_320 {
-  //  display: block;
-  //  margin-top: 4.2rem;
-  //  margin-bottom: 2.2rem;
-  //}
-  //
-  //.slider-item__title {
-  //  font-size: 2rem;
-  //}
+  .description-container {
+    width: 24rem;
+    height: initial;
+    cursor: default;
+  }
+
+  .description-container img {
+    display: none;
+  }
+
+  .description-container p {
+    padding: 2.2rem 1rem;
+    text-align: justify;
+  }
+
+  .slider-item__info {
+    padding: 0;
+  }
+
+  .pets-name {
+    text-align: center;
+    padding-top: 1.3rem;
+  }
+
+  .pets-breed {
+    text-align: center;
+  }
+
+  .list-description {
+    margin: 0;
+    padding-left: 2.5rem;
+  }
+
+  .list-item {
+    padding-top: 6px;
+  }
+
+  .modal_close_button {
+    margin-left: 250px;
+  }
+
+  .slider-item__info,
+  .list-description {
+    height: initial;
+  }
 
   .help-list__768 {
     display: grid;
@@ -1037,9 +1166,6 @@ button:focus {
     font-size: 1.5rem;
   }
 
-  .donation__title span {
-    display: inline;
-  }
   .footer-form__box {
     margin: 3.9rem 0;
   }
@@ -1064,17 +1190,29 @@ button:focus {
     text-align: center;
     letter-spacing: 0;
   }
+
   .slider-box > .slider-item:nth-child(2) {
     display: none;
   }
+
   .donation__text {
     padding: 2rem 1rem 0;
     text-align: justify;
   }
 
+  .footer-box {
+    max-width: 30rem;
+    margin: 0 auto;
+  }
+
   .footer-info {
     flex-direction: column;
     align-items: center;
+  }
+
+  .footer-box h3 {
+    font-size: 2.5rem;
+    padding: 0 1rem;
   }
 
   .footer__contact {
@@ -1093,16 +1231,19 @@ button:focus {
 
   .link__map {
     padding-right: 0.5rem;
+    margin: 4rem 0;
   }
 
   .footer__img {
     width: 26rem;
     height: 26.9rem;
-    margin-top: 9.1rem;
+    margin-top: 0;
+  }
+
+  .footer-form__box,
+  .footer-tel__box {
+    align-self: center;
   }
 }
-@media screen and (max-width: 726px) {
-  /* transition: opacity .15s linear;
- box-shadow: 0 5px 15px rgba(0,0,0,.5);
- */
+@media screen and (max-width: 321px) {
 }

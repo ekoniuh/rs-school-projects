@@ -16,6 +16,96 @@ body {
   font-size: 1.6rem;
   font-family: Georgia;
 }
+/* popap */
+.slider-description {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background: rgba(41, 41, 41, 0.6);
+  cursor: pointer;
+}
+.slider-description_none {
+  display: none;
+}
+
+.description-container {
+  display: flex;
+  width: 100%;
+  max-width: 90rem;
+  height: 50rem;
+  color: #000;
+  text-align: left;
+  background: #fff;
+  border-radius: 0.9rem;
+}
+
+.description-container img {
+  width: 50rem;
+  border-radius: 0.9rem;
+}
+.modal_close_button {
+  width: 52px;
+  height: 52px;
+  margin-left: 930px;
+  cursor: pointer;
+}
+.description-container h3 {
+  font-size: 3.5rem;
+  text-align: left;
+  letter-spacing: 0.06em;
+}
+
+.description-container h4 {
+  padding-top: 1.2rem;
+  font-size: 2rem;
+  letter-spacing: 0.06em;
+}
+
+.description-container p {
+  padding-top: 4.2rem;
+  font-size: 1.5rem;
+  line-height: 1.15;
+  letter-spacing: 0.06em;
+}
+
+.slider-item__info {
+  display: flex;
+  flex-direction: column;
+  width: 351px;
+  height: 362px;
+  margin: 5.3rem 0 0 3rem;
+  letter-spacing: 0.06em;
+}
+
+.list-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 104px;
+  margin-top: 3.8rem;
+  margin-left: 1.5rem;
+  font-size: 1.5rem;
+  line-height: 1.1;
+  color: #f1cdb3;
+  letter-spacing: 0.06em;
+}
+
+.list-item span {
+  font-weight: 600;
+  color: #000;
+}
+.slider-1280 {
+  display: block;
+}
+.slider-768 {
+  display: none;
+}
 
 button {
   border-radius: 10rem;
@@ -38,10 +128,13 @@ button:focus {
   outline: none;
 }
 
-button:hover {
+button:hover,
+.first-page:hover,
+.slider-pets__btn_prev:hover {
   background: #fddcc4;
   cursor: pointer;
   box-shadow: 0.1rem 0rem 0.6rem rgba(0, 0, 0, 0.2);
+  border: 2px solid #fddcc4;
 }
 
 .slider button:hover {
@@ -130,7 +223,7 @@ button:hover {
 }
 
 .list__item:not(:last-child) {
-  padding-right: 3.6rem;
+  padding-right: 3.5rem;
 }
 
 .list__link_active_1280:after {
@@ -151,8 +244,34 @@ button:hover {
   color: #cdcdcd;
 }
 
+.list__link:hover {
+  color: #545454;
+
+  opacity: 1;
+}
+
+.list__link_disabled:hover {
+  color: #545454;
+  cursor: default;
+  font-weight: 400;
+  opacity: 1;
+}
+
+.list__link_active {
+  color: #fafafa;
+  opacity: 0.8;
+}
+
+.list__link_active_1280 {
+  color: black;
+  font-weight: 600;
+}
+
 .main {
   width: 100%;
+}
+.description-container {
+  cursor: default;
 }
 
 .our-friends__box {
@@ -259,6 +378,7 @@ button:hover {
 .footer__contact {
   display: flex;
   flex-direction: column;
+  padding-right: 12.6rem;
 }
 
 .footer-box h3 {
@@ -342,6 +462,19 @@ button:hover {
 }
 
 .slider-item {
+  animation: fadeIn ease 2s;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+.slider-item {
   justify-content: flex-start;
   margin-bottom: 3rem;
   background: #fafafa;
@@ -378,13 +511,9 @@ button:hover {
 }
 
 .slider_btn_act[disabled]:hover {
+  background: inherit;
+  cursor: default;
   box-shadow: none;
-  cursor: auto;
-  background: initial;
-}
-
-.slider-wrap__btn button:hover {
-  border: none;
 }
 
 .footer-info {
@@ -400,6 +529,50 @@ button:hover {
     margin: 0 auto;
   }
 
+  .main {
+    padding-top: 12.1rem;
+  }
+
+  .header {
+    position: fixed;
+    padding: 3rem 0;
+    top: 0;
+    background: white;
+    z-index: 1;
+  }
+
+  .description-container {
+    width: 63rem;
+    height: 35rem;
+  }
+
+  .description-container img {
+    width: 35rem;
+    height: 35rem;
+  }
+
+  .slider-item__info {
+    margin: 0;
+    padding: 1.4rem 0 0 1.1rem;
+    width: 260px;
+    height: 303px;
+  }
+
+  .modal_close_button {
+    margin-left: 663px;
+  }
+
+  .description-container p {
+    padding-top: 2.2rem;
+    font-size: 13px;
+    line-height: 110%;
+  }
+
+  .list-description {
+    height: 87px;
+    margin-top: 2rem;
+    margin-left: 1.4rem;
+  }
   .footer__address,
   .footer__contact {
     padding-top: 1.6rem;
@@ -446,7 +619,7 @@ button:hover {
   }
 
   .list__item:not(:last-child) {
-    padding-right: 3.6rem;
+    padding-right: 3.5rem;
   }
 
   .list__link_active {
@@ -498,6 +671,14 @@ button:hover {
   .slider-item:nth-child(3) {
     margin-left: 0;
   }
+
+  .footer__contact {
+    padding-right: 2.5rem;
+  }
+
+  .footer__img {
+    margin-top: 6rem;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -510,6 +691,13 @@ button:hover {
     opacity: 0;
   }
 
+  .main {
+    padding: 0;
+    padding-top: 121px;
+  }
+  .footer__contact {
+    padding-right: 0;
+  }
   .hamburger-menu {
     display: block;
   }
@@ -523,7 +711,7 @@ button:hover {
     align-items: center;
     position: fixed;
     top: 4.5rem;
-    right: 5rem;
+    right: 5.4rem;
     width: 3rem;
     height: 3rem;
     cursor: pointer;
@@ -537,7 +725,9 @@ button:hover {
     position: absolute;
     width: 100%;
     height: 0.2rem;
-    background-color: #616161;
+    background-color: black;
+    transition-duration: 0.25s;
+    box-shadow: 0px 0px 4px white;
   }
 
   .menu__btn > span::before {
@@ -556,24 +746,32 @@ button:hover {
     visibility: hidden;
     top: 0;
     right: -100%;
-    width: 30rem;
+    width: 32rem;
     height: 100%;
     margin: 0;
-    padding: 8rem 0;
+    padding: 25.4rem 0;
     list-style: none;
     text-align: center;
-    background-color: #eceff1;
+    background-color: #292929;
     box-shadow: 0.1rem 0rem 0.6rem rgba(0, 0, 0, 0.2);
+    transition-duration: 0.25s;
+  }
+
+  .menu__box li {
+    padding: 0 2.4rem 5.5rem;
   }
 
   .menu__item {
-    display: block;
-    padding: 1.2rem 2.4rem;
-    color: #333;
-    font-family: "Roboto", sans-serif;
-    font-size: 2rem;
+    font-family: Roboto, sans-serif;
+    font-size: 3.2rem;
     font-weight: 600;
     text-decoration: none;
+    color: #cdcdcd;
+    font-weight: 400;
+  }
+
+  .menu__item[href="./index-pets.html"] {
+    border-bottom: 2px solid #f1cdb3;
   }
 
   .menu__item:hover {
@@ -581,27 +779,46 @@ button:hover {
   }
 
   #menu__toggle:checked ~ .menu__btn > span {
-    transform: rotate(45deg);
+    transform: rotate(90deg);
   }
 
   #menu__toggle:checked ~ .menu__btn > span::before {
-    top: 0;
+    bottom: 8px;
     transform: rotate(0);
   }
 
   #menu__toggle:checked ~ .menu__btn > span::after {
-    top: 0;
-    transform: rotate(90deg);
+    top: 8px;
+    transform: rotate(0deg);
   }
 
   #menu__toggle:checked ~ .menu__box {
-    visibility: visible;
     right: 0;
-    width: 100%;
+    visibility: visible;
   }
 
   .slider_320 {
     display: block;
+  }
+
+  .hamburger-menu__logo {
+    position: absolute;
+    z-index: 1;
+    right: 122px;
+    width: 188px;
+    visibility: hidden;
+    top: 31px;
+    /* right: -100%; */
+    visibility: hidden;
+    transition-duration: 0.25s;
+  }
+
+  .hamburger-menu__logo h1 {
+    color: #f1cdb3;
+  }
+
+  .hamburger-menu__logo .logo__subtitle {
+    color: white;
   }
 
   .our-friends_768 {
@@ -613,7 +830,7 @@ button:hover {
     padding: 0;
   }
 
-  .wrapper {
+  .our-friends_1280 .wrapper {
     padding: 0 1.3rem;
   }
 
@@ -691,11 +908,86 @@ button:hover {
   }
 
   .slider-item:nth-child(3) {
-    margin-left: 0;
     margin-bottom: 4.2rem;
+    margin-left: 0;
   }
 
   .link__map_second_margin p {
     text-align: left;
+  }
+
+  .description-container {
+    width: 24rem;
+    height: initial;
+  }
+
+  .description-container img {
+    display: none;
+  }
+
+  .description-container p {
+    padding: 2.2rem 1rem;
+    text-align: justify;
+  }
+
+  .slider-item__info {
+    padding: 0;
+  }
+
+  .description-container h3 {
+    text-align: center;
+    padding-top: 1.3rem;
+  }
+
+  .pets-breed {
+    text-align: center;
+  }
+
+  .list-description {
+    margin: 0;
+    padding-left: 2.5rem;
+  }
+
+  .list-item {
+    padding-top: 6px;
+  }
+
+  .modal_close_button {
+    margin-left: 250px;
+  }
+
+  .slider-item__info,
+  .list-description {
+    height: initial;
+  }
+
+  .wrapper_padding_disabled {
+    padding: 0 1rem;
+  }
+
+  .footer__contact h3,
+  .footer-box h3 {
+    font-size: 2.5rem;
+    padding: 0 1.2rem;
+  }
+
+  .footer-form__box {
+    padding: 0 1.2rem;
+  }
+
+  .footer-tel__box {
+    padding: 0 1.8rem;
+  }
+
+  .link__map_second_margin {
+    margin: 3.9rem 0;
+  }
+
+  .footer__img {
+    margin-top: 4rem;
+  }
+
+  .header {
+    height: 121px;
   }
 }

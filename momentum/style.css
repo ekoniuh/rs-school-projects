@@ -7,6 +7,7 @@
 html {
   height: 100%;
 }
+
 body {
   font-family: 'Quicksand', sans-serif;
   display: flex;
@@ -14,9 +15,9 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-size: cover;
   color: #000000;
   transition: background-image 1s ease-in-out;
+  background-size: cover;
 }
 
 .btn {
@@ -49,7 +50,7 @@ body {
 }
 
 .name {
-  min-width: 160px;
+  min-width: 210px;
   display: inline-block;
 }
 
@@ -59,18 +60,34 @@ body {
   color: black;
   display: flex;
   flex-direction: column;
-  margin: 20px 40px;
+  margin: 8px 40px;
+  box-shadow: 2px 0 19px #e69393a6;
 }
 
 .quote figcaption,
 .quote blockquote {
-  margin: 1em;
+  margin: 10px 20px;
 }
 
 .quote figcaption {
   text-align: right;
 }
 
+span,
+h2,
+h3,
+.date,
+.temperature,
+.time,
+.humidity,
+.wind {
+  text-shadow: 3px 0 2px red;
+  color: white;
+}
+.humidity,
+.wind {
+  margin: 10px 0;
+}
 .btn,
 .btn-quote {
   min-width: 60px;
@@ -84,11 +101,9 @@ body {
   margin: 10px;
 }
 
-.date {
-  margin-top: 30px;
-}
 .btn {
 }
+
 .btn-quote {
   background-image: none;
   background-image: none;
@@ -96,8 +111,9 @@ body {
   filter: none;
   border-radius: 7px;
   font-size: 20px;
-  width: 90px;
+  width: 140px;
   align-self: flex-end;
+  min-height: 30px;
 }
 
 .btn-quote:hover {
@@ -126,6 +142,8 @@ body {
   margin: 20px auto;
   border: 1px solid #ccc;
   border-radius: 5px;
+  background: #171010a3;
+  color: white;
 }
 .temperature {
   font-size: 40px;
@@ -178,7 +196,7 @@ body {
 } */
 
 h1 {
-  margin-bottom: 3rem;
+  margin-bottom: 10px;
 }
 
 h2 {

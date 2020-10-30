@@ -65,42 +65,22 @@ async function getWeather() {
     wind.textContent = `Скорость ветра: ${data.wind.speed} m/c`;
   } catch {
     weatherDescription.textContent = 'Error';
-  }
-}
-
-function setCity(event) {
-  if (event.code === 'Enter') {
-    getWeather();
-    city.blur();
+    humidity.textContent = 'Влажность: не найдено';
+    wind.textContent = 'Скорость ветра: не найдено';
   }
 }
 
 document.addEventListener('DOMContentLoaded', getWeather);
-city.addEventListener('keypress', setCity);
-btn.addEventListener(
-  'click',
-  // () => (counter = showNextImage(images, imagesPaths, counter))
-  () => {
-    //   setTimeout(function () {
-    //     const result = showNextImage(
-    //       images,
-    //       imagesPaths,
-    //       dayTimeIndex,
-    //       imageIndex
-    //     );
-    //     dayTimeIndex = result[0];
-    //     imageIndex = result[1];
-    //   }, 1000);
-    // }
-    const result = showNextImage(images, imagesPaths, dayTimeIndex, imageIndex);
-    dayTimeIndex = result[0];
-    imageIndex = result[1];
-    btn.disabled = true;
-    setTimeout(function () {
-      btn.disabled = false;
-    }, 1000);
-  }
-);
+
+btn.addEventListener('click', () => {
+  const result = showNextImage(images, imagesPaths, dayTimeIndex, imageIndex);
+  dayTimeIndex = result[0];
+  imageIndex = result[1];
+  btn.disabled = true;
+  setTimeout(function () {
+    btn.disabled = false;
+  }, 1000);
+});
 
 async function getQuote() {
   const url = `https://quote-garden.herokuapp.com/api/v2/quotes/random`;
@@ -128,27 +108,6 @@ function showNextImage(images, imagesPaths, dayTimeIndex, imageIndex) {
 
   return [dayTimeIndex, imageIndex];
 }
-
-// function showNextImage1(images, imagesPaths, counter) {
-//   let dayTimeIndex = 0;
-//   if (counter >= 0 && counter < 6) {
-//     dayTimeIndex = 0;
-//   } else if (counter >= 6 && counter < 12) {
-//     dayTimeIndex = 1;
-//   } else if (counter >= 12 && counter < 18) {
-//     dayTimeIndex = 2;
-//   } else if (counter >= 18 && counter < 24) {
-//     dayTimeIndex = 3;
-//   }
-
-// document.body.style.backgroundImage = `url('./assets/images/${
-//   imagesPaths[dayTimeIndex]
-// }/${images[counter % 6]}')`;
-
-//   return counter + 1;
-// }
-
-// Show Time
 
 function showTime() {
   let today = new Date(),
@@ -270,22 +229,41 @@ function setFocus(e) {
   }
 }
 
-function clearName() {
-  name.innerHTML = '';
-}
-
-function clearTextFocus() {
-  focus.innerHTML = '';
-}
+// function setCity(e) {
+//   if (e.type === "keypress") {
+//     // Make sure enter is pressed
+//     if (e.which == 13 || e.keyCode == 13) {
+//       localStorage.setItem("inputCity", e.target.innerText);
+//       city.blur();
+//     } else {
+//       focus.textContent = "[Enter Focus]";
+//     }
+//   }
+// }
 
 function setCity(e) {
   if (e.type === 'keypress') {
     // Make sure enter is pressed
     if (e.which == 13 || e.keyCode == 13) {
-      localStorage.setItem('inputCity', e.target.innerText);
+      localStorage.setItem('inputCity', e.target.textContent);
+      getWeather();
       city.blur();
     }
+  } else if (e.target.textContent) {
+    localStorage.setItem('inputCity', e.target.textContent);
+  } else {
+    city.textContent = '[Enter City]';
   }
+  // if (e.type === "keypress") {
+  //   // Make sure enter is pressed
+  //   if (e.target.innerText) {
+  //     localStorage.setItem("inputCity", e.target.innerText);
+  //     getWeather();
+  //     city.blur();
+  //   }
+  // } else {
+  //   city.textContent = "[Enter City]";
+  // }
 }
 
 function getCity() {
@@ -296,6 +274,18 @@ function getCity() {
   }
 }
 
+function clearName() {
+  name.innerHTML = '';
+}
+
+function clearTextFocus() {
+  focus.innerHTML = '';
+}
+
+function clearNameCity() {
+  city.innerHTML = '';
+}
+
 name.addEventListener('keypress', setName);
 name.addEventListener('click', clearName);
 name.addEventListener('blur', setName);
@@ -303,10 +293,33 @@ focus.addEventListener('keypress', setFocus);
 focus.addEventListener('blur', setFocus);
 focus.addEventListener('click', clearTextFocus);
 city.addEventListener('keypress', setCity);
-city.addEventListener('blur', setCity);
+city.addEventListener('click', clearNameCity);
+city.addEventListener('blur', getCity);
+
 // Run
 showTime();
 setBgGreet();
 getName();
 getFocus();
 getCity();
+// getWeather();
+// function showNextImage1(images, imagesPaths, counter) {
+//   let dayTimeIndex = 0;
+//   if (counter >= 0 && counter < 6) {
+//     dayTimeIndex = 0;
+//   } else if (counter >= 6 && counter < 12) {
+//     dayTimeIndex = 1;
+//   } else if (counter >= 12 && counter < 18) {
+//     dayTimeIndex = 2;
+//   } else if (counter >= 18 && counter < 24) {
+//     dayTimeIndex = 3;
+//   }
+
+// document.body.style.backgroundImage = `url('./assets/images/${
+//   imagesPaths[dayTimeIndex]
+// }/${images[counter % 6]}')`;
+
+//   return counter + 1;
+// }
+
+// Show Time

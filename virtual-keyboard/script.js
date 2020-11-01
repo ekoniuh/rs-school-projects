@@ -158,54 +158,6 @@ const Keyboard = {
 
     const fragment = document.createDocumentFragment();
 
-    // const keyLayout = [
-    //   '1',
-    //   '2',
-    //   '3',
-    //   '4',
-    //   '5',
-    //   '6',
-    //   '7',
-    //   '8',
-    //   '9',
-    //   '0',
-    //   'backspace',
-    //   'q',
-    //   'w',
-    //   'e',
-    //   'r',
-    //   't',
-    //   'y',
-    //   'u',
-    //   'i',
-    //   'o',
-    //   'p',
-    //   'caps',
-    //   'a',
-    //   's',
-    //   'd',
-    //   'f',
-    //   'g',
-    //   'h',
-    //   'j',
-    //   'k',
-    //   'l',
-    //   'enter',
-    //   'done',
-    //   'shift',
-    //   'z',
-    //   'x',
-    //   'c',
-    //   'v',
-    //   'b',
-    //   'n',
-    //   'm',
-    //   ',',
-    //   '.',
-    //   '?',
-    //   'space',
-    // ];
-
     // Creates HTML for an icon
     const createIconHTML = (icon_name) => {
       return `<i class="material-icons">${icon_name}</i>`;
@@ -226,13 +178,14 @@ const Keyboard = {
           keyElement.innerHTML = 'shift';
 
           keyElement.addEventListener('click', () => {
-            // document.querySelector('.keyboard__keys').remove();
             document.querySelector('.keyboard__keys').innerHTML = '';
-            // this.elements.keysContainer = document.createElement('div');
-            // this.elements.keysContainer.classList.add('keyboard__keys');
+
             document
               .querySelector('.keyboard__keys')
               .append(this._createKeys('keyLayoutEnSimbol'));
+            this.elements.keys = this.elements.keysContainer.querySelectorAll(
+              '.keyboard__key'
+            );
             this.properties.shiftCaps = true;
             this._toggleCapsLock(true);
           });
@@ -255,7 +208,8 @@ const Keyboard = {
         case 'caps':
           keyElement.classList.add(
             'keyboard__key--wide',
-            'keyboard__key--activatable'
+            'keyboard__key--activatable',
+            'keyboard__key--shift'
           );
           keyElement.innerHTML = createIconHTML('keyboard_capslock');
 
@@ -309,6 +263,28 @@ const Keyboard = {
           keyElement.textContent = key.toLowerCase();
 
           keyElement.addEventListener('click', () => {
+            // document.querySelector('.keyboard__keys').innerHTML = '';
+            // if (this.properties.shiftCaps) {
+            //   document
+            //     .querySelector('.keyboard__keys')
+            //     .append(this._createKeys('keyLayoutEn'));
+            // }
+            document.querySelector('.keyboard__keys').innerHTML = '';
+
+            document
+              .querySelector('.keyboard__keys')
+              .append(this._createKeys('keyLayoutEn'));
+            this.elements.keys = this.elements.keysContainer.querySelectorAll(
+              '.keyboard__key'
+            );
+            this._toggleCapsLock(true);
+            document
+              .querySelector('.keyboard__key--shift')
+              .classList.toggle(
+                'keyboard__key--active',
+                this.properties.capsLock
+              );
+
             this.properties.value +=
               (this.properties.capsLock && !this.properties.shiftCaps) ||
               (!this.properties.capsLock && this.properties.shiftCaps)

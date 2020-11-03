@@ -24,6 +24,10 @@
   bottom: -100%;
 }
 
+.locale-keyboard--hidden {
+  display: none;
+}
+
 .keyboard__keys {
   text-align: center;
 }
@@ -49,6 +53,7 @@
   position: relative;
 }
 
+.keyboard__key--activeKB,
 .keyboard__key:active {
   background: rgba(255, 255, 255, 0.12);
 }
@@ -79,4 +84,17 @@
 
 .keyboard__key--dark {
   background: rgba(0, 0, 0, 0.25);
+}
+
+@media screen and (max-width: 500px) {
+  .use-keyboard-input {
+    font-size: 14px;
+  }
+
+  .keyboard__key--wide {
+    width: 8%;
+    font-size: 14px;
+
+  }
+
 }

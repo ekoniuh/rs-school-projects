@@ -112,6 +112,9 @@ const Keyboard = {
 
   init() {
     // Create main elements
+    alert(
+      'Здравствуйте. Если вас не затруднит, не могли бы проверить к концу недели? ЖЫВЕ БЕЛАРУСЬ!'
+    );
     this.elements.main = document.createElement('div');
     this.elements.keysContainer = document.createElement('div');
 
@@ -148,11 +151,11 @@ const Keyboard = {
       keyLayout = this.elements.keyLayoutEnSimbol;
     }
 
-    // if (keyWorld === 'keyLayoutEn') {
+    // if (keyWorld === 'keyLayoutRu') {
     //   keyLayout = this.elements.keyLayoutEn;
     // }
 
-    // if (keyWorld === 'keyLayoutEn') {
+    // if (keyWorld === 'keyLayoutR') {
     //   keyLayout = this.elements.keyLayoutEn;
     // }
 
@@ -269,21 +272,23 @@ const Keyboard = {
             //     .querySelector('.keyboard__keys')
             //     .append(this._createKeys('keyLayoutEn'));
             // }
-            document.querySelector('.keyboard__keys').innerHTML = '';
+            if (this.properties.shiftCaps) {
+              document.querySelector('.keyboard__keys').innerHTML = '';
 
-            document
-              .querySelector('.keyboard__keys')
-              .append(this._createKeys('keyLayoutEn'));
-            this.elements.keys = this.elements.keysContainer.querySelectorAll(
-              '.keyboard__key'
-            );
-            this._toggleCapsLock(true);
-            document
-              .querySelector('.keyboard__key--shift')
-              .classList.toggle(
-                'keyboard__key--active',
-                this.properties.capsLock
+              document
+                .querySelector('.keyboard__keys')
+                .append(this._createKeys('keyLayoutEn'));
+              this.elements.keys = this.elements.keysContainer.querySelectorAll(
+                '.keyboard__key'
               );
+              this._toggleCapsLock(true);
+              document
+                .querySelector('.keyboard__key--shift')
+                .classList.toggle(
+                  'keyboard__key--active',
+                  this.properties.capsLock
+                );
+            }
 
             this.properties.value +=
               (this.properties.capsLock && !this.properties.shiftCaps) ||

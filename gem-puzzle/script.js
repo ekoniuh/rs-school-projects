@@ -18,7 +18,8 @@ function createHeader() {
     'afterbegin',
     `		<section class="page">
 		<div class="menu">
-			<ul class="menu-list">
+      <ul class="menu-list">
+      <li class="menu-item play-game">Continue</li>
 				<li class="menu-item">New Game</li>
 				<li class="menu-item">Saved games</li>
 				<li class="menu-item">Settings</li>
@@ -29,14 +30,15 @@ function createHeader() {
 			<div class="control-wrap">
 				<div class="info">
 					<span class="description">Time </span>
-					<span class="timer">3:54</span>
+					<span class="timer"></span>
 				</div>
 				<div class="moves">
 					<span class="description">Moves </span>
-					<span class="counter">3</span>
+					<span class="counter"></span>
 				</div>
-				<button class="pause visible">Pause game</button>
-				<button class="restart-game">Restart</button>
+        <img class="pause visible" src="./assets/pause-play.png" title = "pause">
+        <img class="restart-game" src="./assets/47-512.png" title = "Restart">
+		
 			</div>
 
 			<div class="field">
@@ -69,10 +71,12 @@ const time = document.querySelector('.timer');
 const counterStep = document.querySelector('.counter');
 const pauseGame = document.querySelector('.pause');
 const menu = document.querySelector('.menu');
+const playGame = document.querySelector('.play-game');
+
 console.log(menu.style.left);
 function move(index, widthCell) {
   const cell = cells[index];
-  const leftDiff = Math.abs(empty.left - cell.  left);
+  const leftDiff = Math.abs(empty.left - cell.left);
   const topDiff = Math.abs(empty.top - cell.top);
 
   if (leftDiff + topDiff > 1) {
@@ -190,14 +194,70 @@ function volume() {
 }
 
 function openMenu() {
-  if (menu.style.left === '-391px') {
+  if (menu.offsetLeft === -391) {
     menu.style.left = '-125px';
+    document
+      .querySelector('.content-box')
+      .classList.toggle('content-box__scale');
   } else {
+    document
+      .querySelector('.content-box')
+      .classList.toggle('content-box__scale');
     menu.style.left = '-391px';
   }
 
   // почему не перезаписывает?
 }
+
+field.addEventListener('mousedown', function (event) {
+  if (!event.target.classList.contains('field-item')) {
+    return;
+  }
+  // console.log(event.target.getBoundingClientRect().left);
+  // console.log(field.style.marginLeft, '-margin');
+  // console.log(event.layerY, '-layerY');
+  // console.log(event.offsetY, '-offsetY');
+  // console.log(event.getBoundingClientRect().top);
+  // let shiftX =
+  //   field.getBoundingClientRect().left -
+  //   event.target.getBoundingClientRect().left;
+  // let shiftY =
+  //   field.getBoundingClientRect().top -
+  //   event.target.getBoundingClientRect().top;
+  // let shiftX = event.clientX - field.getBoundingClientRect().left;
+  // let shiftY = event.clientY - field.getBoundingClientRect().top;
+  let shiftCurX = event.layerX;
+  let shiftCurY = event.layerY;
+  moveAt(event.clientX, event.clientY);
+
+  function moveAt(clientX, clientY) {
+    event.target.style.left =
+      clientX - field.getBoundingClientRect().left - shiftCurX + 'px';
+    event.target.style.top =
+      clientY - field.getBoundingClientRect().top - shiftCurY + 'px';
+  }
+
+  function onMouseMove(event) {
+    moveAt(event.clientX, event.clientY);
+  }
+
+  // передвигаем мяч при событии mousemove
+  document.addEventListener('mousemove', onMouseMove);
+
+  // отпустить мяч, удалить ненужные обработчики
+  field.onmouseup = function () {
+    document.removeEventListener('mousemove', onMouseMove);
+    event.target.onmouseup = null;
+  };
+
+  event.target.ondragstart = function () {
+    return false;
+  };
+
+  // event.target.addEventListener('dragstart', function () {
+  //   return false;
+  // });
+});
 
 function init() {
   let randomArray = [...Array(size * size - 1).keys()].sort(
@@ -217,7 +277,8 @@ function init() {
 
   setInterval(tick, 1000);
   restartGame.addEventListener('click', () => getRestartGame(size));
-  pauseGame.addEventListener('click', () => openMenu());
+  pauseGame.addEventListener('click', openMenu);
+  playGame.addEventListener('click', openMenu);
 }
 
 document.addEventListener('DOMContentLoaded', init());

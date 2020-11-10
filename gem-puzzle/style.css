@@ -22,7 +22,7 @@
 .menu {
   position: absolute;
   left: -391px;
-  background: url(/assets/back-image/cartao-de-natal-para-dedicacao-do-feliz-papai-noel_20187-387.jpg);
+  background: url(./assets/back-image/cartao-de-natal-para-dedicacao-do-feliz-papai-noel_20187-387.jpg);
   background-repeat: no-repeat;
   font-family: cursive;
   height: 628px;
@@ -57,8 +57,50 @@
   opacity: 1;
   transition: all 0.3s ease-in;
 }
+/* .pause {
+  width: 50px;
+  height: 50px;
+  transition: all 0.2s ease-in;
+  margin-right: 14px;
+  color: red;
+  border-radius: 50%;
+}
 
-.pause,
+.pause:hover {  
+  transition: all 0.2s ease-in;
+  transform: scale(1.2);
+  cursor: pointer;
+} */
+
+.restart-game {
+  width: 50px;
+  height: 50px;
+  transition: all 0.2s ease-in;
+  border-radius: 50%;
+}
+
+.restart-game:hover {
+  transition: all 0.2s ease-in;
+  transform: scale(1.05);
+  cursor: pointer;
+  box-shadow: 0px 0px 8px 0 rgba(0, 0, 0, 0.637);
+}
+
+.pause {
+  /* background: url(./assets/pause3.png); */
+  width: 50px;
+  height: 50px;
+  transition: all 0.2s ease-in;
+  margin-right: 14px;
+  border-radius: 50%;
+}
+
+.pause:hover {
+  transition: all 0.2s ease-in;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+/* 
 .restart-game {
   font-size: 15px;
   outline: none;
@@ -72,11 +114,10 @@
   padding: 10px;
 }
 
-.pause:hover,
 .restart-game:hover {
   cursor: pointer;
   box-shadow: 2px 2px 5px 0 rgb(74 21 169);
-}
+} */
 
 .header {
   display: flex;
@@ -93,9 +134,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* height: 100%; */
+  height: 600px;
   margin: 0 auto;
-  margin-left: 601px;
+  /* margin-left: 601px; */
+  align-self: center;
+  transition: all 0.3s ease-in;
+}
+
+.content-box__scale {
+  transform: scale(0.5);
+  transition: all 0.3s ease-in;
+  opacity: 0.3;
+  z-index: -1;
 }
 
 .info {
@@ -103,6 +153,7 @@
   box-shadow: 0 0 48px 1px #fffafadb;
   border-radius: 8px;
   padding: 8px;
+  width: 96px;
 }
 
 .moves {

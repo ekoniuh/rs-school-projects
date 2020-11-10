@@ -1,19 +1,106 @@
 .body {
-  background: #2980b9;
-  background: -webkit-linear-gradient(to right, #ffffff, #6dd5fa, #2980b9);
-  background: linear-gradient(to right, #ffffff, #6dd5fa, #2980b9);
   font-family: cursive;
+  height: 100vh;
+  transition: all 0.5s ease-in;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+.page {
+  display: flex;
+  height: 100%;
+}
+
+.menu {
+  position: absolute;
+  left: -391px;
+  background: url(/assets/back-image/cartao-de-natal-para-dedicacao-do-feliz-papai-noel_20187-387.jpg);
+  background-repeat: no-repeat;
+  font-family: cursive;
+  height: 628px;
+  transition: all 0.5s ease-in;
+  width: 628px;
+  display: flex;
+  align-self: center;
+  align-items: center;
+  /* background-position: -391px center; */
+}
+
+.menu-list {
+  margin-left: 117px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  opacity: 0.8;
+  font-size: 23px;
+  width: 204px;
+}
+
+.menu-item {
+  transition: all 0.3s ease-in;
+}
+
+.menu-item:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  font-weight: 600;
+  opacity: 1;
+  transition: all 0.3s ease-in;
+}
+
+.pause,
+.restart-game {
+  font-size: 15px;
+  outline: none;
+  box-shadow: 2px 2px 5px 0 black;
+  background: none;
+  border-radius: 13px;
+  margin-right: 10px;
+  border: none;
+  font-style: italic;
+  font-family: inherit;
+  padding: 10px;
+}
+
+.pause:hover,
+.restart-game:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 5px 0 rgb(74 21 169);
 }
 
 .header {
   display: flex;
   justify-content: center;
-  margin: 200px 0 21px;
+  margin-top: 200px;
+  margin-bottom: 20px;
+  margin-right: 150px;
+  margin-left: auto;
+  width: 412px;
+}
+
+.content-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* height: 100%; */
+  margin: 0 auto;
+  margin-left: 601px;
 }
 
 .info {
   margin-right: 26px;
-  box-shadow: 0 0 36px 5px #a7a1a170;
+  box-shadow: 0 0 48px 1px #fffafadb;
   border-radius: 8px;
   padding: 8px;
 }
@@ -32,13 +119,19 @@
   text-shadow: 1px 1px 2px #f70000de;
 }
 
+.menu-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .field {
   position: relative;
   width: 400px;
   height: 400px;
-  margin: 0 auto;
+
   border-radius: 10px;
-  background-color: rgb(255 34 34);
+  background-color: rgb(65 203 226);
   box-shadow: 0 0 23px 0px;
 
   grid-template-columns: repeat(4, 1fr);
@@ -59,14 +152,23 @@
   border-radius: 17px;
   position: absolute;
   font-size: 50px;
-  color: #ffffff;
+  color: #f70909bd;
   display: flex;
   justify-content: center;
   align-items: center;
   transition-duration: 0.5s;
-  box-shadow: inset 0 0 18px #4e4d4d;
+  box-shadow: inset 0 0 18px #272626;
   cursor: pointer;
-  opacity: 0.8;
+  opacity: 0.7;
+}
+
+.control-wrap {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.screen-container {
+  margin: 20px 0;
 }
 
 .game-name {
@@ -79,7 +181,7 @@
   animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   transform: translate3d(0, 0, 0);
   opacity: 1;
-  box-shadow: inset 0 0 23px #4e4d4d;
+  box-shadow: inset 0 0 23px #000000;
 }
 
 @keyframes shake {
@@ -140,4 +242,18 @@
   background: rgb(228, 228, 228);
   user-select: none;
   border-radius: 5px;
+}
+
+@media screen and (max-width: 900px) {
+  .field {
+    margin-right: 30px;
+  }
+  .header {
+    margin-right: 30px;
+  }
+
+  .body {
+    background-position: -192px center;
+    background-size: 308px 308px;
+  }
 }

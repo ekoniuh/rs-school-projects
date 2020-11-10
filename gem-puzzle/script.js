@@ -1,5 +1,5 @@
-const cellSize = 100;
-
+// const cellSize = null;
+let isMenuShow = true;
 let empty = {
   value: 0,
   top: 0,
@@ -16,31 +16,49 @@ cells.push(empty);
 function createHeader() {
   document.body.insertAdjacentHTML(
     'afterbegin',
-    `	<header class="header">
-		<div class="info">
-    <span class="description">Time </span>
-    <span class="timer"></span>
+    `		<section class="page">
+		<div class="menu">
+			<ul class="menu-list">
+				<li class="menu-item">New Game</li>
+				<li class="menu-item">Saved games</li>
+				<li class="menu-item">Settings</li>
+				<li class="menu-item">Best scores</li>
+			</ul>
 		</div>
-		<div class="moves">
-    <span class="description">Moves </span>
-    <span class="counter">0</span>
+		<div class="content-box">
+			<div class="control-wrap">
+				<div class="info">
+					<span class="description">Time </span>
+					<span class="timer">3:54</span>
+				</div>
+				<div class="moves">
+					<span class="description">Moves </span>
+					<span class="counter">3</span>
+				</div>
+				<button class="pause visible">Pause game</button>
+				<button class="restart-game">Restart</button>
+			</div>
+
+			<div class="field">
+				
+			</div>
+			<div class="screen-container">
+				<h2 class="screen__title">Settings</h2>
+				<label class="nav__btn">Field size: </label>
+				<select class="select-box">
+					<option class="select-option" value="3">3x3</option>
+					<option class="select-option" value="4" selected="">4x4</option>
+					<option class="select-option" value="5">5x5</option>
+					<option class="select-option" value="6">6x6</option>
+					<option class="select-option" value="7">7x7</option>
+					<option class="select-option" value="8">8x8</option>
+				</select>
+			</div>
+			<audio src="./assets/audio.mp3" class="audio-play" type="audio/mp3"></audio>
+
 		</div>
-		<button class="pause visible">Pause game</button>
-    <button class="restart-game">Restart</button>
-    </header>
-		<div class="field"></div>
-		<div class="screen-container">
-    <h2 class="screen__title">Settings</h2>
-    <label class="nav__btn">Field size: </label>
-    <select class="select-box">
-    <option class="select-option" value="3">3x3</option>
-    <option class="select-option" value="4" selected="">4x4</option>
-    <option class="select-option" value="5">5x5</option>
-    <option class="select-option" value="6">6x6</option>
-    <option class="select-option" value="7">7x7</option>
-    <option class="select-option" value="8">8x8</option>
-    </select>
-		</div>`
+
+	</section>`
   );
 }
 createHeader();
@@ -49,21 +67,18 @@ const restartGame = document.querySelector('.restart-game');
 const field = document.querySelector('.field');
 const time = document.querySelector('.timer');
 const counterStep = document.querySelector('.counter');
-
+const pauseGame = document.querySelector('.pause');
+const menu = document.querySelector('.menu');
+console.log(menu.style.left);
 function move(index, widthCell) {
   const cell = cells[index];
-  const leftDiff = Math.abs(empty.left - cell.left);
+  const leftDiff = Math.abs(empty.left - cell.  left);
   const topDiff = Math.abs(empty.top - cell.top);
 
   if (leftDiff + topDiff > 1) {
     return;
   }
-
-  const audio = document.querySelector('.audio-play');
-  audio.src = './assets/audio.mp3';
-  audio.pause();
-  audio.currentTime = 0;
-  audio.play();
+  volume();
 
   counter += 1;
   cell.element.style.left = `${empty.left * widthCell}px`;
@@ -166,6 +181,24 @@ function tick() {
 
 let size = 4;
 
+function volume() {
+  const audio = document.querySelector('.audio-play');
+  audio.src = './assets/audio.mp3';
+  audio.pause();
+  audio.currentTime = 0;
+  audio.play();
+}
+
+function openMenu() {
+  if (menu.style.left === '-391px') {
+    menu.style.left = '-125px';
+  } else {
+    menu.style.left = '-391px';
+  }
+
+  // почему не перезаписывает?
+}
+
 function init() {
   let randomArray = [...Array(size * size - 1).keys()].sort(
     () => Math.random() - 0.5
@@ -184,6 +217,7 @@ function init() {
 
   setInterval(tick, 1000);
   restartGame.addEventListener('click', () => getRestartGame(size));
+  pauseGame.addEventListener('click', () => openMenu());
 }
 
 document.addEventListener('DOMContentLoaded', init());

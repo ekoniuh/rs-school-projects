@@ -9,8 +9,8 @@ let empty = {
 let cells = [];
 let sec = 0,
   min = 0,
-  counter = 0;
-
+  counterMove = 0;
+let rotate = 0;
 cells.push(empty);
 
 function createHeader() {
@@ -20,10 +20,21 @@ function createHeader() {
 		<div class="menu">
       <ul class="menu-list">
       <li class="menu-item play-game">Continue</li>
-				<li class="menu-item">New Game</li>
-				<li class="menu-item">Saved games</li>
-				<li class="menu-item">Settings</li>
-				<li class="menu-item">Best scores</li>
+				<li class="menu-item new-game">New Game</li>
+				<li class="menu-item save-game">Saved games</li>
+        <li class="menu-item settings">Settings</li>
+        <li class="menu-item field-size__box">
+	          <label class="nav__btn">Field size: </label>
+	          <select class="select-box">
+		          <option class="select-option" value="3">3x3</option>
+		          <option class="select-option" value="4" selected="">4x4</option>
+		          <option class="select-option" value="5">5x5</option>
+		          <option class="select-option" value="6">6x6</option>
+		          <option class="select-option" value="7">7x7</option>
+		          <option class="select-option" value="8">8x8</option>
+	          </select>
+        </li>
+				<li class="menu-item best-scores">Best scores</li>
 			</ul>
 		</div>
 		<div class="content-box">
@@ -33,8 +44,8 @@ function createHeader() {
 					<span class="timer"></span>
 				</div>
 				<div class="moves">
-					<span class="description">Moves </span>
-					<span class="counter"></span>
+					<span class="description">Moves</span>
+					<span class="counter">0</span>
 				</div>
         <img class="pause visible" src="./assets/pause-play.png" title = "pause">
         <img class="restart-game" src="./assets/47-512.png" title = "Restart">
@@ -44,18 +55,7 @@ function createHeader() {
 			<div class="field">
 				
 			</div>
-			<div class="screen-container">
-				<h2 class="screen__title">Settings</h2>
-				<label class="nav__btn">Field size: </label>
-				<select class="select-box">
-					<option class="select-option" value="3">3x3</option>
-					<option class="select-option" value="4" selected="">4x4</option>
-					<option class="select-option" value="5">5x5</option>
-					<option class="select-option" value="6">6x6</option>
-					<option class="select-option" value="7">7x7</option>
-					<option class="select-option" value="8">8x8</option>
-				</select>
-			</div>
+			
 			<audio src="./assets/audio.mp3" class="audio-play" type="audio/mp3"></audio>
 
 		</div>
@@ -64,45 +64,51 @@ function createHeader() {
   );
 }
 createHeader();
-
+const sizeField = document.querySelector('.select-box');
 const restartGame = document.querySelector('.restart-game');
 const field = document.querySelector('.field');
 const time = document.querySelector('.timer');
 const counterStep = document.querySelector('.counter');
 const pauseGame = document.querySelector('.pause');
 const menu = document.querySelector('.menu');
-const playGame = document.querySelector('.play-game');
+const playPauseGame = document.querySelector('.play-game');
+const newGame = document.querySelector('.new-game');
+const settings = document.querySelector('.settings');
+const saveGame = document.querySelector('.save-game');
+const bestScores = document.querySelector('.best-scores');
+const fieldSizeDisplay = document.querySelector('.field-size__box');
 
-console.log(menu.style.left);
 function move(index, widthCell) {
   const cell = cells[index];
   const leftDiff = Math.abs(empty.left - cell.left);
   const topDiff = Math.abs(empty.top - cell.top);
+  const emptyLeft = empty.left;
+  const emptyTop = empty.top;
 
   if (leftDiff + topDiff > 1) {
     return;
   }
   volume();
 
-  counter += 1;
+  counterMove += 1;
   cell.element.style.left = `${empty.left * widthCell}px`;
   cell.element.style.top = `${empty.top * widthCell}px`;
 
-  const emptyLeft = empty.left;
-  const emptyTop = empty.top;
   empty.left = cell.left;
   empty.top = cell.top;
   cell.left = emptyLeft;
   cell.top = emptyTop;
 
-  counterStep.innerHTML = counter;
+  counterStep.innerHTML = counterMove;
 
   const isFinished = cells.every((cell) => {
-    return cell.value === cell.top * 4 + cell.left;
+    return cell.value === cell.top * size + cell.left;
   });
 
   if (isFinished) {
-    alert(`Ура! Вы решили головоломку за ${min}:${sec} и ${counter} ходов`);
+    alert(
+      `Ура! Вы решили головоломку за ${time.innerHTML} и ${counterMove} ходов`
+    );
   }
 }
 
@@ -110,10 +116,13 @@ function getRestartGame(size) {
   newRandomArray = [...Array(size * size - 1).keys()].sort(
     () => Math.random() - 0.5
   );
+
+  rotate += 360;
+  restartGame.style.transform = `rotate(-${rotate}deg)`;
   field.innerHTML = '';
   min = 0;
   sec = 0;
-  counter = 0;
+  counterMove = 0;
   counterStep.innerHTML = 0;
   empty = {
     value: 0,
@@ -138,7 +147,7 @@ function buildCell(array, size) {
       () => Math.random() - 0.5
     );
   }
-
+  // restartGame.style.transform = `rotate(0deg)`;
   let randomArray = array;
   let widthCell = 400 / size;
 
@@ -174,13 +183,19 @@ function buildCell(array, size) {
 }
 
 function tick() {
-  if (sec > 60) {
+  if (sec > 59) {
     min += 1;
     sec = 0;
+    return;
+  } else if (sec < 10 && min < 10) {
+    time.innerHTML = `0${min}:0${sec}`;
+  } else if (sec > 9 && min < 10) {
+    time.innerHTML = `0${min}:${sec}`;
+  } else {
+    time.innerHTML = `${min}:${sec}`;
   }
 
-  sec++;
-  time.innerHTML = `${min}:${sec}`;
+  sec += 1;
 }
 
 let size = 4;
@@ -209,28 +224,17 @@ function openMenu() {
   // почему не перезаписывает?
 }
 
-field.addEventListener('mousedown', function (event) {
+function mouseMoveCell(event) {
   if (!event.target.classList.contains('field-item')) {
     return;
   }
-  // console.log(event.target.getBoundingClientRect().left);
-  // console.log(field.style.marginLeft, '-margin');
-  // console.log(event.layerY, '-layerY');
-  // console.log(event.offsetY, '-offsetY');
-  // console.log(event.getBoundingClientRect().top);
-  // let shiftX =
-  //   field.getBoundingClientRect().left -
-  //   event.target.getBoundingClientRect().left;
-  // let shiftY =
-  //   field.getBoundingClientRect().top -
-  //   event.target.getBoundingClientRect().top;
-  // let shiftX = event.clientX - field.getBoundingClientRect().left;
-  // let shiftY = event.clientY - field.getBoundingClientRect().top;
+
   let shiftCurX = event.layerX;
   let shiftCurY = event.layerY;
   moveAt(event.clientX, event.clientY);
 
   function moveAt(clientX, clientY) {
+    event.target.style.transitionDuration = '0s';
     event.target.style.left =
       clientX - field.getBoundingClientRect().left - shiftCurX + 'px';
     event.target.style.top =
@@ -241,24 +245,26 @@ field.addEventListener('mousedown', function (event) {
     moveAt(event.clientX, event.clientY);
   }
 
-  // передвигаем мяч при событии mousemove
   document.addEventListener('mousemove', onMouseMove);
 
-  // отпустить мяч, удалить ненужные обработчики
   field.onmouseup = function () {
     document.removeEventListener('mousemove', onMouseMove);
     event.target.onmouseup = null;
+    event.target.style.transitionDuration = '0.3s';
   };
 
-  event.target.ondragstart = function () {
-    return false;
-  };
+  event.target.addEventListener('dragstart', () => false);
+}
 
-  // event.target.addEventListener('dragstart', function () {
-  //   return false;
-  // });
-});
-
+function getSizeGame() {
+  settings.classList.toggle('menu-item__anime');
+  if (fieldSizeDisplay.style.display === 'block') {
+    fieldSizeDisplay.style.display = 'none';
+    return;
+  }
+  fieldSizeDisplay.style.display = 'block';
+}
+let oldSize = 4;
 function init() {
   let randomArray = [...Array(size * size - 1).keys()].sort(
     () => Math.random() - 0.5
@@ -266,19 +272,26 @@ function init() {
 
   buildCell(randomArray, size);
 
-  document.querySelector('.select-box').addEventListener('change', function () {
-    size = +this.value;
-    console.log(document.querySelectorAll('.field-item'));
-
-    getRestartGame(size);
+  sizeField.addEventListener('change', (e) => {
+    size = +e.target.value;
+    // getRestartGame(size);
   });
 
-  // document.getElementById('generateField').addEventListener('click', function(){createField(size)});
-
-  setInterval(tick, 1000);
-  restartGame.addEventListener('click', () => getRestartGame(size));
+  playPauseGame.addEventListener('click', openMenu);
+  restartGame.addEventListener('click', () => getRestartGame(oldSize));
+  newGame.addEventListener('click', () => {
+    getRestartGame(size);
+    // buildCell(randomArray, size);
+    oldSize = size;
+    openMenu();
+  });
   pauseGame.addEventListener('click', openMenu);
-  playGame.addEventListener('click', openMenu);
+  settings.addEventListener('click', () => {
+    getSizeGame();
+  });
+
+  field.addEventListener('mousedown', mouseMoveCell);
+  setInterval(tick, 1000);
 }
 
 document.addEventListener('DOMContentLoaded', init());

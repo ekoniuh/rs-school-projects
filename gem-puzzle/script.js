@@ -1,16 +1,18 @@
 // const cellSize = null;
-let isMenuShow = true;
+let isMenuShow = true,
+  isPlayPause = true;
+
+let sizeGame = 4;
+let cells = [];
+let sec = 0,
+  min = 0,
+  counterMove = 0,
+  rotate = 0;
 let empty = {
   value: 0,
   top: 0,
   left: 0,
 };
-
-let cells = [];
-let sec = 0,
-  min = 0,
-  counterMove = 0;
-let rotate = 0;
 cells.push(empty);
 
 function createHeader() {
@@ -21,7 +23,8 @@ function createHeader() {
       <ul class="menu-list">
       <li class="menu-item play-game">Continue</li>
 				<li class="menu-item new-game">New Game</li>
-				<li class="menu-item save-game">Saved games</li>
+        <li class="menu-item save-game">Saved games</li>
+        <li class="menu-item load-game">load Game</li>
         <li class="menu-item settings">Settings</li>
         <li class="menu-item field-size__box">
 	          <label class="nav__btn">Field size: </label>
@@ -69,12 +72,13 @@ const restartGame = document.querySelector('.restart-game');
 const field = document.querySelector('.field');
 const time = document.querySelector('.timer');
 const counterStep = document.querySelector('.counter');
-const pauseGame = document.querySelector('.pause');
+const continueGame = document.querySelector('.pause');
 const menu = document.querySelector('.menu');
 const playPauseGame = document.querySelector('.play-game');
 const newGame = document.querySelector('.new-game');
 const settings = document.querySelector('.settings');
 const saveGame = document.querySelector('.save-game');
+const loadGame = document.querySelector('.load-game');
 const bestScores = document.querySelector('.best-scores');
 const fieldSizeDisplay = document.querySelector('.field-size__box');
 
@@ -102,7 +106,7 @@ function move(index, widthCell) {
   counterStep.innerHTML = counterMove;
 
   const isFinished = cells.every((cell) => {
-    return cell.value === cell.top * size + cell.left;
+    return cell.value === cell.top * sizeGame + cell.left;
   });
 
   if (isFinished) {
@@ -147,9 +151,14 @@ function buildCell(array, size) {
       () => Math.random() - 0.5
     );
   }
+  // if (size > 6) {
+  //   field.style.height = '500px';
+  //   field.style.width = '500px';
+  // }
   // restartGame.style.transform = `rotate(0deg)`;
   let randomArray = array;
-  let widthCell = 400 / size;
+  let widthCell = field.offsetWidth / size;
+  let heightCell = field.offsetHeight / size;
 
   field.style.gridTemplateColumns = `repeat(${size}, 1fr);`;
   for (let i = 1; i < size * size; i++) {
@@ -174,7 +183,7 @@ function buildCell(array, size) {
 
     field.append(cell);
     cell.style.width = `${widthCell}px`;
-    cell.style.height = `${widthCell}px`;
+    cell.style.height = `${heightCell}px`;
 
     cell.addEventListener('click', () => {
       move(i, widthCell);
@@ -182,7 +191,12 @@ function buildCell(array, size) {
   }
 }
 
-function tick() {
+function tick(isPlayPause) {
+  if (!isPlayPause) {
+    return;
+  }
+
+  // setInterval(sec++, 1000);
   if (sec > 59) {
     min += 1;
     sec = 0;
@@ -194,11 +208,9 @@ function tick() {
   } else {
     time.innerHTML = `${min}:${sec}`;
   }
-
-  sec += 1;
+  sec++;
+  // setInterval(tick(isPlayPause, sec), 1000);
 }
-
-let size = 4;
 
 function volume() {
   const audio = document.querySelector('.audio-play');
@@ -265,33 +277,113 @@ function getSizeGame() {
   fieldSizeDisplay.style.display = 'block';
 }
 let oldSize = 4;
+
+// НАДО ЛИ СОЗДАВАТЬ ОБЪЕКТ ПУСТОЙ
+function saveGamePlay(saveObj) {
+  if (isPlayPause) {
+    // по клику постоянно записывает
+  }
+
+  saveObj['timer'].push(time.innerHTML);
+  saveObj['move counter'].push(counterStep.innerHTML);
+  localStorage.setItem('itemCache', JSON.stringify(saveObj));
+
+  // timeArrSave.push(time.innerHTML);
+  // countStepArrSave.push(counterStep.innerHTML);
+  // saveObj['timer'].concat(timeArrSave);
+  // localStorage.setItem('itemCache', saveObj);
+  // parseStorageObj = (localStorage.getItem('itemCache'));
+}
+
+function downloadGame(saveObj) {
+  // if (saveObj) {
+  //   return;
+  // }
+  loadGame.insertAdjacentHTML(
+    'afterend',
+    `	<li class="save-list">
+         <ul class ="save-list__box"></ul>
+      </li>`
+  );
+
+  for (let i = 0; i < saveObj.timer.length; i++) {
+    const li = document.createElement('li');
+    li.classList.className = `save-list__item-${i}`;
+    li.innerHTML = `time ${saveObj.timer[i]} move  ${saveObj['move counter'][i]}`;
+    document.querySelector('.save-list__box').append(li);
+    // document
+    //   .querySelector('.save-list')
+    //   .insertAdjacentHTML(
+    //     'afterend',
+    //     `	<div class="save-list__item-${i}"> time ${parseStorageObj.timer[i]} move  ${parseStorageObj['move counter'][i]}   </div>`
+    //   );
+  }
+}
+function getSaveGame() {
+  // if (JSON.parse(localStorage.getItem('itemCache'))) {
+  //   saveObj = JSON.parse(localStorage.getItem('itemCache')) === null ?  {
+  //     timer: [],
+  //     'move counter': [],
+  //   } :  JSON.parse(localStorage.getItem('itemCache'));
+  // } else
+  // let saveObj = {
+  //   timer: [],
+  //   'move counter': [],
+  // };
+  return JSON.parse(localStorage.getItem('itemCache')) === null
+    ? {
+        timer: [],
+        'move counter': [],
+      }
+    : JSON.parse(localStorage.getItem('itemCache'));
+}
+
 function init() {
-  let randomArray = [...Array(size * size - 1).keys()].sort(
+  let randomArray = [...Array(sizeGame * sizeGame - 1).keys()].sort(
     () => Math.random() - 0.5
   );
 
-  buildCell(randomArray, size);
+  saveObj = getSaveGame();
+  setInterval(() => tick(isPlayPause), 1000);
+  // saveObj = JSON.parse(localStorage.getItem('itemCache')) === null ? ;
+  // ЗДЕСЬ ЛИ МНЕ ЭТО ДЕЛАТЬ? Я ПРО ОБЪЕКТ
+  buildCell(randomArray, sizeGame);
 
   sizeField.addEventListener('change', (e) => {
-    size = +e.target.value;
+    sizeGame = +e.target.value;
     // getRestartGame(size);
   });
 
-  playPauseGame.addEventListener('click', openMenu);
-  restartGame.addEventListener('click', () => getRestartGame(oldSize));
-  newGame.addEventListener('click', () => {
-    getRestartGame(size);
-    // buildCell(randomArray, size);
-    oldSize = size;
+  playPauseGame.addEventListener('click', () => {
     openMenu();
+    isPlayPause = true;
+    setInterval(tick(isPlayPause), 1000);
   });
-  pauseGame.addEventListener('click', openMenu);
-  settings.addEventListener('click', () => {
-    getSizeGame();
+
+  saveGame.addEventListener('click', () => saveGamePlay(saveObj));
+  restartGame.addEventListener('click', () => getRestartGame(oldSize));
+
+  newGame.addEventListener('click', () => {
+    getRestartGame(sizeGame);
+    oldSize = sizeGame;
+    openMenu();
+    isPlayPause = true;
+    setInterval(tick(isPlayPause), 1000);
+    // buildCell(randomArray, size);
+  });
+
+  continueGame.addEventListener('click', () => {
+    openMenu();
+    isPlayPause = false;
+    setInterval(tick(isPlayPause), 1000);
+  });
+
+  settings.addEventListener('click', () => getSizeGame());
+  loadGame.addEventListener('click', () => {
+    downloadGame(saveObj);
   });
 
   field.addEventListener('mousedown', mouseMoveCell);
-  setInterval(tick, 1000);
 }
 
 document.addEventListener('DOMContentLoaded', init());

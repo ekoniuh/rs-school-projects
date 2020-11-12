@@ -26,12 +26,22 @@
   background-repeat: no-repeat;
   font-family: cursive;
   height: 628px;
-  transition: all 0.5s ease-in;
+  transition: all 0.3s ease-in;
   width: 628px;
   display: flex;
   align-self: center;
   align-items: center;
   /* background-position: -391px center; */
+}
+
+.menu-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 204px;
+  margin-left: 127px;
+  height: 100%;
+  overflow: hidden;
 }
 
 .menu-list {
@@ -43,6 +53,9 @@
   opacity: 0.8;
   font-size: 23px;
   width: 204px;
+  position: absolute;
+  left: 0;
+  transition-duration: 1s;
 }
 
 .menu-item {
@@ -56,6 +69,51 @@
   font-weight: 600;
   opacity: 1;
   transition: all 0.3s ease-in;
+}
+
+.save-list__item {
+  display: none;
+  position: relative;
+  transition-duration: 1s;
+}
+
+.save-list__item_active.save-list__item {
+  display: list-item;
+  transition-duration: 1s;
+}
+
+.save-list__box {
+  position: relative;
+  left: -236px;
+  transition-duration: 1s;
+  /* left: 424px; */
+}
+
+.save-list__box::after {
+  content: '';
+  width: 40px;
+  height: 20px;
+  background: url(./assets/str.png);
+  position: absolute;
+  display: block;
+  top: 0;
+  right: -53px;
+  background-size: 100% 100%;
+  background-position: center;
+}
+
+.save-list__box::before {
+  content: '';
+  width: 40px;
+  height: 20px;
+  background: url(./assets/str.png);
+  position: absolute;
+  display: block;
+  top: 0;
+  transform: rotate(-180deg);
+  left: -53px;
+  background-size: 100% 100%;
+  background-position: center;
 }
 
 .menu-item__anime {
@@ -181,7 +239,6 @@
   opacity: 0.3;
   z-index: -1;
 }
-
 .info {
   margin-right: 26px;
   box-shadow: 0 0 48px 1px #fffafadb;
@@ -192,6 +249,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: #ff000061;
 }
 
 .timer {
@@ -233,7 +291,7 @@
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: 1fr;
   display: grid;
-  transition: all 0.5s ease-in;
+  transition: all 0.3s ease-in;
 }
 
 .field > *:first-child {
@@ -263,6 +321,7 @@
   margin-bottom: 20px;
   width: 100%;
   justify-content: space-between;
+  z-index: 0;
 }
 
 .screen-container {
@@ -331,6 +390,10 @@
   grid-column: 1 / 1;
 }
 
+.menu_opacity {
+  opacity: 1;
+}
+
 .chip {
   border: 1px solid #444;
   display: flex;
@@ -341,13 +404,29 @@
   user-select: none;
   border-radius: 5px;
 }
+@media screen and (max-width: 1200px) {
+  /* .content-box {
+    margin-left: 400px;
+  } */
+
+  .field {
+    margin-left: 0;
+  }
+}
 
 @media screen and (max-width: 900px) {
-  .field {
+  /* .field {
     margin-right: 30px;
   }
-  .header {
+  .content-box {
     margin-right: 30px;
+  } */
+  /* .content-box {
+    margin-left: 200px;
+  } */
+
+  .menu_opacity {
+    opacity: 0.3;
   }
 
   .body {

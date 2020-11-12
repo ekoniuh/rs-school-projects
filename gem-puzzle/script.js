@@ -19,7 +19,8 @@ function createHeader() {
   document.body.insertAdjacentHTML(
     'afterbegin',
     `		<section class="page">
-		<div class="menu">
+    <div class="menu menu_opacity">
+    <div class="menu-wrapper">
       <ul class="menu-list">
       <li class="menu-item play-game">Continue</li>
 				<li class="menu-item new-game">New Game</li>
@@ -38,7 +39,9 @@ function createHeader() {
 	          </select>
         </li>
 				<li class="menu-item best-scores">Best scores</li>
-			</ul>
+      </ul>
+      
+		</div>
 		</div>
 		<div class="content-box">
 			<div class="control-wrap">
@@ -226,7 +229,11 @@ function openMenu() {
     document
       .querySelector('.content-box')
       .classList.toggle('content-box__scale');
+    // menu.style.opacity = 1;
+    menu.classList.toggle('menu_opacity');
   } else {
+    menu.classList.toggle('menu_opacity');
+    // menu.style.opacity = 1;
     document
       .querySelector('.content-box')
       .classList.toggle('content-box__scale');
@@ -286,6 +293,7 @@ function saveGamePlay(saveObj) {
 
   saveObj['timer'].push(time.innerHTML);
   saveObj['move counter'].push(counterStep.innerHTML);
+  saveObj['Board size'].push(sizeGame);
   localStorage.setItem('itemCache', JSON.stringify(saveObj));
 
   // timeArrSave.push(time.innerHTML);
@@ -299,26 +307,44 @@ function downloadGame(saveObj) {
   // if (saveObj) {
   //   return;
   // }
-  loadGame.insertAdjacentHTML(
-    'afterend',
-    `	<li class="save-list">
-         <ul class ="save-list__box"></ul>
-      </li>`
-  );
+  // menu.insertAdjacentHTML(
+  //   'afterend',
+  //   `
+  //        <ul class ="save-list__box"></ul>
+  //     `
+  // );
 
+  const button = document.createElement('button');
+  button.className = 'button-back';
+
+  document.querySelector('.menu-list').style.left = '-204px';
+  const ul = document.createElement('ul');
+  ul.className = `save-list__box`;
+  document.querySelector('.menu-wrapper').append(ul);
   for (let i = 0; i < saveObj.timer.length; i++) {
     const li = document.createElement('li');
-    li.classList.className = `save-list__item-${i}`;
-    li.innerHTML = `time ${saveObj.timer[i]} move  ${saveObj['move counter'][i]}`;
+    li.classList.add('save-list__item');
+    li.dataset.index = i;
+    li.innerHTML = `Board size: ${saveObj['Board size'][i]}x${saveObj['Board size'][i]} time ${saveObj.timer[i]} move  ${saveObj['move counter'][i]}`;
     document.querySelector('.save-list__box').append(li);
-    // document
-    //   .querySelector('.save-list')
-    //   .insertAdjacentHTML(
-    //     'afterend',
-    //     `	<div class="save-list__item-${i}"> time ${parseStorageObj.timer[i]} move  ${parseStorageObj['move counter'][i]}   </div>`
-    //   );
+
+    if (i === 0) {
+      li.classList.add('save-list__item_active');
+    }
   }
+  setInterval(
+    () => (document.querySelector('.save-list__box').style.left = '0px'),
+    1000
+  );
 }
+
+// li.addEventListener('click', ({ target }) => {
+//   Array.from(document.querySelectorAll('.save-list__box')).forEach((item) =>
+//     item.classList.remove('save-list__item_active')
+//   );
+//    li.dataset.index
+// });
+
 function getSaveGame() {
   // if (JSON.parse(localStorage.getItem('itemCache'))) {
   //   saveObj = JSON.parse(localStorage.getItem('itemCache')) === null ?  {
@@ -334,6 +360,7 @@ function getSaveGame() {
     ? {
         timer: [],
         'move counter': [],
+        'Board size': [],
       }
     : JSON.parse(localStorage.getItem('itemCache'));
 }
@@ -360,7 +387,7 @@ function init() {
     setInterval(tick(isPlayPause), 1000);
   });
 
-  saveGame.addEventListener('click', () => saveGamePlay(saveObj));
+  saveGame.addEventListener('click', () => saveGamePlay(saveObj, sizeGame));
   restartGame.addEventListener('click', () => getRestartGame(oldSize));
 
   newGame.addEventListener('click', () => {

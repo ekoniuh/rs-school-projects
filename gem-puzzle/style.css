@@ -72,14 +72,43 @@
 }
 
 .save-list__item {
+  opacity: 0;
   display: none;
   position: relative;
   transition-duration: 1s;
 }
 
+.save-item__name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 204px;
+}
+
 .save-list__item_active.save-list__item {
+  opacity: 1;
   display: list-item;
   transition-duration: 1s;
+
+}
+
+.menu-back__button{
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  outline: none;
+  background: url(./assets/menu-back.png);
+  background-size: 100% 100%;
+  border:none;
+  margin: 0 auto;
+  display: block;
+  cursor: pointer;
+}
+
+.save-list__item{
+
+
 }
 
 .save-list__box {
@@ -89,7 +118,50 @@
   /* left: 424px; */
 }
 
-.save-list__box::after {
+.save-item__description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.save-item__description span {
+  margin-bottom: 10px;
+}
+
+.save-title {
+  margin: 0 10px;
+  font-size: 10px;
+}
+
+.save-title span {
+  font-size: 15px;
+}
+
+.back-save__item,
+.next-save__item {
+  width: 40px;
+  cursor: pointer;
+  /* transition-duration: 1s; */
+}
+
+.back-save__item {
+  transform: rotate(-180deg);
+}
+/* .back-save__item:hover,
+.next-save__item:hover {
+
+  transform: scale(1.2);
+  transition-duration: 1s;
+} */
+/* 
+.back-save__item:hover{
+  transform: rotate(180deg);
+ 
+} */
+
+
+/* .save-list__box::after {
   content: '';
   width: 40px;
   height: 20px;
@@ -113,7 +185,7 @@
   transform: rotate(-180deg);
   left: -53px;
   background-size: 100% 100%;
-  background-position: center;
+  background-position: center; */
 }
 
 .menu-item__anime {

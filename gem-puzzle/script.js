@@ -286,7 +286,7 @@ function getSizeGame() {
 let oldSize = 4;
 
 // НАДО ЛИ СОЗДАВАТЬ ОБЪЕКТ ПУСТОЙ
-function saveGamePlay(saveObj) {
+function saveGamePlay(saveObj, sizeGame) {
   if (isPlayPause) {
     // по клику постоянно записывает
   }
@@ -304,34 +304,58 @@ function saveGamePlay(saveObj) {
 }
 
 function downloadGame(saveObj) {
-  // if (saveObj) {
-  //   return;
-  // }
-  // menu.insertAdjacentHTML(
-  //   'afterend',
-  //   `
-  //        <ul class ="save-list__box"></ul>
-  //     `
-  // );
+  document.querySelector('.menu-list').style.left = '-204px';
+  if (!!document.querySelector('.save-list')) {
+    document.querySelector('.save-list').innerHTML = '';
+    // document.querySelector('.menu-back__button').remove();
+    document.querySelector('.save-list__box').remove();
+  }
+
+  const div = document.createElement('div');
+  div.className = `save-list__box`;
+  document.querySelector('.menu-wrapper').append(div);
+
+  const ul = document.createElement('ul');
+  ul.className = `save-list`;
+  document.querySelector('.save-list__box').append(ul);
 
   const button = document.createElement('button');
-  button.className = 'button-back';
-
-  document.querySelector('.menu-list').style.left = '-204px';
-  const ul = document.createElement('ul');
-  ul.className = `save-list__box`;
-  document.querySelector('.menu-wrapper').append(ul);
+  button.className = 'menu-back__button';
+  // button.innerText = 'Menu';
+  // button.src = 'assets/24931-2-right-arrow-transparent.png';
+  document.querySelector('.save-list__box').append(button);
   for (let i = 0; i < saveObj.timer.length; i++) {
-    const li = document.createElement('li');
-    li.classList.add('save-list__item');
-    li.dataset.index = i;
-    li.innerHTML = `Board size: ${saveObj['Board size'][i]}x${saveObj['Board size'][i]} time ${saveObj.timer[i]} move  ${saveObj['move counter'][i]}`;
-    document.querySelector('.save-list__box').append(li);
+    document.querySelector('.save-list').insertAdjacentHTML(
+      'beforeEnd',
+      `<li class="save-list__item" data-index = ${i}>
+				<div class="save-item__name">
+          <img src="./assets/55899ca177a419ff0334fd84_Arrow10.png" alt="back-save-item" title="back-save-item" class="back-save__item" data-index = ${i}>
+          <span	class="save-title">Save Game - <span>${i + 1}</span></span>
+					<img src="./assets/55899ca177a419ff0334fd84_Arrow10.png" alt="next-save-item" title="next-save-item" class="next-save__item"  data-index = ${i}>
+				</div>
+				<div class="save-item__description">
+					<span class="board-size__load">Board size: ${saveObj['Board size'][i]}x${
+        saveObj['Board size'][i]
+      }</span>
+					<span class="time-game__load">time ${saveObj.timer[i]}</span>
+					<span class="move-game__load">move  ${saveObj['move counter'][i]}</span>
+				</div>
+			</li>`
+    );
 
+    // const li = document.createElement('li');
+    // li.classList.add('save-list__item');
+
+    // li.innerHTML = `Board size: ${saveObj['Board size'][i]}x${saveObj['Board size'][i]} time ${saveObj.timer[i]} move  ${saveObj['move counter'][i]}`;
+    // document.querySelector('.save-list__box').append(li);
+    document.querySelector('.save-list__box').style.display = 'block';
     if (i === 0) {
-      li.classList.add('save-list__item_active');
+      document
+        .querySelector('.save-list__item')
+        .classList.add('save-list__item_active');
     }
   }
+
   setInterval(
     () => (document.querySelector('.save-list__box').style.left = '0px'),
     1000
@@ -344,6 +368,22 @@ function downloadGame(saveObj) {
 //   );
 //    li.dataset.index
 // });
+
+function nextBackSaveItem(target, arrSaveItems) {
+  let index = +target.dataset.index;
+  if (
+    target.className === 'next-save__item' &&
+    index !== arrSaveItems.length - 1
+  ) {
+    arrSaveItems[+index].classList.remove('save-list__item_active');
+    arrSaveItems[+index + 1].classList.add('save-list__item_active');
+  }
+
+  if (target.className === 'back-save__item' && index !== 0) {
+    arrSaveItems[+index].classList.remove('save-list__item_active');
+    arrSaveItems[+index - 1].classList.add('save-list__item_active');
+  }
+}
 
 function getSaveGame() {
   // if (JSON.parse(localStorage.getItem('itemCache'))) {
@@ -408,6 +448,32 @@ function init() {
   settings.addEventListener('click', () => getSizeGame());
   loadGame.addEventListener('click', () => {
     downloadGame(saveObj);
+    let arrSaveItems = Array.from(
+      document.querySelectorAll('.save-list__item')
+    );
+    document
+      .querySelector('.save-list')
+      .addEventListener('click', ({ target }) =>
+        nextBackSaveItem(target, arrSaveItems)
+      );
+
+    document
+      .querySelector('.menu-back__button')
+      .addEventListener('click', () => {
+        document.querySelector('.save-list__box').style.display = 'none';
+        document.querySelector('.menu-list').style.left = '0px';
+      });
+    // document.querySelector('.next-save__item').addEventListener(
+    //   'click',
+    //   ({
+    //     target: {
+    //       dataset: { index: index },
+    //     },
+    //   }) => {
+    //     debugger;
+    //     nextBackSaveItem(index);
+    //   }
+    // );
   });
 
   field.addEventListener('mousedown', mouseMoveCell);

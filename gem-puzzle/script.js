@@ -1,30 +1,47 @@
 // const cellSize = null;
-let isMenuShow = true;
+let isMenuShow = true,
+  isPlayPause = true;
+
+let sizeGame = 4;
+let cells = [];
+let sec = 0,
+  min = 0,
+  counterMove = 0,
+  rotate = 0;
 let empty = {
   value: 0,
   top: 0,
   left: 0,
 };
-
-let cells = [];
-let sec = 0,
-  min = 0,
-  counter = 0;
-
 cells.push(empty);
 
 function createHeader() {
   document.body.insertAdjacentHTML(
     'afterbegin',
     `		<section class="page">
-		<div class="menu">
+    <div class="menu menu_opacity">
+    <div class="menu-wrapper">
       <ul class="menu-list">
       <li class="menu-item play-game">Continue</li>
-				<li class="menu-item">New Game</li>
-				<li class="menu-item">Saved games</li>
-				<li class="menu-item">Settings</li>
-				<li class="menu-item">Best scores</li>
-			</ul>
+				<li class="menu-item new-game">New Game</li>
+        <li class="menu-item save-game">Saved games</li>
+        <li class="menu-item load-game">load Game</li>
+        <li class="menu-item settings">Settings</li>
+        <li class="menu-item field-size__box">
+	          <label class="nav__btn">Field size: </label>
+	          <select class="select-box">
+		          <option class="select-option" value="3">3x3</option>
+		          <option class="select-option" value="4" selected="">4x4</option>
+		          <option class="select-option" value="5">5x5</option>
+		          <option class="select-option" value="6">6x6</option>
+		          <option class="select-option" value="7">7x7</option>
+		          <option class="select-option" value="8">8x8</option>
+	          </select>
+        </li>
+				<li class="menu-item best-scores">Best scores</li>
+      </ul>
+      
+		</div>
 		</div>
 		<div class="content-box">
 			<div class="control-wrap">
@@ -33,8 +50,8 @@ function createHeader() {
 					<span class="timer"></span>
 				</div>
 				<div class="moves">
-					<span class="description">Moves </span>
-					<span class="counter"></span>
+					<span class="description">Moves</span>
+					<span class="counter">0</span>
 				</div>
         <img class="pause visible" src="./assets/pause-play.png" title = "pause">
         <img class="restart-game" src="./assets/47-512.png" title = "Restart">
@@ -44,18 +61,7 @@ function createHeader() {
 			<div class="field">
 				
 			</div>
-			<div class="screen-container">
-				<h2 class="screen__title">Settings</h2>
-				<label class="nav__btn">Field size: </label>
-				<select class="select-box">
-					<option class="select-option" value="3">3x3</option>
-					<option class="select-option" value="4" selected="">4x4</option>
-					<option class="select-option" value="5">5x5</option>
-					<option class="select-option" value="6">6x6</option>
-					<option class="select-option" value="7">7x7</option>
-					<option class="select-option" value="8">8x8</option>
-				</select>
-			</div>
+			
 			<audio src="./assets/audio.mp3" class="audio-play" type="audio/mp3"></audio>
 
 		</div>
@@ -64,45 +70,52 @@ function createHeader() {
   );
 }
 createHeader();
-
+const sizeField = document.querySelector('.select-box');
 const restartGame = document.querySelector('.restart-game');
 const field = document.querySelector('.field');
 const time = document.querySelector('.timer');
 const counterStep = document.querySelector('.counter');
-const pauseGame = document.querySelector('.pause');
+const continueGame = document.querySelector('.pause');
 const menu = document.querySelector('.menu');
-const playGame = document.querySelector('.play-game');
+const playPauseGame = document.querySelector('.play-game');
+const newGame = document.querySelector('.new-game');
+const settings = document.querySelector('.settings');
+const saveGame = document.querySelector('.save-game');
+const loadGame = document.querySelector('.load-game');
+const bestScores = document.querySelector('.best-scores');
+const fieldSizeDisplay = document.querySelector('.field-size__box');
 
-console.log(menu.style.left);
 function move(index, widthCell) {
   const cell = cells[index];
   const leftDiff = Math.abs(empty.left - cell.left);
   const topDiff = Math.abs(empty.top - cell.top);
+  const emptyLeft = empty.left;
+  const emptyTop = empty.top;
 
   if (leftDiff + topDiff > 1) {
     return;
   }
   volume();
 
-  counter += 1;
+  counterMove += 1;
   cell.element.style.left = `${empty.left * widthCell}px`;
   cell.element.style.top = `${empty.top * widthCell}px`;
 
-  const emptyLeft = empty.left;
-  const emptyTop = empty.top;
   empty.left = cell.left;
   empty.top = cell.top;
   cell.left = emptyLeft;
   cell.top = emptyTop;
 
-  counterStep.innerHTML = counter;
+  counterStep.innerHTML = counterMove;
 
   const isFinished = cells.every((cell) => {
-    return cell.value === cell.top * 4 + cell.left;
+    return cell.value === cell.top * sizeGame + cell.left;
   });
 
   if (isFinished) {
-    alert(`Ура! Вы решили головоломку за ${min}:${sec} и ${counter} ходов`);
+    alert(
+      `Ура! Вы решили головоломку за ${time.innerHTML} и ${counterMove} ходов`
+    );
   }
 }
 
@@ -110,10 +123,13 @@ function getRestartGame(size) {
   newRandomArray = [...Array(size * size - 1).keys()].sort(
     () => Math.random() - 0.5
   );
+
+  rotate += 360;
+  restartGame.style.transform = `rotate(-${rotate}deg)`;
   field.innerHTML = '';
   min = 0;
   sec = 0;
-  counter = 0;
+  counterMove = 0;
   counterStep.innerHTML = 0;
   empty = {
     value: 0,
@@ -138,9 +154,14 @@ function buildCell(array, size) {
       () => Math.random() - 0.5
     );
   }
-
+  // if (size > 6) {
+  //   field.style.height = '500px';
+  //   field.style.width = '500px';
+  // }
+  // restartGame.style.transform = `rotate(0deg)`;
   let randomArray = array;
-  let widthCell = 400 / size;
+  let widthCell = field.offsetWidth / size;
+  let heightCell = field.offsetHeight / size;
 
   field.style.gridTemplateColumns = `repeat(${size}, 1fr);`;
   for (let i = 1; i < size * size; i++) {
@@ -165,7 +186,7 @@ function buildCell(array, size) {
 
     field.append(cell);
     cell.style.width = `${widthCell}px`;
-    cell.style.height = `${widthCell}px`;
+    cell.style.height = `${heightCell}px`;
 
     cell.addEventListener('click', () => {
       move(i, widthCell);
@@ -173,17 +194,26 @@ function buildCell(array, size) {
   }
 }
 
-function tick() {
-  if (sec > 60) {
-    min += 1;
-    sec = 0;
+function tick(isPlayPause) {
+  if (!isPlayPause) {
+    return;
   }
 
+  // setInterval(sec++, 1000);
+  if (sec > 59) {
+    min += 1;
+    sec = 0;
+    return;
+  } else if (sec < 10 && min < 10) {
+    time.innerHTML = `0${min}:0${sec}`;
+  } else if (sec > 9 && min < 10) {
+    time.innerHTML = `0${min}:${sec}`;
+  } else {
+    time.innerHTML = `${min}:${sec}`;
+  }
   sec++;
-  time.innerHTML = `${min}:${sec}`;
+  // setInterval(tick(isPlayPause, sec), 1000);
 }
-
-let size = 4;
 
 function volume() {
   const audio = document.querySelector('.audio-play');
@@ -199,7 +229,11 @@ function openMenu() {
     document
       .querySelector('.content-box')
       .classList.toggle('content-box__scale');
+    // menu.style.opacity = 1;
+    menu.classList.toggle('menu_opacity');
   } else {
+    menu.classList.toggle('menu_opacity');
+    // menu.style.opacity = 1;
     document
       .querySelector('.content-box')
       .classList.toggle('content-box__scale');
@@ -209,28 +243,17 @@ function openMenu() {
   // почему не перезаписывает?
 }
 
-field.addEventListener('mousedown', function (event) {
+function mouseMoveCell(event) {
   if (!event.target.classList.contains('field-item')) {
     return;
   }
-  // console.log(event.target.getBoundingClientRect().left);
-  // console.log(field.style.marginLeft, '-margin');
-  // console.log(event.layerY, '-layerY');
-  // console.log(event.offsetY, '-offsetY');
-  // console.log(event.getBoundingClientRect().top);
-  // let shiftX =
-  //   field.getBoundingClientRect().left -
-  //   event.target.getBoundingClientRect().left;
-  // let shiftY =
-  //   field.getBoundingClientRect().top -
-  //   event.target.getBoundingClientRect().top;
-  // let shiftX = event.clientX - field.getBoundingClientRect().left;
-  // let shiftY = event.clientY - field.getBoundingClientRect().top;
+
   let shiftCurX = event.layerX;
   let shiftCurY = event.layerY;
   moveAt(event.clientX, event.clientY);
 
   function moveAt(clientX, clientY) {
+    event.target.style.transitionDuration = '0s';
     event.target.style.left =
       clientX - field.getBoundingClientRect().left - shiftCurX + 'px';
     event.target.style.top =
@@ -241,44 +264,219 @@ field.addEventListener('mousedown', function (event) {
     moveAt(event.clientX, event.clientY);
   }
 
-  // передвигаем мяч при событии mousemove
   document.addEventListener('mousemove', onMouseMove);
 
-  // отпустить мяч, удалить ненужные обработчики
   field.onmouseup = function () {
     document.removeEventListener('mousemove', onMouseMove);
     event.target.onmouseup = null;
+    event.target.style.transitionDuration = '0.3s';
   };
 
-  event.target.ondragstart = function () {
-    return false;
-  };
+  event.target.addEventListener('dragstart', () => false);
+}
 
-  // event.target.addEventListener('dragstart', function () {
-  //   return false;
-  // });
-});
+function getSizeGame() {
+  settings.classList.toggle('menu-item__anime');
+  if (fieldSizeDisplay.style.display === 'block') {
+    fieldSizeDisplay.style.display = 'none';
+    return;
+  }
+  fieldSizeDisplay.style.display = 'block';
+}
+let oldSize = 4;
+
+// НАДО ЛИ СОЗДАВАТЬ ОБЪЕКТ ПУСТОЙ
+function saveGamePlay(saveObj, sizeGame) {
+  if (isPlayPause) {
+    // по клику постоянно записывает
+  }
+
+  saveObj['timer'].push(time.innerHTML);
+  saveObj['move counter'].push(counterStep.innerHTML);
+  saveObj['Board size'].push(sizeGame);
+  localStorage.setItem('itemCache', JSON.stringify(saveObj));
+
+  // timeArrSave.push(time.innerHTML);
+  // countStepArrSave.push(counterStep.innerHTML);
+  // saveObj['timer'].concat(timeArrSave);
+  // localStorage.setItem('itemCache', saveObj);
+  // parseStorageObj = (localStorage.getItem('itemCache'));
+}
+
+function downloadGame(saveObj) {
+  document.querySelector('.menu-list').style.left = '-204px';
+  if (!!document.querySelector('.save-list')) {
+    document.querySelector('.save-list').innerHTML = '';
+    // document.querySelector('.menu-back__button').remove();
+    document.querySelector('.save-list__box').remove();
+  }
+
+  const div = document.createElement('div');
+  div.className = `save-list__box`;
+  document.querySelector('.menu-wrapper').append(div);
+
+  const ul = document.createElement('ul');
+  ul.className = `save-list`;
+  document.querySelector('.save-list__box').append(ul);
+
+  const button = document.createElement('button');
+  button.className = 'menu-back__button';
+  // button.innerText = 'Menu';
+  // button.src = 'assets/24931-2-right-arrow-transparent.png';
+  document.querySelector('.save-list__box').append(button);
+  for (let i = 0; i < saveObj.timer.length; i++) {
+    document.querySelector('.save-list').insertAdjacentHTML(
+      'beforeEnd',
+      `<li class="save-list__item" data-index = ${i}>
+				<div class="save-item__name">
+          <img src="./assets/55899ca177a419ff0334fd84_Arrow10.png" alt="back-save-item" title="back-save-item" class="back-save__item" data-index = ${i}>
+          <span	class="save-title">Save Game - <span>${i + 1}</span></span>
+					<img src="./assets/55899ca177a419ff0334fd84_Arrow10.png" alt="next-save-item" title="next-save-item" class="next-save__item"  data-index = ${i}>
+				</div>
+				<div class="save-item__description">
+					<span class="board-size__load">Board size: ${saveObj['Board size'][i]}x${
+        saveObj['Board size'][i]
+      }</span>
+					<span class="time-game__load">time ${saveObj.timer[i]}</span>
+					<span class="move-game__load">move  ${saveObj['move counter'][i]}</span>
+				</div>
+			</li>`
+    );
+
+    // const li = document.createElement('li');
+    // li.classList.add('save-list__item');
+
+    // li.innerHTML = `Board size: ${saveObj['Board size'][i]}x${saveObj['Board size'][i]} time ${saveObj.timer[i]} move  ${saveObj['move counter'][i]}`;
+    // document.querySelector('.save-list__box').append(li);
+    document.querySelector('.save-list__box').style.display = 'block';
+    if (i === 0) {
+      document
+        .querySelector('.save-list__item')
+        .classList.add('save-list__item_active');
+    }
+  }
+
+  setInterval(
+    () => (document.querySelector('.save-list__box').style.left = '0px'),
+    1000
+  );
+}
+
+// li.addEventListener('click', ({ target }) => {
+//   Array.from(document.querySelectorAll('.save-list__box')).forEach((item) =>
+//     item.classList.remove('save-list__item_active')
+//   );
+//    li.dataset.index
+// });
+
+function nextBackSaveItem(target, arrSaveItems) {
+  let index = +target.dataset.index;
+  if (
+    target.className === 'next-save__item' &&
+    index !== arrSaveItems.length - 1
+  ) {
+    arrSaveItems[+index].classList.remove('save-list__item_active');
+    arrSaveItems[+index + 1].classList.add('save-list__item_active');
+  }
+
+  if (target.className === 'back-save__item' && index !== 0) {
+    arrSaveItems[+index].classList.remove('save-list__item_active');
+    arrSaveItems[+index - 1].classList.add('save-list__item_active');
+  }
+}
+
+function getSaveGame() {
+  // if (JSON.parse(localStorage.getItem('itemCache'))) {
+  //   saveObj = JSON.parse(localStorage.getItem('itemCache')) === null ?  {
+  //     timer: [],
+  //     'move counter': [],
+  //   } :  JSON.parse(localStorage.getItem('itemCache'));
+  // } else
+  // let saveObj = {
+  //   timer: [],
+  //   'move counter': [],
+  // };
+  return JSON.parse(localStorage.getItem('itemCache')) === null
+    ? {
+        timer: [],
+        'move counter': [],
+        'Board size': [],
+      }
+    : JSON.parse(localStorage.getItem('itemCache'));
+}
 
 function init() {
-  let randomArray = [...Array(size * size - 1).keys()].sort(
+  let randomArray = [...Array(sizeGame * sizeGame - 1).keys()].sort(
     () => Math.random() - 0.5
   );
 
-  buildCell(randomArray, size);
+  saveObj = getSaveGame();
+  setInterval(() => tick(isPlayPause), 1000);
+  // saveObj = JSON.parse(localStorage.getItem('itemCache')) === null ? ;
+  // ЗДЕСЬ ЛИ МНЕ ЭТО ДЕЛАТЬ? Я ПРО ОБЪЕКТ
+  buildCell(randomArray, sizeGame);
 
-  document.querySelector('.select-box').addEventListener('change', function () {
-    size = +this.value;
-    console.log(document.querySelectorAll('.field-item'));
-
-    getRestartGame(size);
+  sizeField.addEventListener('change', (e) => {
+    sizeGame = +e.target.value;
+    // getRestartGame(size);
   });
 
-  // document.getElementById('generateField').addEventListener('click', function(){createField(size)});
+  playPauseGame.addEventListener('click', () => {
+    openMenu();
+    isPlayPause = true;
+    setInterval(tick(isPlayPause), 1000);
+  });
 
-  setInterval(tick, 1000);
-  restartGame.addEventListener('click', () => getRestartGame(size));
-  pauseGame.addEventListener('click', openMenu);
-  playGame.addEventListener('click', openMenu);
+  saveGame.addEventListener('click', () => saveGamePlay(saveObj, sizeGame));
+  restartGame.addEventListener('click', () => getRestartGame(oldSize));
+
+  newGame.addEventListener('click', () => {
+    getRestartGame(sizeGame);
+    oldSize = sizeGame;
+    openMenu();
+    isPlayPause = true;
+    setInterval(tick(isPlayPause), 1000);
+    // buildCell(randomArray, size);
+  });
+
+  continueGame.addEventListener('click', () => {
+    openMenu();
+    isPlayPause = false;
+    setInterval(tick(isPlayPause), 1000);
+  });
+
+  settings.addEventListener('click', () => getSizeGame());
+  loadGame.addEventListener('click', () => {
+    downloadGame(saveObj);
+    let arrSaveItems = Array.from(
+      document.querySelectorAll('.save-list__item')
+    );
+    document
+      .querySelector('.save-list')
+      .addEventListener('click', ({ target }) =>
+        nextBackSaveItem(target, arrSaveItems)
+      );
+
+    document
+      .querySelector('.menu-back__button')
+      .addEventListener('click', () => {
+        document.querySelector('.save-list__box').style.display = 'none';
+        document.querySelector('.menu-list').style.left = '0px';
+      });
+    // document.querySelector('.next-save__item').addEventListener(
+    //   'click',
+    //   ({
+    //     target: {
+    //       dataset: { index: index },
+    //     },
+    //   }) => {
+    //     debugger;
+    //     nextBackSaveItem(index);
+    //   }
+    // );
+  });
+
+  field.addEventListener('mousedown', mouseMoveCell);
 }
 
 document.addEventListener('DOMContentLoaded', init());

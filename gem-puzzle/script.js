@@ -1,18 +1,27 @@
 // const cellSize = null;
 let isMenuShow = true,
   isPlayPause = true;
-
 let sizeGame = 4;
+let oldSize = 4;
 let cells = [];
+
+let randomArray = [];
 let sec = 0,
   min = 0,
   counterMove = 0,
   rotate = 0;
-let empty = {
+const empty = {
   value: 0,
   top: 0,
   left: 0,
 };
+
+const saveScores = {
+  date: [],
+  'Move Size': [],
+  Time: [],
+};
+
 cells.push(empty);
 
 function createHeader() {
@@ -47,7 +56,7 @@ function createHeader() {
 			<div class="control-wrap">
 				<div class="info">
 					<span class="description">Time </span>
-					<span class="timer"></span>
+					<span class="timer">00:00</span>
 				</div>
 				<div class="moves">
 					<span class="description">Moves</span>
@@ -70,6 +79,7 @@ function createHeader() {
   );
 }
 createHeader();
+
 const sizeField = document.querySelector('.select-box');
 const restartGame = document.querySelector('.restart-game');
 const field = document.querySelector('.field');
@@ -98,6 +108,8 @@ function move(index, widthCell) {
   volume();
 
   counterMove += 1;
+  counterStep.innerHTML = counterMove;
+
   cell.element.style.left = `${empty.left * widthCell}px`;
   cell.element.style.top = `${empty.top * widthCell}px`;
 
@@ -105,8 +117,6 @@ function move(index, widthCell) {
   empty.top = cell.top;
   cell.left = emptyLeft;
   cell.top = emptyTop;
-
-  counterStep.innerHTML = counterMove;
 
   const isFinished = cells.every((cell) => {
     return cell.value === cell.top * sizeGame + cell.left;
@@ -146,19 +156,13 @@ function getRestartGame(size) {
   // Как исправить, не получилось ко всем элементам применить
 }
 
-let randomArray = [];
-
 function buildCell(array, size) {
   if (!array) {
     randomArray = [...Array(size * size - 1).keys()].sort(
       () => Math.random() - 0.5
     );
   }
-  // if (size > 6) {
-  //   field.style.height = '500px';
-  //   field.style.width = '500px';
-  // }
-  // restartGame.style.transform = `rotate(0deg)`;
+
   let randomArray = array;
   let widthCell = field.offsetWidth / size;
   let heightCell = field.offsetHeight / size;
@@ -199,7 +203,6 @@ function tick(isPlayPause) {
     return;
   }
 
-  // setInterval(sec++, 1000);
   if (sec > 59) {
     min += 1;
     sec = 0;
@@ -211,8 +214,8 @@ function tick(isPlayPause) {
   } else {
     time.innerHTML = `${min}:${sec}`;
   }
+
   sec++;
-  // setInterval(tick(isPlayPause, sec), 1000);
 }
 
 function volume() {
@@ -226,27 +229,31 @@ function volume() {
 function openMenu() {
   if (menu.offsetLeft === -391) {
     menu.style.left = '-125px';
+    menu.classList.toggle('menu_opacity');
+
     document
       .querySelector('.content-box')
       .classList.toggle('content-box__scale');
-    // menu.style.opacity = 1;
-    menu.classList.toggle('menu_opacity');
   } else {
     menu.classList.toggle('menu_opacity');
-    // menu.style.opacity = 1;
+    menu.style.left = '-391px';
+
     document
       .querySelector('.content-box')
       .classList.toggle('content-box__scale');
-    menu.style.left = '-391px';
   }
-
-  // почему не перезаписывает?
 }
 
 function mouseMoveCell(event) {
   if (!event.target.classList.contains('field-item')) {
     return;
   }
+
+  // let left = event.target.getBoundingClientRect().left;
+  // let left = event.clientX - field.getBoundingClientRect().left - event.layerX;
+  // let top = event.target.getBoundingClientRect().top;
+  // console.log(left);
+  // console.log(top);
 
   let shiftCurX = event.layerX;
   let shiftCurY = event.layerY;
@@ -266,14 +273,49 @@ function mouseMoveCell(event) {
 
   document.addEventListener('mousemove', onMouseMove);
 
-  field.onmouseup = function () {
+  field.onmouseup = function (event) {
+    // if (event.target.offsetLeft < 0) {
+    //   event.target.style.left = left + 'px';
+    //   event.target.style.top = top + 'px';
+    //   console.log(+event.target.style.left);
+    //   console.log(event.target.offsetLeft);
+    // }
+
     document.removeEventListener('mousemove', onMouseMove);
     event.target.onmouseup = null;
     event.target.style.transitionDuration = '0.3s';
   };
 
-  event.target.addEventListener('dragstart', () => false);
+  // event.target.addEventListener('dragstart', () => false);
 }
+let cellAvalibleOnDrag = true;
+// function mouseMoveCell(event) {
+//   if (cellAvalibleOnDrag) {
+//     let shiftX = event.clientX - event.target.getBoundingClientRect().left;
+//     let shiftY = event.clientY - event.target.getBoundingClientRect().top;
+
+//     moveAt(event.pageX, event.pageY);
+
+//     function moveAt(pageX, pageY) {
+//       event.target.style.left = pageX - field.offsetLeft - shiftX + 'px';
+//       event.target.style.top =
+//         pageY - field.offsetParent.offsetTop - shiftY + 'px';
+//     }
+
+//     function onMouseMove(event) {
+//       moveAt(event.pageX, event.pageY);
+//     }
+
+//     document.addEventListener('mousemove', onMouseMove);
+
+//     event.target.onmouseup = function () {
+//       document.removeEventListener('mousemove', onMouseMove);
+//       event.target.onmouseup = null;
+//       cellAvalibleOnDrag = true;
+//     };
+//   }
+//   cellAvalibleOnDrag = false;
+// }
 
 function getSizeGame() {
   settings.classList.toggle('menu-item__anime');
@@ -283,31 +325,72 @@ function getSizeGame() {
   }
   fieldSizeDisplay.style.display = 'block';
 }
-let oldSize = 4;
 
 // НАДО ЛИ СОЗДАВАТЬ ОБЪЕКТ ПУСТОЙ
-function saveGamePlay(saveObj, sizeGame) {
+
+function buildCellDownload(size, arrayCells, index) {
+  time.innerHTML = saveObj.timer[index];
+  min = +saveObj.timer[index].substr(0, 2);
+  sec = +saveObj.timer[index].substr(3, 2);
+  counterMove = +saveObj['move counter'][index];
+  counterStep.innerHTML = saveObj['move counter'][index];
+
+  field.innerHTML = '';
+  let randomArray = [];
+  cells = [];
+
+  randomArray = arrayCells.map((item) => item.value);
+  let widthCell = field.offsetWidth / size;
+  let heightCell = field.offsetHeight / size;
+
+  field.style.gridTemplateColumns = `repeat(${size}, 1fr);`;
+  for (let i = 1; i < size * size; i++) {
+    const cell = document.createElement('div');
+    cell.className = 'field-item';
+    cell.innerHTML = randomArray[i];
+
+    cells.push({
+      value: randomArray[i],
+      left: arrayCells[i].left,
+      top: arrayCells[i].top,
+      element: cell,
+    });
+
+    cell.style.left = `${arrayCells[i].left * widthCell}px`;
+    cell.style.top = `${arrayCells[i].top * widthCell}px`;
+
+    field.append(cell);
+
+    cell.style.width = `${widthCell}px`;
+    cell.style.height = `${heightCell}px`;
+
+    cell.addEventListener('click', () => {
+      move(i - 1, widthCell);
+    });
+  }
+  document
+    .querySelectorAll('.field-item')
+    .forEach((item) => (item.style.fontSize = size > 6 ? '25px' : '50px'));
+}
+
+function saveGamePlay(saveObj, sizeGame, cells) {
   if (isPlayPause) {
     // по клику постоянно записывает
   }
 
   saveObj['timer'].push(time.innerHTML);
-  saveObj['move counter'].push(counterStep.innerHTML);
+  saveObj['move counter'].push(+counterStep.innerHTML);
   saveObj['Board size'].push(sizeGame);
-  localStorage.setItem('itemCache', JSON.stringify(saveObj));
+  saveObj['array cells'].push(cells);
+  saveObj['empty'].push(empty);
 
-  // timeArrSave.push(time.innerHTML);
-  // countStepArrSave.push(counterStep.innerHTML);
-  // saveObj['timer'].concat(timeArrSave);
-  // localStorage.setItem('itemCache', saveObj);
-  // parseStorageObj = (localStorage.getItem('itemCache'));
+  localStorage.setItem('itemCache', JSON.stringify(saveObj));
 }
 
-function downloadGame(saveObj) {
+function menuDownloadGame(saveObj) {
   document.querySelector('.menu-list').style.left = '-204px';
   if (!!document.querySelector('.save-list')) {
     document.querySelector('.save-list').innerHTML = '';
-    // document.querySelector('.menu-back__button').remove();
     document.querySelector('.save-list__box').remove();
   }
 
@@ -319,11 +402,14 @@ function downloadGame(saveObj) {
   ul.className = `save-list`;
   document.querySelector('.save-list__box').append(ul);
 
-  const button = document.createElement('button');
-  button.className = 'menu-back__button';
-  // button.innerText = 'Menu';
-  // button.src = 'assets/24931-2-right-arrow-transparent.png';
-  document.querySelector('.save-list__box').append(button);
+  const buttonMenuBack = document.createElement('button');
+  buttonMenuBack.className = 'menu-back__button';
+  document.querySelector('.save-list__box').append(buttonMenuBack);
+
+  const buttonDownload = document.createElement('button');
+  buttonDownload.className = 'download-button';
+  document.querySelector('.save-list__box').append(buttonDownload);
+
   for (let i = 0; i < saveObj.timer.length; i++) {
     document.querySelector('.save-list').insertAdjacentHTML(
       'beforeEnd',
@@ -343,12 +429,8 @@ function downloadGame(saveObj) {
 			</li>`
     );
 
-    // const li = document.createElement('li');
-    // li.classList.add('save-list__item');
-
-    // li.innerHTML = `Board size: ${saveObj['Board size'][i]}x${saveObj['Board size'][i]} time ${saveObj.timer[i]} move  ${saveObj['move counter'][i]}`;
-    // document.querySelector('.save-list__box').append(li);
     document.querySelector('.save-list__box').style.display = 'block';
+
     if (i === 0) {
       document
         .querySelector('.save-list__item')
@@ -361,13 +443,6 @@ function downloadGame(saveObj) {
     1000
   );
 }
-
-// li.addEventListener('click', ({ target }) => {
-//   Array.from(document.querySelectorAll('.save-list__box')).forEach((item) =>
-//     item.classList.remove('save-list__item_active')
-//   );
-//    li.dataset.index
-// });
 
 function nextBackSaveItem(target, arrSaveItems) {
   let index = +target.dataset.index;
@@ -386,21 +461,14 @@ function nextBackSaveItem(target, arrSaveItems) {
 }
 
 function getSaveGame() {
-  // if (JSON.parse(localStorage.getItem('itemCache'))) {
-  //   saveObj = JSON.parse(localStorage.getItem('itemCache')) === null ?  {
-  //     timer: [],
-  //     'move counter': [],
-  //   } :  JSON.parse(localStorage.getItem('itemCache'));
-  // } else
-  // let saveObj = {
-  //   timer: [],
-  //   'move counter': [],
-  // };
   return JSON.parse(localStorage.getItem('itemCache')) === null
     ? {
         timer: [],
         'move counter': [],
         'Board size': [],
+        'array cells': [],
+        empty: [],
+        // 'best scores': [],
       }
     : JSON.parse(localStorage.getItem('itemCache'));
 }
@@ -412,13 +480,11 @@ function init() {
 
   saveObj = getSaveGame();
   setInterval(() => tick(isPlayPause), 1000);
-  // saveObj = JSON.parse(localStorage.getItem('itemCache')) === null ? ;
-  // ЗДЕСЬ ЛИ МНЕ ЭТО ДЕЛАТЬ? Я ПРО ОБЪЕКТ
+
   buildCell(randomArray, sizeGame);
 
   sizeField.addEventListener('change', (e) => {
     sizeGame = +e.target.value;
-    // getRestartGame(size);
   });
 
   playPauseGame.addEventListener('click', () => {
@@ -427,7 +493,10 @@ function init() {
     setInterval(tick(isPlayPause), 1000);
   });
 
-  saveGame.addEventListener('click', () => saveGamePlay(saveObj, sizeGame));
+  saveGame.addEventListener('click', () => {
+    saveGamePlay(saveObj, sizeGame, cells);
+  });
+
   restartGame.addEventListener('click', () => getRestartGame(oldSize));
 
   newGame.addEventListener('click', () => {
@@ -445,12 +514,14 @@ function init() {
     setInterval(tick(isPlayPause), 1000);
   });
 
-  settings.addEventListener('click', () => getSizeGame());
+  settings.addEventListener('click', getSizeGame);
+
   loadGame.addEventListener('click', () => {
-    downloadGame(saveObj);
+    menuDownloadGame(saveObj);
     let arrSaveItems = Array.from(
       document.querySelectorAll('.save-list__item')
     );
+
     document
       .querySelector('.save-list')
       .addEventListener('click', ({ target }) =>
@@ -463,17 +534,33 @@ function init() {
         document.querySelector('.save-list__box').style.display = 'none';
         document.querySelector('.menu-list').style.left = '0px';
       });
-    // document.querySelector('.next-save__item').addEventListener(
-    //   'click',
-    //   ({
-    //     target: {
-    //       dataset: { index: index },
-    //     },
-    //   }) => {
-    //     debugger;
-    //     nextBackSaveItem(index);
-    //   }
-    // );
+
+    document.querySelector('.download-button').addEventListener('click', () => {
+      const itemDownload = document.querySelector('.save-list__item_active');
+      let index = +itemDownload.dataset.index;
+      empty = saveObj['empty'][index];
+      buildCellDownload(
+        saveObj['Board size'][index],
+        saveObj['array cells'][index],
+        index
+      );
+    });
+  });
+
+  bestScores.addEventListener('click', () => {
+    let date = new Date();
+    let todayFinished = date.toLocaleDateString();
+    let timeFinished = date.toLocaleTimeString();
+    saveScores['date'].push([timeFinished, todayFinished]);
+    saveScores['Time'].push(time.innerHTML);
+    saveScores['Move Size'].push(sizeGame);
+    localStorage.setItem('best scores', JSON.stringify(saveScores));
+    const obj = JSON.parse(localStorage.getItem('itemCache'));
+
+    document.querySelector('.menu-list').style.left = '-204px';
+    setTimeout(() => {
+      document.querySelector('.menu-list').style.display = 'none';
+    }, 1000);
   });
 
   field.addEventListener('mousedown', mouseMoveCell);

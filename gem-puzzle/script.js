@@ -1,6 +1,6 @@
-// const cellSize = null;
 let isMenuShow = true,
-  isPlayPause = true;
+  isPlayPause = true,
+  isSoundOnOff = true;
 let sizeGame = 4;
 let oldSize = 4;
 let cells = [];
@@ -10,21 +10,21 @@ let sec = 0,
   min = 0,
   counterMove = 0,
   rotate = 0;
-const empty = {
+let empty = {
   value: 0,
   top: 0,
   left: 0,
 };
 
-const saveScores = {
+let saveScores = {
   date: [],
   'Move Size': [],
-  Time: [],
+  time: [],
 };
 
 cells.push(empty);
 
-function createHeader() {
+function createContent() {
   document.body.insertAdjacentHTML(
     'afterbegin',
     `		<section class="page">
@@ -64,21 +64,16 @@ function createHeader() {
 				</div>
         <img class="pause visible" src="./assets/pause-play.png" title = "pause">
         <img class="restart-game" src="./assets/47-512.png" title = "Restart">
-		
+        <div class="volume"></div>		
 			</div>
-
 			<div class="field">
-				
 			</div>
-			
 			<audio src="./assets/audio.mp3" class="audio-play" type="audio/mp3"></audio>
-
 		</div>
-
 	</section>`
   );
 }
-createHeader();
+createContent();
 
 const sizeField = document.querySelector('.select-box');
 const restartGame = document.querySelector('.restart-game');
@@ -94,6 +89,8 @@ const saveGame = document.querySelector('.save-game');
 const loadGame = document.querySelector('.load-game');
 const bestScores = document.querySelector('.best-scores');
 const fieldSizeDisplay = document.querySelector('.field-size__box');
+const menuWrapper = document.querySelector('.menu-wrapper');
+const menuList = document.querySelector('.menu-list');
 
 function move(index, widthCell) {
   const cell = cells[index];
@@ -103,9 +100,11 @@ function move(index, widthCell) {
   const emptyTop = empty.top;
 
   if (leftDiff + topDiff > 1) {
+    cell.element.style.left = `${cell.left * widthCell}px`;
+    cell.element.style.top = `${cell.top * widthCell}px`;
     return;
   }
-  volume();
+  volume(isSoundOnOff);
 
   counterMove += 1;
   counterStep.innerHTML = counterMove;
@@ -120,9 +119,12 @@ function move(index, widthCell) {
 
   const isFinished = cells.every((cell) => {
     return cell.value === cell.top * sizeGame + cell.left;
+
+    // правильное ли решение
   });
 
   if (isFinished) {
+    setSaveScores(saveScores);
     alert(
       `Ура! Вы решили головоломку за ${time.innerHTML} и ${counterMove} ходов`
     );
@@ -218,12 +220,13 @@ function tick(isPlayPause) {
   sec++;
 }
 
-function volume() {
-  const audio = document.querySelector('.audio-play');
-  audio.src = './assets/audio.mp3';
-  audio.pause();
-  audio.currentTime = 0;
-  audio.play();
+function volume(isSoundOnOff) {
+  if (isSoundOnOff) {
+    const audio = document.querySelector('.audio-play');
+    audio.src = './assets/audio.mp3';
+    audio.pause();
+    audio.play();
+  }
 }
 
 function openMenu() {
@@ -249,12 +252,6 @@ function mouseMoveCell(event) {
     return;
   }
 
-  // let left = event.target.getBoundingClientRect().left;
-  // let left = event.clientX - field.getBoundingClientRect().left - event.layerX;
-  // let top = event.target.getBoundingClientRect().top;
-  // console.log(left);
-  // console.log(top);
-
   let shiftCurX = event.layerX;
   let shiftCurY = event.layerY;
   moveAt(event.clientX, event.clientY);
@@ -274,48 +271,12 @@ function mouseMoveCell(event) {
   document.addEventListener('mousemove', onMouseMove);
 
   field.onmouseup = function (event) {
-    // if (event.target.offsetLeft < 0) {
-    //   event.target.style.left = left + 'px';
-    //   event.target.style.top = top + 'px';
-    //   console.log(+event.target.style.left);
-    //   console.log(event.target.offsetLeft);
-    // }
-
+    // counterMove += 1;
     document.removeEventListener('mousemove', onMouseMove);
     event.target.onmouseup = null;
     event.target.style.transitionDuration = '0.3s';
   };
-
-  // event.target.addEventListener('dragstart', () => false);
 }
-let cellAvalibleOnDrag = true;
-// function mouseMoveCell(event) {
-//   if (cellAvalibleOnDrag) {
-//     let shiftX = event.clientX - event.target.getBoundingClientRect().left;
-//     let shiftY = event.clientY - event.target.getBoundingClientRect().top;
-
-//     moveAt(event.pageX, event.pageY);
-
-//     function moveAt(pageX, pageY) {
-//       event.target.style.left = pageX - field.offsetLeft - shiftX + 'px';
-//       event.target.style.top =
-//         pageY - field.offsetParent.offsetTop - shiftY + 'px';
-//     }
-
-//     function onMouseMove(event) {
-//       moveAt(event.pageX, event.pageY);
-//     }
-
-//     document.addEventListener('mousemove', onMouseMove);
-
-//     event.target.onmouseup = function () {
-//       document.removeEventListener('mousemove', onMouseMove);
-//       event.target.onmouseup = null;
-//       cellAvalibleOnDrag = true;
-//     };
-//   }
-//   cellAvalibleOnDrag = false;
-// }
 
 function getSizeGame() {
   settings.classList.toggle('menu-item__anime');
@@ -373,7 +334,7 @@ function buildCellDownload(size, arrayCells, index) {
     .forEach((item) => (item.style.fontSize = size > 6 ? '25px' : '50px'));
 }
 
-function saveGamePlay(saveObj, sizeGame, cells) {
+function setSaveGame(saveObj, sizeGame, cells) {
   if (isPlayPause) {
     // по клику постоянно записывает
   }
@@ -387,8 +348,112 @@ function saveGamePlay(saveObj, sizeGame, cells) {
   localStorage.setItem('itemCache', JSON.stringify(saveObj));
 }
 
+function setSaveScores(saveScores) {
+  let date = new Date();
+  let todayFinished = date.toLocaleDateString();
+  let timeFinished = date.toLocaleTimeString();
+  saveScores['date'].push([timeFinished, todayFinished]);
+  saveScores['time'].push(time.innerHTML);
+  saveScores['Move Size'].push(sizeGame);
+  localStorage.setItem('bestScores', JSON.stringify(saveScores));
+}
+
+function createSaveScores(saveScores) {
+  if (document.querySelector('.best-scores__box')) {
+    document.querySelector('.best-scores__box').remove();
+  }
+
+  menuList.style.left = '-300px';
+
+  setTimeout(() => {
+    menuList.style.display = 'none';
+  }, 1000);
+
+  menu.style.left = '0px';
+  menuWrapper.classList.toggle('menu-scores__change');
+
+  setTimeout(() => {
+    createScoresList(saveScores);
+
+    document
+      .querySelector('.menu-back__button_scores')
+      .addEventListener('click', () => {
+        menuList.style.display = 'flex';
+        setTimeout(() => {
+          menuList.style.left = '0px';
+        }, 300);
+        menu.style.left = '-125px';
+        menuWrapper.classList.toggle('menu-scores__change');
+
+        document.querySelector('.best-scores__box').style.left = '-100px';
+        document.querySelector('.best-scores__box').style.display = 'none';
+      });
+  }, 1000);
+
+  // const div = document.createElement('div');
+  // div.className = 'best-scores';
+  // document.querySelector('.menu-wrapper').append(div);
+
+  // const h2 = document.createElement('h2');
+  // h2.className = 'best-scores__title';
+  // h2.innerText = 'Best scores';
+  // // document.querySelector('.menu-wrapper').append(h2);
+  // div.append(h2);
+
+  // const h3 = document.createElement('h3');
+  // h3.className = 'scores-title__description';
+  // h3.innerText = 'Date Moves Size Time';
+  // div.append(h3);
+
+  // const ul = document.createElement('ul');
+  // ul.className = 'scores-list';
+  // div.append(ul);
+}
+
+function createScoresList(saveScores) {
+  menuWrapper.insertAdjacentHTML(
+    'beforeEnd',
+    `<div class="best-scores__box">
+        <button class="menu-back__button_scores"></button>
+        <h2 class="best-scores__title">Best scores</h2>
+        <h3 class="scores-title__description">
+            <span class="scores-title__date">
+              Date
+            </span>
+            <span class="scores-title__moves-size">
+             Moves Size
+            </span>
+            <span class="scores-title__time">
+             Time
+             </span>
+          </h3>     
+      <ul class="scores-list">
+      </ul>
+  </div>`
+  );
+
+  for (let i = 0; i < saveScores.time.length; i++) {
+    document.querySelector('.scores-list').insertAdjacentHTML(
+      'beforeEnd',
+      `<li class="scores-list__item" data-index = ${i}>
+        <span class="scores-title__date">
+        <span class="score-item__numbering"> ${i + 1} </span>
+         <span class="score-item__hour">${saveScores.date[i][0]}</span> </br> 
+      <span class="score-item__date">${saveScores.date[i][1]}
+        </span></span>
+        <span class="scores-title__moves-size">
+        ${saveScores['Move Size'][i]}
+        </span>
+        <span class="scores-title__time">
+        ${saveScores.time[i]}
+        </span>
+      </li>`
+    );
+  }
+}
+
 function menuDownloadGame(saveObj) {
-  document.querySelector('.menu-list').style.left = '-204px';
+  menuList.style.left = '-204px';
   if (!!document.querySelector('.save-list')) {
     document.querySelector('.save-list').innerHTML = '';
     document.querySelector('.save-list__box').remove();
@@ -468,9 +533,18 @@ function getSaveGame() {
         'Board size': [],
         'array cells': [],
         empty: [],
-        // 'best scores': [],
       }
     : JSON.parse(localStorage.getItem('itemCache'));
+}
+
+function getSaveScores() {
+  return JSON.parse(localStorage.getItem('bestScores')) === null
+    ? {
+        date: [],
+        'Move Size': [],
+        time: [],
+      }
+    : JSON.parse(localStorage.getItem('bestScores'));
 }
 
 function init() {
@@ -479,6 +553,10 @@ function init() {
   );
 
   saveObj = getSaveGame();
+  saveScores = getSaveScores();
+
+  // надо ли создавать такой же объект или просто сдлеать его null
+
   setInterval(() => tick(isPlayPause), 1000);
 
   buildCell(randomArray, sizeGame);
@@ -494,7 +572,11 @@ function init() {
   });
 
   saveGame.addEventListener('click', () => {
-    saveGamePlay(saveObj, sizeGame, cells);
+    saveGame.classList.add('save-game__btn');
+    setTimeout(() => {
+      saveGame.classList.remove('save-game__btn');
+    }, 1000);
+    setSaveGame(saveObj, sizeGame, cells);
   });
 
   restartGame.addEventListener('click', () => getRestartGame(oldSize));
@@ -505,7 +587,6 @@ function init() {
     openMenu();
     isPlayPause = true;
     setInterval(tick(isPlayPause), 1000);
-    // buildCell(randomArray, size);
   });
 
   continueGame.addEventListener('click', () => {
@@ -528,11 +609,12 @@ function init() {
         nextBackSaveItem(target, arrSaveItems)
       );
 
+    // переменную надо ли закидывать
     document
       .querySelector('.menu-back__button')
       .addEventListener('click', () => {
         document.querySelector('.save-list__box').style.display = 'none';
-        document.querySelector('.menu-list').style.left = '0px';
+        menuList.style.left = '0px';
       });
 
     document.querySelector('.download-button').addEventListener('click', () => {
@@ -548,21 +630,13 @@ function init() {
   });
 
   bestScores.addEventListener('click', () => {
-    let date = new Date();
-    let todayFinished = date.toLocaleDateString();
-    let timeFinished = date.toLocaleTimeString();
-    saveScores['date'].push([timeFinished, todayFinished]);
-    saveScores['Time'].push(time.innerHTML);
-    saveScores['Move Size'].push(sizeGame);
-    localStorage.setItem('best scores', JSON.stringify(saveScores));
-    const obj = JSON.parse(localStorage.getItem('itemCache'));
-
-    document.querySelector('.menu-list').style.left = '-204px';
-    setTimeout(() => {
-      document.querySelector('.menu-list').style.display = 'none';
-    }, 1000);
+    createSaveScores(saveScores);
   });
 
+  document.querySelector('.volume').addEventListener('click', () => {
+    document.querySelector('.volume').classList.toggle('volume-on');
+    isSoundOnOff = !isSoundOnOff;
+  });
   field.addEventListener('mousedown', mouseMoveCell);
 }
 

@@ -12,6 +12,7 @@
   padding: 0;
   text-decoration: none;
   list-style: none;
+  user-select: none;
 }
 
 .page {
@@ -22,7 +23,7 @@
 .menu {
   position: absolute;
   left: -391px;
-  background: url(./assets/back-image/cartao-de-natal-para-dedicacao-do-feliz-papai-noel_20187-387.jpg);
+  background: url(./assets/cartao-de-natal-para-dedicacao-do-feliz-papai-noel_20187-387.jpg);
   background-repeat: no-repeat;
   font-family: cursive;
   height: 628px;
@@ -55,7 +56,7 @@
   width: 204px;
   position: absolute;
   left: 0;
-  transition-duration: 1s;
+  transition-duration: 0.3s;
 }
 
 .menu-item {
@@ -90,25 +91,51 @@
   opacity: 1;
   display: list-item;
   transition-duration: 1s;
-
 }
 
-.menu-back__button{
-  width: 50px;
-  height: 50px;
+.menu-back__button,
+.menu-back__button_scores {
+  width: 90px;
+  height: 90px;
   font-size: 30px;
   outline: none;
   background: url(./assets/menu-back.png);
   background-size: 100% 100%;
-  border:none;
+  border: none;
   margin: 0 auto;
   display: block;
   cursor: pointer;
+  transition-duration: 0.5s;
 }
 
-.save-list__item{
+.menu-back__button:hover,
+.download-button:hover {
+  transform: scale(1.1);
 
+  transition-duration: 1s;
+  /* box-shadow: 0px 0px 8px 0 rgba(0, 0, 0, 0.637); */
+}
 
+.menu-back__button_scores:hover {
+  transform: translateX(-10px);
+  transition-duration: 1s;
+}
+
+.download-button {
+  width: 140px;
+  height: 50px;
+  font-size: 30px;
+  outline: none;
+  background: url(./assets/dowload-button.png);
+  background-size: 100% 100%;
+  border: none;
+  margin: 0 auto;
+  display: block;
+  cursor: pointer;
+  transition-duration: 0.5s;
+}
+
+.save-list__item {
 }
 
 .save-list__box {
@@ -134,8 +161,35 @@
   font-size: 10px;
 }
 
+.save-game__btn:after {
+  content: '';
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  background: url(./assets/ok.png);
+  background-size: 100% 100%;
+  transition-duration: 1s;
+}
+
 .save-title span {
   font-size: 15px;
+}
+
+.volume {
+  width: 30px;
+  height: 30px;
+  background: url(./assets/302-3028772_lakeside-voice-comments-logo-volume-png.png);
+  background-size: 100% 100%;
+  transition-duration: 0.5s;
+  cursor: pointer;
+  align-self: center;
+  margin-left: 10px;
+}
+
+.volume-on {
+  background: url(./assets/52bfa4d6570bb8d6271bb1e78f1464d7.png);
+  background-size: 100% 100%;
 }
 
 .back-save__item,
@@ -148,44 +202,50 @@
 .back-save__item {
   transform: rotate(-180deg);
 }
-/* .back-save__item:hover,
-.next-save__item:hover {
 
-  transform: scale(1.2);
+.best-scores__box {
+  align-self: flex-start;
+  text-align: center;
+  width: 100%;
   transition-duration: 1s;
-} */
-/* 
-.back-save__item:hover{
-  transform: rotate(180deg);
- 
-} */
-
-
-/* .save-list__box::after {
-  content: '';
-  width: 40px;
-  height: 20px;
-  background: url(./assets/str.png);
-  position: absolute;
-  display: block;
-  top: 0;
-  right: -53px;
-  background-size: 100% 100%;
-  background-position: center;
 }
 
-.save-list__box::before {
-  content: '';
-  width: 40px;
-  height: 20px;
-  background: url(./assets/str.png);
-  position: absolute;
-  display: block;
-  top: 0;
-  transform: rotate(-180deg);
-  left: -53px;
-  background-size: 100% 100%;
-  background-position: center; */
+.scores-title__description {
+  font-size: 14px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.scores-list__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 36px;
+}
+
+.score-item__numbering {
+  font-size: 17px;
+  font-family: auto;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 50%;
+  background: red;
+  display: inline-block;
+  width: 19px;
+  box-shadow: 0px 0px 4px black;
+}
+
+.score-item__date {
+  font-size: 12px;
+  font-weight: 600;
+  font-family: monospace;
+}
+
+.menu-scores__change {
+  overflow: visible;
+  width: 350px;
+  margin: 0;
 }
 
 .menu-item__anime {
@@ -218,23 +278,8 @@
   transition: all 0.3s ease-in;
 }
 
-/* .pause {
-  width: 50px;
-  height: 50px;
-  transition: all 0.2s ease-in;
-  margin-right: 14px;
-  color: red;
-  border-radius: 50%;
-}
-
-.pause:hover {  
-  transition: all 0.2s ease-in;
-  transform: scale(1.2);
-  cursor: pointer;
-} */
 .button-restart_rotate {
   transform: rotate(360deg);
-  /* transition: all 0.8s ease-in; */
 }
 
 .restart-game {
@@ -251,7 +296,6 @@
 }
 
 .pause {
-  /* background: url(./assets/pause3.png); */
   width: 50px;
   height: 50px;
   transition: all 0.2s ease-in;
@@ -264,24 +308,6 @@
   transform: scale(1.2);
   cursor: pointer;
 }
-/* 
-.restart-game {
-  font-size: 15px;
-  outline: none;
-  box-shadow: 2px 2px 5px 0 black;
-  background: none;
-  border-radius: 13px;
-  margin-right: 10px;
-  border: none;
-  font-style: italic;
-  font-family: inherit;
-  padding: 10px;
-}
-
-.restart-game:hover {
-  cursor: pointer;
-  box-shadow: 2px 2px 5px 0 rgb(74 21 169);
-} */
 
 .header {
   display: flex;
@@ -300,7 +326,6 @@
   justify-content: center;
   height: 600px;
   margin: 0 auto;
-  /* margin-left: 601px; */
   align-self: center;
   transition: all 0.3s ease-in;
 }
@@ -353,13 +378,9 @@
   position: relative;
   width: 400px;
   height: 400px;
-  /* width: 200px;
-  height: 200px; */
-
   border-radius: 10px;
   background-color: rgb(65 203 226);
   box-shadow: 0 0 23px 0px;
-
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: 1fr;
   display: grid;
@@ -372,8 +393,6 @@
 
 .field-item {
   box-sizing: border-box;
-  /* width: 100px;
-  height: 100px; */
   border: 3px solid rgb(232 232 232 / 50%);
   border-radius: 17px;
   position: absolute;
@@ -407,8 +426,6 @@
 }
 
 .field-item:hover {
-  /* animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-  transform: translate3d(0, 0, 0); */
   opacity: 1;
   box-shadow: inset 0 0 23px #000000;
 }
@@ -477,32 +494,26 @@
   border-radius: 5px;
 }
 @media screen and (max-width: 1200px) {
-  /* .content-box {
-    margin-left: 400px;
-  } */
-
   .field {
     margin-left: 0;
   }
 }
 
 @media screen and (max-width: 900px) {
-  /* .field {
-    margin-right: 30px;
-  }
-  .content-box {
-    margin-right: 30px;
-  } */
-  /* .content-box {
-    margin-left: 200px;
-  } */
-
   .menu_opacity {
     opacity: 0.3;
   }
-
+  /* .content-box {
+    margin: 0;
+  } */
   .body {
     background-position: -192px center;
     background-size: 308px 308px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .content-box {
+    margin: 0;
   }
 }

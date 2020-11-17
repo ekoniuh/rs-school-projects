@@ -217,6 +217,11 @@
   justify-content: space-around;
 }
 
+.scores-title__description .scores-title__date {
+  margin-left: 30px;
+  margin-right: 10px;
+}
+
 .scores-list__item {
   display: flex;
   justify-content: space-between;
@@ -493,6 +498,7 @@
   user-select: none;
   border-radius: 5px;
 }
+
 @media screen and (max-width: 1200px) {
   .field {
     margin-left: 0;

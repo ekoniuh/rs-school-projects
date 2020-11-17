@@ -18,7 +18,8 @@ let empty = {
 
 let saveScores = {
   date: [],
-  'Move Size': [],
+  move: [],
+  size: [],
   time: [],
 };
 
@@ -118,16 +119,26 @@ function move(index, widthCell) {
   cell.top = emptyTop;
 
   const isFinished = cells.every((cell) => {
-    return cell.value === cell.top * sizeGame + cell.left;
-
-    // правильное ли решение
+    if (
+      cell.value === 0 &&
+      cell.top === sizeGame - 1 &&
+      cell.top === sizeGame - 1
+    ) {
+      return true;
+    } else if (cell.value !== 0) {
+      return cell.value === cell.top * sizeGame + cell.left + 1;
+    } else {
+      return cell.value === cell.top * sizeGame + cell.left;
+    }
   });
 
   if (isFinished) {
     setSaveScores(saveScores);
-    alert(
-      `Ура! Вы решили головоломку за ${time.innerHTML} и ${counterMove} ходов`
-    );
+    setTimeout(() => {
+      alert(
+        `Ура! Вы решили головоломку за ${time.innerHTML} и ${counterMove} ходов`
+      );
+    }, 500);
   }
 }
 
@@ -352,9 +363,10 @@ function setSaveScores(saveScores) {
   let date = new Date();
   let todayFinished = date.toLocaleDateString();
   let timeFinished = date.toLocaleTimeString();
-  saveScores['date'].push([timeFinished, todayFinished]);
-  saveScores['time'].push(time.innerHTML);
-  saveScores['Move Size'].push(sizeGame);
+  saveScores.date.push([timeFinished, todayFinished]);
+  saveScores.time.push(time.innerHTML);
+  saveScores.move.push(+counterStep.innerHTML);
+  saveScores.size.push(sizeGame);
   localStorage.setItem('bestScores', JSON.stringify(saveScores));
 }
 
@@ -420,8 +432,11 @@ function createScoresList(saveScores) {
             <span class="scores-title__date">
               Date
             </span>
-            <span class="scores-title__moves-size">
-             Moves Size
+            <span class="scores-title__moves">
+             Moves 
+             </span>
+             <span class="scores-title__size">
+             Size
             </span>
             <span class="scores-title__time">
              Time
@@ -441,8 +456,11 @@ function createScoresList(saveScores) {
          <span class="score-item__hour">${saveScores.date[i][0]}</span> </br> 
       <span class="score-item__date">${saveScores.date[i][1]}
         </span></span>
-        <span class="scores-title__moves-size">
-        ${saveScores['Move Size'][i]}
+        <span class="scores-title__moves">
+        ${saveScores.move[i]}
+        </span>
+        <span class="scores-title__size">
+        ${saveScores.size[i]}
         </span>
         <span class="scores-title__time">
         ${saveScores.time[i]}
@@ -541,7 +559,8 @@ function getSaveScores() {
   return JSON.parse(localStorage.getItem('bestScores')) === null
     ? {
         date: [],
-        'Move Size': [],
+        move: [],
+        size: [],
         time: [],
       }
     : JSON.parse(localStorage.getItem('bestScores'));

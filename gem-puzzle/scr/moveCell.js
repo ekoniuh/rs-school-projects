@@ -6,7 +6,6 @@ import { setSaveScores } from './setLocalStorage';
 const createHandleVolumeState = () => {
   volumeBtn.classList.toggle('volume-on');
   state.isSoundOnOff = !state.isSoundOnOff;
-  console.log(state.isSoundOnOff);
 };
 
 volumeBtn.addEventListener('click', () =>
@@ -23,7 +22,6 @@ function volume() {
 }
 
 function move(index, widthCell) {
-  state.isSoundOnOff = true;
   const cell = state.cells[index];
   const leftDiff = Math.abs(state.empty.left - cell.left);
   const topDiff = Math.abs(state.empty.top - cell.top);
@@ -83,16 +81,16 @@ function mouseMoveCell(event) {
   const shiftCurY = event.layerY;
   const fieldLeft = field.getBoundingClientRect().left;
   const fieldTop = field.getBoundingClientRect().top;
-  function moveAt() {
+  function moveAt(clientX, clientY) {
     target.style.transitionDuration = '0s';
-    target.style.left = `${event.clientX - fieldLeft - shiftCurX}px`;
-    target.style.top = `${event.clientY - fieldTop - shiftCurY}px`;
+    target.style.left = `${clientX - fieldLeft - shiftCurX}px`;
+    target.style.top = `${clientY - fieldTop - shiftCurY}px`;
   }
 
-  moveAt();
+  moveAt(event.clientX, event.clientY);
 
-  function onMouseMove() {
-    moveAt();
+  function onMouseMove(mouseEvent) {
+    moveAt(mouseEvent.clientX, mouseEvent.clientY);
   }
 
   document.addEventListener('mousemove', onMouseMove);

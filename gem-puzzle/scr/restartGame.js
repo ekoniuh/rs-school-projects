@@ -22,11 +22,11 @@ function getRestartGame(size) {
   state.cells = [];
   state.cells.push(state.empty);
   buildCell(newRandomArray, size);
-  document
-    .querySelectorAll('.field-item')
-    .forEach((item) => (item.style.fontSize = size > 6 ? '25px' : '50px'));
-
-  // Как исправить, не получилось ко всем элементам применить
+  Array.from(document.querySelectorAll('.field-item')).forEach((item) => {
+    const newItem = item;
+    newItem.style.fontSize = size > 6 ? '25px' : '50px';
+  });
+  
 }
 
 export default getRestartGame;

@@ -1,4 +1,4 @@
-function getSaveGame() {
+const getSaveGame = () => {
   return JSON.parse(localStorage.getItem('itemCache')) === null
     ? {
         timer: [],
@@ -10,7 +10,7 @@ function getSaveGame() {
     : JSON.parse(localStorage.getItem('itemCache'));
 }
 // +
-function getSaveScores() {
+const getSaveScores = () => {
   return JSON.parse(localStorage.getItem('bestScores')) === null
     ? {
         date: [],

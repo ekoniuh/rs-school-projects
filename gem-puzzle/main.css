@@ -1,7 +1,6 @@
-.body {
+body {
   font-family: cursive;
   height: 100vh;
-  transition: all 0.5s ease-in;
   margin: 0;
   padding: 0;
 }
@@ -23,7 +22,7 @@
 .menu {
   position: absolute;
   left: -391px;
-  background: url(./assets/cartao-de-natal-para-dedicacao-do-feliz-papai-noel_20187-387.jpg);
+  background: url(assets/cartao-de-natal-para-dedicacao-do-feliz-papai-noel_20187-387.jpg);
   background-repeat: no-repeat;
   font-family: cursive;
   height: 628px;
@@ -99,7 +98,7 @@
   height: 90px;
   font-size: 30px;
   outline: none;
-  background: url(./assets/menu-back.png);
+  background: url(assets/menu-back.png);
   background-size: 100% 100%;
   border: none;
   margin: 0 auto;
@@ -126,16 +125,13 @@
   height: 50px;
   font-size: 30px;
   outline: none;
-  background: url(./assets/dowload-button.png);
+  background: url(assets/dowload-button.png);
   background-size: 100% 100%;
   border: none;
   margin: 0 auto;
   display: block;
   cursor: pointer;
   transition-duration: 0.5s;
-}
-
-.save-list__item {
 }
 
 .save-list__box {
@@ -167,7 +163,7 @@
   width: 30px;
   height: 30px;
   position: absolute;
-  background: url(./assets/ok.png);
+  background: url(assets/ok.png);
   background-size: 100% 100%;
   transition-duration: 1s;
 }
@@ -179,7 +175,7 @@
 .volume {
   width: 30px;
   height: 30px;
-  background: url(./assets/302-3028772_lakeside-voice-comments-logo-volume-png.png);
+  background: url(assets/302-3028772_lakeside-voice-comments-logo-volume-png.png);
   background-size: 100% 100%;
   transition-duration: 0.5s;
   cursor: pointer;
@@ -188,7 +184,7 @@
 }
 
 .volume-on {
-  background: url(./assets/52bfa4d6570bb8d6271bb1e78f1464d7.png);
+  background: url(assets/52bfa4d6570bb8d6271bb1e78f1464d7.png);
   background-size: 100% 100%;
 }
 
@@ -523,3 +519,4 @@
     margin: 0;
   }
 }
+

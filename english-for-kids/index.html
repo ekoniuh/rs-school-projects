@@ -1,0 +1,129 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
+	<title>English for kids</title>
+	<link href="style.css" rel="stylesheet">
+</head>
+
+<body class="">
+
+	<header class="header">
+		<div class="wrapper header__wrapper">
+			<nav class="header__navigation">
+				<ul class="navigation">
+					<li class="navigation__link navigation__link_active" data-index="m">Main Page</li>
+					<li class="navigation__link" data-index="0">Action (set A)</li>
+					<li class="navigation__link" data-index="1">Action (set B)</li>
+					<li class="navigation__link" data-index="2">Animal (set A)</li>
+					<li class="navigation__link" data-index="3">Animal (set B)</li>
+					<li class="navigation__link" data-index="4">Clothes</li>
+					<li class="navigation__link" data-index="5">Emotions</li>
+					<li class="navigation__link" data-index="6">Food</li>
+					<li class="navigation__link" data-index="7">Beverages</li>
+				</ul>
+				<div class="header__hamburger">
+					<div class="hamburger"><span class="hamburger__line hamburger__line_active"></span></div>
+				</div>
+			</nav>
+			<div class="header__logo">
+				<h1 class="logo-title">English for kids</h1>
+			</div>
+			<!-- <div class="switch">
+				<input type="checkbox" class="checkbox" id="checkbox">
+				<label for="checkbox" class="checkbox-label"></label>
+				<span class="train">Train</span>
+				<span class="play none">Play</span>
+				<span class="switch_bg"></span>
+			</div> -->
+			<div class="header__switch">
+				<div class="switch">
+					<label class="switch__label">
+						<input class="switch__input" type="checkbox">
+						<span class="switch__slider switch__slider_rounded"></span>
+						<span class="switch__game-mode" data-on="Play" data-off="Train"></span>
+					</label>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<main>
+		<div class="wrapper">
+			<div class="cards">
+				<div class="category-card category-card_train" data-disabled="true" data-checked="true" data-word="">
+					<div class="category-card__img">
+						<img src="./img/angry.jpg" alt="Action (set A)">
+					</div>
+					<div class="category-card__title">
+						<p>Action (set A)</p>
+					</div>
+				</div>
+				<div class="category-card category-card_train" data-disabled="true" data-checked="true" data-word="">
+					<div class="category-card__img">
+						<img src="./assets/swim.jpg" alt="Action (set b)">
+					</div>
+					<div class="category-card__title">
+						<p>Action (set B)</p>
+					</div>
+				</div>
+				<div class="category-card category-card_train" data-disabled="true" data-checked="true" data-word="">
+					<div class="category-card__img">
+						<img src="./assets/build.jpg" alt="Animal">
+					</div>
+					<div class="category-card__title">
+						<p>Animal (set A)</p>
+					</div>
+				</div>
+				<div class="category-card category-card_train" data-disabled="true" data-checked="true" data-word="">
+					<div class="category-card__img">
+						<img src="./assets/young.jpg" alt="Animal">
+					</div>
+					<div class="category-card__title">
+						<p>Animal (set B)</p>
+					</div>
+				</div>
+				<div class="category-card category-card_train" data-disabled="true" data-checked="true" data-word="">
+					<div class="category-card__img">
+						<img src="./assets/rabbit.jpg" alt="Clothes">
+					</div>
+					<div class="category-card__title">
+						<p>Clothes</p>
+					</div>
+				</div>
+				<div class="category-card category-card_train" data-disabled="true" data-checked="true" data-word="">
+					<div class="category-card__img">
+						<img src="./assets/dolphin.jpg" alt="Emotions">
+					</div>
+					<div class="category-card__title">
+						<p>Emotions</p>
+					</div>
+				</div>
+				<div class="category-card category-card_train" data-disabled="true" data-checked="true" data-word="">
+					<div class="category-card__img">
+						<img src="./assets/dress.jpg" alt="Food">
+					</div>
+					<div class="category-card__title">
+						<p>Food</p>
+					</div>
+				</div>
+				<div class="category-card category-card_train" data-disabled="true" data-checked="true" data-word="">
+					<div class="category-card__img">
+						<img src="./assets/smile.jpg" alt="Beverages">
+					</div>
+					<div class="category-card__title">
+						<p>Beverages</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<script src="bundle.js"></script>
+
+</body>
+
+</html>

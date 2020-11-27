@@ -14,6 +14,8 @@ const state = {
     top: 0,
     left: 0,
   },
+  BASIC_SIZE_FONT: 6,
+  OFFSET_MENU_HIDDEN: -391,
 };
 // state.cells.push(state.empty);
 export default state;

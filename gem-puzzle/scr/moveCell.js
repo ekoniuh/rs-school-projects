@@ -47,14 +47,10 @@ function move(index, widthCell) {
   cell.top = emptyTop;
 
   const isFinished = state.cells.every((item) => {
-    if (
-      item.value === 0 &&
-      item.top === state.sizeGame - 1 &&
-      item.top === state.sizeGame - 1
-    ) {
+    if (!item.value && item.top === state.sizeGame - 1) {
       return true;
     }
-    if (item.value !== 0) {
+    if (item.value) {
       return item.value === item.top * state.sizeGame + item.left + 1;
     }
     return item.value === item.top * state.sizeGame + item.left;
@@ -70,7 +66,7 @@ function move(index, widthCell) {
     }, 500);
   }
 }
-// +
+
 function mouseMoveCell(event) {
   const { target } = event;
   if (!target.classList.contains('field-item')) {
@@ -82,7 +78,7 @@ function mouseMoveCell(event) {
   const fieldLeft = field.getBoundingClientRect().left;
   const fieldTop = field.getBoundingClientRect().top;
   function moveAt(clientX, clientY) {
-    target.style.transitionDuration = '0s';
+    target.classList.add('field-item_animation');
     target.style.left = `${clientX - fieldLeft - shiftCurX}px`;
     target.style.top = `${clientY - fieldTop - shiftCurY}px`;
   }
@@ -99,7 +95,7 @@ function mouseMoveCell(event) {
     // state.counterMove += 1;
     document.removeEventListener('mousemove', onMouseMove);
     target.onmouseup = null;
-    target.style.transitionDuration = '0.3s';
+    target.classList.remove('field-item_animation');
   };
 }
 export { move, mouseMoveCell };

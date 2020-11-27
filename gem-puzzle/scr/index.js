@@ -1,9 +1,7 @@
 import state from './state';
 import tick from './tick';
 import openMenu from './openMenu';
-
 import getRestartGame from './restartGame';
-
 import { saveObj } from './getLocalStorage';
 import {
   sizeField,
@@ -16,7 +14,6 @@ import {
   saveGame,
   loadGame,
   bestScores,
-  fieldSizeDisplay,
   menuList,
 } from './renderContent';
 import { renderMenuDownloadGame, nextBackSaveItem } from './menuDownloadGame';
@@ -25,29 +22,14 @@ import { setSaveGame } from './setLocalStorage';
 import { mouseMoveCell } from './moveCell';
 import createSaveScores from './renderSaveScores';
 import '../style.css';
+import { getSizeGame, getRandomArray } from './utils';
 
 state.cells.push(state.empty);
 
-function getSizeGame() {
-  settings.classList.toggle('menu-item__anime');
-  if (fieldSizeDisplay.style.display === 'block') {
-    fieldSizeDisplay.style.display = 'none';
-    return;
-  }
-  fieldSizeDisplay.style.display = 'block';
-}
-
 function init() {
-  // debugger;
-  const randomArray = [
-    ...Array(state.sizeGame * state.sizeGame - 1).keys(),
-  ].sort(() => Math.random() - 0.5);
-
-  // надо ли создавать такой же объект или просто сдлеать его null
-
   setInterval(() => tick(state.isPlayPause), 1000);
 
-  buildCell(randomArray, state.sizeGame);
+  buildCell(getRandomArray(), state.sizeGame);
 
   sizeField.addEventListener('change', (e) => {
     state.sizeGame = +e.target.value;
@@ -97,17 +79,18 @@ function init() {
         nextBackSaveItem(target, arrSaveItems)
       );
 
-    // переменную надо ли закидывать
     document
       .querySelector('.menu-back__button')
       .addEventListener('click', () => {
-        document.querySelector('.save-list__box').style.display = 'none';
-        menuList.style.left = '0px';
+        document
+          .querySelector('.save-list__box')
+          .classList.toggle('save-list__box_none');
+        menuList.classList.toggle('menu-list_hidden');
       });
 
     document.querySelector('.download-button').addEventListener('click', () => {
       const itemDownload = document.querySelector('.save-list__item_active');
-      const index = +itemDownload.dataset.index;
+      const index = Number(itemDownload.dataset.index);
       state.empty = saveObj.empty[index];
       buildCellDownload({
         size: saveObj['Board size'][index],

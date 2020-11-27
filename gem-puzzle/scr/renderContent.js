@@ -2,7 +2,7 @@ function createContent() {
   document.body.insertAdjacentHTML(
     'afterbegin',
     `		<section class="page">
-    <div class="menu menu_opacity">
+    <div class="menu">
     <div class="menu-wrapper">
       <ul class="menu-list">
       <li class="menu-item play-game">Continue</li>
@@ -10,7 +10,7 @@ function createContent() {
         <li class="menu-item save-game">Saved games</li>
         <li class="menu-item load-game">load Game</li>
         <li class="menu-item settings">Settings</li>
-        <li class="menu-item field-size__box">
+        <li class="menu-item field-size__box field-size__box_display">
 	          <label class="nav__btn">Field size: </label>
 	          <select class="select-box">
 		          <option class="select-option" value="3">3x3</option>
@@ -40,7 +40,7 @@ function createContent() {
         <img class="restart-game" src="./assets/47-512.png" title = "Restart">
         <div class="volume"></div>		
 			</div>
-			<div class="field">
+			<div class="field field-font__size_l">
 			</div>
 			<audio src="./assets/audio.mp3" class="audio-play" type="audio/mp3"></audio>
 		</div>
@@ -72,8 +72,8 @@ export {
   restartGame,
   field,
   time,
-	counterStep,
-	continueGame,
+  counterStep,
+  continueGame,
   menu,
   playPauseGame,
   newGame,

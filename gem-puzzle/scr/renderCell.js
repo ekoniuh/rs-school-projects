@@ -2,6 +2,7 @@ import { field, time, counterStep } from './renderContent';
 import state from './state';
 import { move } from './moveCell';
 import { saveObj } from './getLocalStorage';
+import { changeSizeFonts } from './utils';
 //+
 function buildCell(randomArray, size) {
   const widthCell = field.offsetWidth / size;
@@ -41,9 +42,9 @@ function buildCell(randomArray, size) {
 // +
 function buildCellDownload({ size, arrayCells, index }) {
   time.innerHTML = saveObj.timer[index];
-  state.min = +saveObj.timer[index].substr(0, 2);
-  state.sec = +saveObj.timer[index].substr(3, 2);
-  state.counterMove = +saveObj['move counter'][index];
+  state.min = Number(saveObj.timer[index].substr(0, 2));
+  state.sec = Number(saveObj.timer[index].substr(3, 2));
+  state.counterMove = Number(saveObj['move counter'][index]);
   counterStep.innerHTML = saveObj['move counter'][index];
 
   field.innerHTML = '';
@@ -79,10 +80,8 @@ function buildCellDownload({ size, arrayCells, index }) {
       move(i - 1, widthCell);
     });
   }
-  Array.from(document.querySelectorAll('.field-item')).forEach((item) => {
-    const newItem = item;
-    newItem.style.fontSize = size > 6 ? '25px' : '50px';
-  });
+
+  changeSizeFonts(size);
 }
 
 export { buildCell, buildCellDownload };

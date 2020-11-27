@@ -54,14 +54,14 @@ function createSaveScores() {
   if (document.querySelector('.best-scores__box')) {
     document.querySelector('.best-scores__box').remove();
   }
-  // лучше удалять или заменять?
-  menuList.style.left = '-300px';
+
+  menuList.classList.toggle('menu-list_offset-left');
 
   setTimeout(() => {
-    menuList.style.display = 'none';
-  }, 1000);
+    menuList.classList.toggle('menu-list_none');
+     }, 1000);
 
-  menu.style.left = '0px';
+  menu.classList.toggle('menu_offset-right-0');
   menuWrapper.classList.toggle('menu-scores__change');
 
   setTimeout(() => {
@@ -70,15 +70,17 @@ function createSaveScores() {
     document
       .querySelector('.menu-back__button_scores')
       .addEventListener('click', () => {
-        menuList.style.display = 'flex';
+        // menuList.style.display = 'flex';
+        menuList.classList.toggle('menu-list_none');
         setTimeout(() => {
-          menuList.style.left = '0px';
+          menuList.classList.toggle('menu-list_offset-left');
+          menu.classList.remove('menu_offset-right-0');
         }, 300);
-        menu.style.left = '-125px';
-        menuWrapper.classList.toggle('menu-scores__change');
 
-        document.querySelector('.best-scores__box').style.left = '-100px';
-        document.querySelector('.best-scores__box').style.display = 'none';
+        menuWrapper.classList.toggle('menu-scores__change');
+        document
+          .querySelector('.best-scores__box')
+          .classList.toggle('best-scores__box_none');
       });
   }, 1000);
 }

@@ -1,14 +1,14 @@
 import { saveObj } from './getLocalStorage';
 
 function renderMenuDownloadGame() {
-  document.querySelector('.menu-list').style.left = '-204px';
+  document.querySelector('.menu-list').classList.toggle('menu-list_hidden');
   if (document.querySelector('.save-list')) {
     document.querySelector('.save-list').innerHTML = '';
     document.querySelector('.save-list__box').remove();
   }
 
   const div = document.createElement('div');
-  div.className = `save-list__box`;
+  div.className = 'save-list__box';
   document.querySelector('.menu-wrapper').append(div);
 
   const ul = document.createElement('ul');
@@ -42,33 +42,33 @@ function renderMenuDownloadGame() {
 			</li>`
     );
 
-    document.querySelector('.save-list__box').style.display = 'block';
-
-    if (i === 0) {
+    if (!i) {
       document
         .querySelector('.save-list__item')
         .classList.add('save-list__item_active');
     }
   }
 
-  setInterval(() => {
-    document.querySelector('.save-list__box').style.left = '0px';
+  setTimeout(() => {
+    document
+      .querySelector('.save-list__box')
+      .classList.toggle('save-list__box_visible');
   }, 1000);
 }
-// +
+
 function nextBackSaveItem(target, arrSaveItems) {
-  const index = +target.dataset.index;
+  const index = Number(target.dataset.index);
   if (
     target.className === 'next-save__item' &&
     index !== arrSaveItems.length - 1
   ) {
-    arrSaveItems[+index].classList.remove('save-list__item_active');
-    arrSaveItems[+index + 1].classList.add('save-list__item_active');
+    arrSaveItems[index].classList.remove('save-list__item_active');
+    arrSaveItems[index + 1].classList.add('save-list__item_active');
   }
 
   if (target.className === 'back-save__item' && index !== 0) {
-    arrSaveItems[+index].classList.remove('save-list__item_active');
-    arrSaveItems[+index - 1].classList.add('save-list__item_active');
+    arrSaveItems[index].classList.remove('save-list__item_active');
+    arrSaveItems[index - 1].classList.add('save-list__item_active');
   }
 }
 

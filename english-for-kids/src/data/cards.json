@@ -51,5 +51,376 @@
         "audioSrc": "audio/jump.mp3"
       }
     ]
+  },
+  "ActionB": {
+    "label": "Action (set A)",
+    "cards": [
+      {
+        "word": "open",
+        "translation": "открывать",
+        "image": "img/open.jpg",
+        "audioSrc": "audio/open.mp3"
+      },
+      {
+        "word": "play",
+        "translation": "играть",
+        "image": "img/play.jpg",
+        "audioSrc": "audio/play.mp3"
+      },
+      {
+        "word": "point",
+        "translation": "указывать",
+        "image": "img/point.jpg",
+        "audioSrc": "audio/point.mp3"
+      },
+      {
+        "word": "ride",
+        "translation": "ездить",
+        "image": "img/ride.jpg",
+        "audioSrc": "audio/ride.mp3"
+      },
+      {
+        "word": "run",
+        "translation": "бегать",
+        "image": "img/run.jpg",
+        "audioSrc": "audio/run.mp3"
+      },
+      {
+        "word": "sing",
+        "translation": "петь",
+        "image": "img/sing.jpg",
+        "audioSrc": "audio/sing.mp3"
+      },
+      {
+        "word": "skip",
+        "translation": "пропускать, прыгать",
+        "image": "img/skip.jpg",
+        "audioSrc": "audio/skip.mp3"
+      },
+      {
+        "word": "swim",
+        "translation": "плавать",
+        "image": "img/swim.jpg",
+        "audioSrc": "audio/swim.mp3"
+      }
+    ]
+  },
+  "AnimalA": {
+    "label": "Action (set A)",
+    "cards": [
+      {
+        "word": "cat",
+        "translation": "кот",
+        "image": "img/cat.jpg",
+        "audioSrc": "audio/cat.mp3"
+      },
+      {
+        "word": "chick",
+        "translation": "цыплёнок",
+        "image": "img/chick.jpg",
+        "audioSrc": "audio/chick.mp3"
+      },
+      {
+        "word": "chicken",
+        "translation": "курица",
+        "image": "img/chicken.jpg",
+        "audioSrc": "audio/chicken.mp3"
+      },
+      {
+        "word": "dog",
+        "translation": "собака",
+        "image": "img/dog.jpg",
+        "audioSrc": "audio/dog.mp3"
+      },
+      {
+        "word": "horse",
+        "translation": "лошадь",
+        "image": "img/horse.jpg",
+        "audioSrc": "audio/horse.mp3"
+      },
+      {
+        "word": "pig",
+        "translation": "свинья",
+        "image": "img/pig.jpg",
+        "audioSrc": "audio/pig.mp3"
+      },
+      {
+        "word": "rabbit",
+        "translation": "кролик",
+        "image": "img/rabbit.jpg",
+        "audioSrc": "audio/rabbit.mp3"
+      },
+      {
+        "word": "sheep",
+        "translation": "овца",
+        "image": "img/sheep.jpg",
+        "audioSrc": "audio/sheep.mp3"
+      }
+    ]
+  },
+  "AnimalB": {
+    "label": "Action (set A)",
+    "cards": [
+      {
+        "word": "bird",
+        "translation": "птица",
+        "image": "img/bird.jpg",
+        "audioSrc": "audio/bird.mp3"
+      },
+      {
+        "word": "fish",
+        "translation": "рыба",
+        "image": "img/fish1.jpg",
+        "audioSrc": "audio/fish.mp3"
+      },
+      {
+        "word": "frog",
+        "translation": "жаба",
+        "image": "img/frog.jpg",
+        "audioSrc": "audio/frog.mp3"
+      },
+      {
+        "word": "giraffe",
+        "translation": "жирафа",
+        "image": "img/giraffe.jpg",
+        "audioSrc": "audio/giraffe.mp3"
+      },
+      {
+        "word": "lion",
+        "translation": "лев",
+        "image": "img/lion.jpg",
+        "audioSrc": "audio/lion.mp3"
+      },
+      {
+        "word": "mouse",
+        "translation": "мышь",
+        "image": "img/mouse.jpg",
+        "audioSrc": "audio/mouse.mp3"
+      },
+      {
+        "word": "turtle",
+        "translation": "черепаха",
+        "image": "img/turtle.jpg",
+        "audioSrc": "audio/turtle.mp3"
+      },
+      {
+        "word": "dolphin",
+        "translation": "дельфин",
+        "image": "img/dolphin.jpg",
+        "audioSrc": "audio/dolphin.mp3"
+      }
+    ]
+  },
+  "Clothes": {
+    "label": "Action (set A)",
+    "cards": [
+      {
+        "word": "skirt",
+        "translation": "юбка",
+        "image": "img/skirt.jpg",
+        "audioSrc": "audio/skirt.mp3"
+      },
+      {
+        "word": "pants",
+        "translation": "брюки",
+        "image": "img/pants.jpg",
+        "audioSrc": "audio/pants.mp3"
+      },
+      {
+        "word": "blouse",
+        "translation": "блузка",
+        "image": "img/blouse.jpg",
+        "audioSrc": "audio/blouse.mp3"
+      },
+      {
+        "word": "dress",
+        "translation": "платье",
+        "image": "img/dress.jpg",
+        "audioSrc": "audio/dress.mp3"
+      },
+      {
+        "word": "boot",
+        "translation": "ботинок",
+        "image": "img/boot.jpg",
+        "audioSrc": "audio/boot.mp3"
+      },
+      {
+        "word": "shirt",
+        "translation": "рубашка",
+        "image": "img/shirt.jpg",
+        "audioSrc": "audio/shirt.mp3"
+      },
+      {
+        "word": "coat",
+        "translation": "пальто",
+        "image": "img/coat.jpg",
+        "audioSrc": "audio/coat.mp3"
+      },
+      {
+        "word": "shoe",
+        "translation": "туфли",
+        "image": "img/shoe.jpg",
+        "audioSrc": "audio/shoe.mp3"
+      }
+    ]
+  },
+  "Emotions": {
+    "label": "Action (set A)",
+    "cards": [
+      {
+        "word": "sad",
+        "translation": "грустный",
+        "image": "img/sad.jpg",
+        "audioSrc": "audio/sad.mp3"
+      },
+      {
+        "word": "angry",
+        "translation": "сердитый",
+        "image": "img/angry.jpg",
+        "audioSrc": "audio/angry.mp3"
+      },
+      {
+        "word": "happy",
+        "translation": "счастливый",
+        "image": "img/happy.jpg",
+        "audioSrc": "audio/happy.mp3"
+      },
+      {
+        "word": "tired",
+        "translation": "уставший",
+        "image": "img/tired.jpg",
+        "audioSrc": "audio/tired.mp3"
+      },
+      {
+        "word": "surprised",
+        "translation": "удивлённый",
+        "image": "img/surprised.jpg",
+        "audioSrc": "audio/surprised.mp3"
+      },
+      {
+        "word": "scared",
+        "translation": "испуганный",
+        "image": "img/scared.jpg",
+        "audioSrc": "audio/scared.mp3"
+      },
+      {
+        "word": "smile",
+        "translation": "улыбка",
+        "image": "img/smile.jpg",
+        "audioSrc": "audio/smile.mp3"
+      },
+      {
+        "word": "laugh",
+        "translation": "смех",
+        "image": "img/laugh.jpg",
+        "audioSrc": "audio/laugh.mp3"
+      }
+    ]
+  },
+  "Food": {
+    "label": "Action (set A)",
+    "cards": [
+      {
+        "word": "sweets",
+        "translation": "сладости",
+        "image": "img/sweets.jpg",
+        "audioSrc": "audio/sweets.mp3"
+      },
+      {
+        "word": "shawarma",
+        "translation": "шаурма",
+        "image": "img/shawarma.jpg",
+        "audioSrc": "audio/shawarma.mp3"
+      },
+      {
+        "word": "omelette",
+        "translation": "омлет",
+        "image": "img/omelette.jpg",
+        "audioSrc": "audio/omelette.mp3"
+      },
+      {
+        "word": "chicken",
+        "translation": "курица",
+        "image": "img/chicken.jpg",
+        "audioSrc": "audio/chicken.mp3"
+      },
+      {
+        "word": "caviar",
+        "translation": "икра",
+        "image": "img/caviar.jpg",
+        "audioSrc": "audio/caviar.mp3"
+      },
+      {
+        "word": "borsht",
+        "translation": "борщ",
+        "image": "img/borsht.jpg",
+        "audioSrc": "audio/borsht.mp3"
+      },
+      {
+        "word": "beard",
+        "translation": "хлеб",
+        "image": "img/beard.jpg",
+        "audioSrc": "audio/beard.mp3"
+      },
+      {
+        "word": "cutlet",
+        "translation": "котлета",
+        "image": "img/cutlet.jpg",
+        "audioSrc": "audio/cutlet.mp3"
+      }
+    ]
+  },
+  "Beverages": {
+    "label": "Action (set A)",
+    "cards": [
+      {
+        "word": "wine",
+        "translation": "грустный",
+        "image": "img/wine.jpg",
+        "audioSrc": "audio/wine.mp3"
+      },
+      {
+        "word": "water",
+        "translation": "сердитый",
+        "image": "img/water.jpg",
+        "audioSrc": "audio/water.mp3"
+      },
+      {
+        "word": "tomato juice",
+        "translation": "счастливый",
+        "image": "img/tomato juice.jpg",
+        "audioSrc": "audio/tomato juice.mp3"
+      },
+      {
+        "word": "tea",
+        "translation": "уставший",
+        "image": "img/tea.jpg",
+        "audioSrc": "audio/tea.mp3"
+      },
+      {
+        "word": "mojito",
+        "translation": "удивлённый",
+        "image": "img/mojito.jpg",
+        "audioSrc": "audio/mojito.mp3"
+      },
+      {
+        "word": "milk",
+        "translation": "испуганный",
+        "image": "img/milk.jpg",
+        "audioSrc": "audio/milk.mp3"
+      },
+      {
+        "word": "coffe",
+        "translation": "улыбка",
+        "image": "img/coffe.jpg",
+        "audioSrc": "audio/coffe.mp3"
+      },
+      {
+        "word": "beer",
+        "translation": "смех",
+        "image": "img/beer.jpg",
+        "audioSrc": "audio/beer.mp3"
+      }
+    ]
   }
 }

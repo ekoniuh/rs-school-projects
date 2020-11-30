@@ -7,7 +7,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const PATHS = {
   src: path.join(__dirname, 'src'),
   dist: path.join(__dirname, 'dist'),
-  assets: path.join(__dirname, 'assets'),
+  assetsImage: path.join(__dirname, 'src/assets/images'),
+  assetsAudio: path.join(__dirname, 'src/assets/audio'),
   public: path.join(__dirname, 'public'),
 };
 
@@ -15,7 +16,7 @@ module.exports = {
   externals: {
     PATHS,
   },
-  entry: './scr/index.js',
+  entry: './src/app/index.js',
   // main: path.resolve(PATHS.src, './scr'),
   output: {
     filename: 'index.js',
@@ -31,7 +32,10 @@ module.exports = {
       {
         test: /\.(png|svg|jpe?g|gif)$/,
         use: [
-          { loader: 'file-loader', options: { name: 'assets/[name].[ext]' } },
+          {
+            loader: 'file-loader',
+            options: { name: 'assets/[name].[ext]' },
+          },
         ],
       },
       {
@@ -44,8 +48,12 @@ module.exports = {
               importLoaders: 1,
             },
           },
+          {
+            loader: 'sass-loader',
+          },
         ],
       },
+
       {
         test: /\.js$/,
         exclude: [/node_modules/],
@@ -58,10 +66,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       title: 'gem-puzzle game',
-      template: './src/index.html'
+      template: './src/index.html',
     }),
     new CopyPlugin({
-      patterns: [{ from: PATHS.assets, to: 'assets' }],
+      patterns: [
+        { from: PATHS.assetsImage, to: 'assets/images' },
+        { from: PATHS.assetsAudio, to: 'assets/audio' },
+      ],
     }),
   ],
 };

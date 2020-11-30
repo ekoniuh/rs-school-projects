@@ -21,6 +21,7 @@ body {
   width: 100%;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 1.6rem;
+
   /* background-color: #fff; */
 }
 
@@ -54,7 +55,7 @@ main {
 .navigation {
   position: absolute;
   top: 0;
-  left: 0px;
+  left: 0;
   height: 100vh;
   width: 400px;
   box-shadow: 5px 0 30px rgba(0, 0, 0, 0.5);
@@ -62,6 +63,7 @@ main {
   padding-top: 80px;
   padding-left: 80px;
   transition: all 0.3s ease-in;
+
   /* background: linear-gradient(60deg, #4DADF7 0%, #ffe082 100%); */
   background: white;
 }
@@ -75,16 +77,18 @@ main {
   margin: 22px;
   padding: 10px 10px;
   line-height: 1.6rem;
+
   /* color: #fff; */
   cursor: pointer;
   max-width: fit-content;
+
   /* ЗАМЕНИТЬ!!!! */
   background-image: linear-gradient(
     rgba(255, 224, 130, 0.5) 0%,
     rgba(255, 224, 130, 0.5) 100%
   );
   background-repeat: repeat-y;
-  background-size: 0% 0em;
+  background-size: 0% 0;
   background-position: 0 65%;
   transition: all 0.3s ease-in;
 }
@@ -122,8 +126,8 @@ main {
 }
 
 .hamburger__line,
-.hamburger__line:before,
-.hamburger__line:after {
+.hamburger__line::before,
+.hamburger__line::after {
   content: '';
   display: inline-block;
   position: absolute;
@@ -133,13 +137,13 @@ main {
   height: 3px;
 }
 
-.hamburger__line:before {
+.hamburger__line::before {
   top: 10px;
   left: 0;
   transition: all 0.3s ease-in;
 }
 
-.hamburger__line:after {
+.hamburger__line::after {
   top: -10px;
   left: 0;
   transition: all 0.3s ease-in;
@@ -152,11 +156,8 @@ main {
 }
 
 .switch__label {
-  cursor: pointer;
-}
-
-.switch__label {
   position: relative;
+  cursor: pointer;
   display: inline-block;
   width: 140px;
   height: 40px;
@@ -183,21 +184,21 @@ main {
   right: 0;
   bottom: 0;
   background-color: #4dadf7;
-  -webkit-transition: 0.3s;
-  -moz-transition: 0.3s;
-  -o-transition: 0.3s;
+  transition: 0.3s;
+  transition: 0.3s;
+  transition: 0.3s;
   transition: 0.3s;
 }
 
-.switch__input:checked + .switch__slider:before {
+.switch__input:checked + .switch__slider::before {
   transform: translateX(100px);
 }
 
-.switch__slider_rounded:before {
+.switch__slider_rounded::before {
   border-radius: 50%;
 }
 
-.switch__slider:before {
+.switch__slider::before {
   position: absolute;
   content: '';
   height: 32px;
@@ -205,9 +206,6 @@ main {
   left: 4px;
   bottom: 4px;
   background-color: #fff;
-  -webkit-transition: 0.3s;
-  -moz-transition: 0.3s;
-  -o-transition: 0.3s;
   transition: 0.3s;
 }
 
@@ -224,7 +222,7 @@ main {
   line-height: 2.5rem;
 }
 
-.switch__game-mode:before {
+.switch__game-mode::before {
   content: attr(data-off);
   position: relative;
   left: 57px;
@@ -232,17 +230,11 @@ main {
   top: 7px;
 }
 
-.switch__game-mode:after {
+.switch__game-mode::after {
   content: attr(data-on);
   position: relative;
   right: 75px;
   opacity: 0;
-}
-
-.wrapper {
-  max-width: 1360px;
-  margin: auto;
-  padding: 0 40px;
 }
 
 .cards {
@@ -274,6 +266,7 @@ main {
   border-top-right-radius: 30px;
   object-fit: cover;
   transition: all 0.6s;
+
   /* border: 2px solid #fff; */
 }
 

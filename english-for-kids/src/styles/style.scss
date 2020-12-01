@@ -26,8 +26,8 @@ body {
 
 main {
   margin: {
-    top: 110px;
-    bottom: 80px;
+    top: 24px;
+    bottom: 24px;
   }
 }
 
@@ -253,7 +253,8 @@ main {
   padding-bottom: 20px;
 }
 
-.category-card {
+.category-card,
+.card {
   margin: 15px;
   text-align: center;
   cursor: pointer;
@@ -354,4 +355,14 @@ main {
     padding-top: 120;
     padding-left: 40px;
   }
+}
+
+//____________________
+.rotate {
+  width: 40px;
+  height: 40px;
+  background: url(../assets/images/play-audio.png);
+  background-size: cover;
+  border: none;
+  cursor: pointer;
 }

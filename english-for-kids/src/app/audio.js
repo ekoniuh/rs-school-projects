@@ -1,19 +1,26 @@
-const audio = new Audio( 'audio.mp3'); 
+// audio.load();
+// audio.play();
 
-let audio;
-function playAydio(url) {
-  if(!audio) audio = new Audio(); // <== тоже самое что 
-                                  // document.createElement('audio)';
-  audio.src = url;
+export const playAudio = (word) => {
+  const audio = new Audio(`./assets/audio/${word}.mp3`);
+  // if(!audio) audio = new Audio();
+  // audio.src = url;
   audio.load();
   audio.play();
-}
+};
 
-function play(event){
-	const cardWord = target.parentElement.dataset.word;
-	const cardName = target.innerHTML;
-	const cardsContainer = document.querySelector('.cards__container');
-	const rotate = target.closest('.rotate') ;
-	const = ;
-	const = ;
-}
+// function play(event){
+// 	const cardWord = target.parentElement.dataset.word;
+// 	const cardName = target.innerHTML;
+// 	const cardsContainer = document.querySelector('.cards__container');
+// 	const rotate = target.closest('.rotate') ;
+// 	const = ;
+// 	const = ;
+// }
+
+// searchPlaySound(text){
+// 	const card = find.(item => item.text === text);
+// 	if(card) {
+// 		playSound(card.sound);
+// 	}
+// }

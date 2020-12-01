@@ -1,5 +1,10 @@
 import categoriesData from '...';
 import CardCategory from '...';
+class Categories(){
+	renderMainPage(){
+		
+	}
+}
 
 function () {
 	const fragment = document.createDocumentFragment();

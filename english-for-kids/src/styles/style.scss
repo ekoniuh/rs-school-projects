@@ -31,6 +31,21 @@ main {
   }
 }
 
+.menu-open {
+  background-color: rgba(61, 61, 61, 0);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  transition: 0.5s ease;
+}
+
+.transparent-menu-open {
+  background-color: rgba(61, 61, 61, 0.21);
+}
+
 .header {
   position: sticky;
   top: 0;

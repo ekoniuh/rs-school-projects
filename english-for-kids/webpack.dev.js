@@ -13,7 +13,7 @@ module.exports = merge.smartStrategy(strategy)(webpackCommon, {
   output: {
     filename: '[name].js',
   },
-  devtool: 'eval-cheap-module-source-map',
+  devtool: 'source-map',
   devServer: {
     contentBase: PATHS.dist,
     port: 8081,

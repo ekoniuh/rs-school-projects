@@ -8,7 +8,7 @@ const PATHS = {
   src: path.join(__dirname, 'src'),
   dist: path.join(__dirname, 'dist'),
   assetsImage: path.join(__dirname, './src/assets/images'),
-  assetsAudio: path.join(__dirname, './src/assets/images'),
+  assetsAudio: path.join(__dirname, './src/assets/audio'),
   public: path.join(__dirname, 'public'),
 };
 

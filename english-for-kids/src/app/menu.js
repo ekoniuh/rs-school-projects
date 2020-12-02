@@ -13,10 +13,10 @@ export class Menu {
 
   // target.closest('.navigation__link') ||
   // target.closest('.header__hamburger') ||
-  closeMenu({ target }) {
-    if (!target.closest('.navigation') ) {
-      hamburgerMenu.classList.toggle('navigation_hidden');
-      buttonMenu.classList.toggle('hamburger__line_active');
-    }
+  closeMenu() {
+    // if (!target.closest('.navigation') ) {
+    hamburgerMenu.classList.toggle('navigation_hidden');
+    buttonMenu.classList.toggle('hamburger__line_active');
+    // }
   }
 }

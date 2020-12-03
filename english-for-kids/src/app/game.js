@@ -1,166 +1,139 @@
+import { playAudio } from './audio';
+import { state } from './state';
+import { shuffle } from './utils';
+export default class Game {
+  startGame() {
+		playAudio(state.wordGameArray[state.wordGameArray.length - 1]);
+    // if (state.playActive && state.wordGameArray.length) {
+    //   playAudio(state.wordGameArray[state.wordGameArray.length - 1]);
+    // } else {
+      
+      // state.playActive = !state.playActive;
+      // state.wordGameArray[state.wordGameArray.length - 1];
+    // }
+  }
 
-class Game{
+  checkedWord(card, wordPlay) {
+    const { word } = card.dataset;
+    if (state.wordGameArray.length > 0) {
+      if (word === wordPlay) {
+        this.correctAnswer(card);
+      } else {
+        // gameStat.errorClick(arr.text);
+        this.errorAnswer();
+      }
+    }
+  }
 
+  correctAnswer(card) {
+    playAudio('correct');
+    card.dataset.checked = true;
+    card.classList.toggle('category-card_train');
 
+    const div = document.createElement('div');
+    div.className = 'correct-answer';
+    document.querySelector('.repeat-button').after(div);
 
-	 startGame() {
-		if (isGameStart && gameArray.length) {
-			playSound(gameArray[gameArray - 1].sound);		
-		} else {
-			isGameStart = true;
-			errorsCount = 0;
-			buttonStart.classList.add('change button');
-			buttonStart.setAttribute('title', 'Repeat'); // повторение саунд
-			gameArray = shuffle(cardsArray);
-			playSound(последние элемент в массиве плэй)
-		}	
-	}
-	
-  repeatWords(){
-		const categotyChecked = document.querySelector('in').nodeValue;
-		if(categotyChecked === 'all'){
-			cardsArray = gameStat.stats.filter((item) => percentErrorCalc(item));
-			
-		} else { 
-			cardsArray = gameStat.stats.filter((item, index) => index < 8 );
-		}
-	}
+    state.wordGameArray.pop();
+  }
 
-	checkWord(event){
-		const {word} = target.dataset;
-		if(gameArray.length > 0 ){
-			if(word === arrray.text){
-				correctAnswer(event);
-			} else {
-				gameStat.errorClick(arr.text);
-				errorAnswer(event);
-	
-			}
-		}
-	}
+  errorAnswer() {
+    playAudio('error');
+    const div = document.createElement('div');
+    div.className = 'error-answer';
+    document.querySelector('.repeat-button').before(div);
+  }
 
-	correctAnswerGame(){
-		const img = event.target;
-		const card = img.closets('.card-game');
-		img.dataset.isAnswered = true;
-		StatsPanel.append(correct); // add stars
-	animateAnswer();
-	playSound();
-	gameArray.pop();
-	if(gameArray.length){
-		setTimeout(() => {
-			card.classList.add('card-game_end');
-	
-		}, 1000);
-	}else { 
-		gameOver();
-	
-	}
-	}
+  // startGame() {
+  //   if (isGameStart && state.gameArray.length) {
+  //     playAudio(state.gameArray[state.gameArray.length - 1]);
+  //   } else {
+  //     // state.play = !state.play;
+  //     isGameStart = true;
+  //     // errorsCount = 0;
+  //     // buttonStart.classList.add('change button');
+  //     // buttonStart.setAttribute('title', 'Repeat'); // повторение саунд
+  //     state.gameArray = shuffle(state.gameArray);
+  //     // playSound(последние элемент в массиве плэй)
+  //   }
+  // }
 
-	
-errorAnswer(event){
+  // repeatWords(){
+  // 	const categotyChecked = document.querySelector('in').nodeValue;
+  // 	if(categotyChecked === 'all'){
+  // 		cardsArray = gameStat.stats.filter((item) => percentErrorCalc(item));
 
-	errorsCount+=1;
-	const card = target.closets('.card-game');
-	const error = createIndicator('error');
-	animateAnswer(card,'error');
-	statsPanel.append(error);
-	playAydio('....error.mp3')
-}
+  // 	} else {
+  // 		cardsArray = gameStat.stats.filter((item, index) => index < 8 );
+  // 	}
+  // }
 
+  // 	correctAnswerGame(){
+  // 		const img = event.target;
+  // 		const card = img.closets('.card-game');
+  // 		img.dataset.isAnswered = true;
+  // 		StatsPanel.append(correct); // add stars
+  // 	animateAnswer();
+  // 	playSound();
+  // 	gameArray.pop();
+  // 	if(gameArray.length){
+  // 		setTimeout(() => {
+  // 			card.classList.add('card-game_end');
 
+  // 		}, 1000);
+  // 	}else {
+  // 		gameOver();
 
-	animateAnswer(card, indicator){
-		card.classList.add('adssad{ind}');
-		setTimeout(() 
-		card.classList.remove('{ind}'))
-	}
+  // 	}
+  // 	}
 
+  // errorAnswer(event){
 
-	gameOver(){
-		isGameStart = true;
-		if(errorsCount){
-			playSound('./.....');
-			title.textContent= ...;
-	
-			setTimeout(() => {
-				renderMainPage();
-	
-			}, 1000);
-		}
-	}
-}
+  // 	errorsCount+=1;
+  // 	const card = target.closets('.card-game');
+  // 	const error = createIndicator('error');
+  // 	animateAnswer(card,'error');
+  // 	statsPanel.append(error);
+  // 	playAydio('....error.mp3')
+  // }
 
-animateAnswer(card, indicator){
-	card.classList.add('adssad{ind}');
-	setTimeout(() 
-	card.classList.remove('{ind}'))
-}
+  // 	animateAnswer(card, indicator){
+  // 		card.classList.add('adssad{ind}');
+  // 		setTimeout(()
+  // 		card.classList.remove('{ind}'))
+  // 	}
 
+  // 	gameOver(){
+  // 		isGameStart = true;
+  // 		if(errorsCount){
+  // 			playSound('./.....');
+  // 			title.textContent= ...;
 
+  // 			setTimeout(() => {
+  // 				renderMainPage();
 
+  // 			}, 1000);
+  // 		}
+  // 	}
 
-gameOver(){
-	isGameStart = true;
-	if(errorsCount){
-		playSound('./.....');
-		title.textContent= ...;
+  // gameOver(){
+  // 	isGameStart = true;
+  // 	if(errorsCount){
+  // 		playSound('./.....');
+  // 		title.textContent= ...;
 
-		setTimeout(() => {
-			renderMainPage();
+  // 		setTimeout(() => {
+  // 			renderMainPage();
 
-		}, 1000);
-	}
-}
+  // 		}, 1000);
+  // 	}
+  // }
 
-//правильный ответ
-correctAnswerGame(){
-	const img = event.target;
-	const card = img.closets('.card-game');
-	img.dataset.isAnswered = true;
-	StatsPanel.append(correct); // add stars
-animateAnswer();
-playSound();
-gameArray.pop();
-if(gameArray.length){
-	setTimeout(() => {
-		card.classList.add('card-game_end');
+  // }
 
-	}, 1000);
-}else { 
-	gameOver();
+  // cardsClick(event){
+  // 	const card = target.closest('.card-categ');
+  // 	const {word, isAnswered} = target.dataset;
 
-}
-}
-
-
-errorAnswer(event){
-
-	errorsCount+=1;
-	const card = target.closets('.card-game');
-	const error = createIndicator('error');
-	animateAnswer(card,'error');
-	statsPanel.append(error);
-	playAydio('....error.mp3')
-}
-
-checkWord(event){
-	const {word} = target.dataset;
-	if(gameArray.length > 0 ){
-		if(word === arrray.text){
-			correctAnswer(event);
-		} else {
-			gameStat.errorClick(arr.text);
-			errorAnswer(event);
-
-		}
-	}
-}
-
-cardsClick(event){
-	const card = target.closest('.card-categ');
-	const {word, isAnswered} = target.dataset;
-
-	if(card && )
+  // 	if(card && )
 }

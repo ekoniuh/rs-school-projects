@@ -1,6 +1,6 @@
 export const buttonMenu = document.querySelector('.hamburger');
 export const hamburgerMenu = document.querySelector('.navigation');
-export const cardsContainer = document.querySelector('.category');
+export const categoryContainer = document.querySelector('.category');
 
 // export let isMenuOpen = false;
 export const state = {
@@ -9,7 +9,8 @@ export const state = {
   currentCard: 0, // текущая карточка
   play: false, // активирован ли режим игры
   playActive: false, // началась ли игра
-  randomArr: [], //
+  wordGameArray: [], //
+  cardCategoryArray: [],
   errors: 0, // количество ошибок
   endGame: false,
   // заончилась ли игра

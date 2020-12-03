@@ -68,6 +68,9 @@ main {
   padding: 0 40px;
 }
 
+.navigation:nth-child(1) {
+}
+
 .navigation {
   position: absolute;
   top: 0;
@@ -269,8 +272,7 @@ main {
   padding-bottom: 20px;
 }
 
-.category_none,
-.cards_none {
+.category_none {
   display: none;
 }
 
@@ -312,10 +314,18 @@ main {
     display: flex;
     padding: 10px 10px;
     justify-content: space-between;
+
+    &_none {
+      display: none;
+    }
   }
 
   &__title p {
     padding: 15px 0;
+  }
+
+  &_train {
+    opacity: 0.5;
   }
 }
 
@@ -344,6 +354,30 @@ main {
 
 .back-rotate {
   transform: rotateY(360deg);
+}
+
+.repeat-button {
+  // visibility: hidden;
+
+  width: 30px;
+  height: 30px;
+  background: red;
+}
+
+.repeat-button_none {
+  // display: block;
+  // visibility: visible;
+}
+
+.correct-answer {
+  width: 30px;
+  height: 30px;
+  background: blue;
+}
+.error-answer {
+  width: 30px;
+  height: 30px;
+  background: rgb(0, 255, 106);
 }
 
 .footer {

@@ -5,8 +5,8 @@ export class Menu {
   // constructor() {
 
   // }
-  openMenu(asdas) {
-    state.isMenuOpen = !asdas;
+  openMenu(isModeGame) {
+    // state.isMenuOpen = !isModeGame;
     hamburgerMenu.classList.toggle('navigation_hidden');
     buttonMenu.classList.toggle('hamburger__line_active');
   }

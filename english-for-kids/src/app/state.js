@@ -5,10 +5,11 @@ export const categoryContainer = document.querySelector('.category');
 // export let isMenuOpen = false;
 export const state = {
   isMenuOpen: false,
+  isClickStart: false,
   nameCategory: '', // на какой странице нахожусь
   currentCard: 0, // текущая карточка
-  play: false, // активирован ли режим игры
-  playActive: false, // началась ли игра
+  isModeGame: false, // активирован ли режим игры
+  isModeGame: false, // началась ли игра
   wordGameArray: [], //
   cardCategoryArray: [],
   errors: 0, // количество ошибок

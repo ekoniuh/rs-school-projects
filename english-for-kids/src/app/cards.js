@@ -39,9 +39,9 @@ export class Card {
     return dataCard[`${nameCategory}`].cards;
   }
 
-  createCard(cardDataArray) {
+  createCard() {
     this.removeContainerCards();
-    cardDataArray.forEach((item) => {
+    state.cardCategoryArray.forEach((item) => {
       document.querySelector('.cards').insertAdjacentHTML(
         'beforeend',
         `
@@ -74,34 +74,55 @@ export class Card {
     });
   }
 
-  renderCards({ target }) {
+  getDataCardFromCategory(target) {
     if (target.closest('.category-card')) {
-      state.nameCategory = target.closest('.category-card').textContent.trim();
+      // TODO не нравится мне так брать имя категории
+      state.nameCategory = target
+        .closest('.category-card')
+        .querySelector('.category-card__title p').innerText;
+
       state.cardCategoryArray = dataCard[state.nameCategory].cards;
     } else if (target.classList.contains('navigation__link')) {
       state.nameCategory = target.innerText;
+
       state.cardCategoryArray = dataCard[target.innerText].cards;
     }
+  }
+
+  renderCards({ target }) {
+    if (
+      !target.closest('.category-card') &&
+      !target.closest('.navigation__link')
+    ) {
+      return;
+    }
+
+    this.getDataCardFromCategory(target);
+    this.createCard();
 
     state.wordGameArray = this.cardCategoryArray(state.nameCategory).map(
       (item) => item.word
     );
 
-    this.createCard(this.cardCategoryArray(state.nameCategory));
-    state.targetCard = document.querySelector('.cards');
-    document.querySelector('.cards').addEventListener('click', ({ target }) => {
-      const card = target.closest('.card');
-      const { word, checked } = card.dataset;
+    state.containerCards = document.querySelector('.cards');
 
-      // if (card && !target.classList.contains('rotate') && !state.playActive) {
-      //   // const word = card.querySelector('.front p').textContent;
-      //   playAudio(word);
-      // } else
-      if (card && checked === 'false' && state.playActive) {
-        game.checkedWord(
-          card,
-          state.wordGameArray[state.wordGameArray.length - 1]
-        );
+    state.containerCards.addEventListener('click', ({ target }) => {
+      if (target.closest('.card')) {
+        const card = target.closest('.card');
+        const { word, checked } = card.dataset;
+        const isClickRotate = !target.classList.contains('rotate');
+        // if (card && !target.classList.contains('rotate') && !state.playActive) {
+        if (isClickRotate && !state.isModeGame) {
+          // const word = card.querySelector('.front p').textContent;
+          playAudio(word);
+        }
+        // if (checked === 'false' && state.playActive) {
+        else if (checked === 'false' && state.isClickStart) {
+          game.checkedWord(
+            card,
+            state.wordGameArray[state.wordGameArray.length - 1]
+          );
+        }
       }
     });
 

@@ -356,17 +356,27 @@ main {
   transform: rotateY(360deg);
 }
 
-.repeat-button {
+.repeat-button,
+.start-game {
   // visibility: hidden;
 
-  width: 30px;
-  height: 30px;
+  width: 100px;
+  height: 50px;
   background: red;
 }
 
 .repeat-button_none {
-  // display: block;
-  // visibility: visible;
+  display: none;
+}
+
+.win {
+  width: 1000px;
+  height: 1000px;
+  background: red;
+}
+
+.start-game_none {
+  display: none;
 }
 
 .correct-answer {

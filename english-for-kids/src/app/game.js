@@ -2,14 +2,23 @@ import { playAudio } from './audio';
 import { state } from './state';
 import { shuffle } from './utils';
 export default class Game {
-  startGame() {
-		playAudio(state.wordGameArray[state.wordGameArray.length - 1]);
+  checkedModeGame() {
+    const { length } = state.wordGameArray;
+    this.startGame(length);
+    // if (!state.isModeGame) {
+    // }
+  }
+
+  startGame(length) {
+    setTimeout(() => {
+      playAudio(state.wordGameArray[length - 1]);
+    }, 1000);
     // if (state.playActive && state.wordGameArray.length) {
     //   playAudio(state.wordGameArray[state.wordGameArray.length - 1]);
     // } else {
-      
-      // state.playActive = !state.playActive;
-      // state.wordGameArray[state.wordGameArray.length - 1];
+
+    // state.playActive = !state.playActive;
+    // state.wordGameArray[state.wordGameArray.length - 1];
     // }
   }
 
@@ -35,6 +44,17 @@ export default class Game {
     document.querySelector('.repeat-button').after(div);
 
     state.wordGameArray.pop();
+    if (!state.wordGameArray.length) {
+      document.querySelector('.cards').innerHTML = '';
+      const div = document.createElement('div');
+      div.className = 'win';
+
+      document.querySelector('.category').before(div);
+      setTimeout(() => {
+        document.querySelector('.win').remove();
+        document.querySelector('.category').classList.toggle('category_none');
+      }, 1000);
+    }
   }
 
   errorAnswer() {

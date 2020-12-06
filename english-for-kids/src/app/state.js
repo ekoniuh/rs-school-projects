@@ -4,8 +4,11 @@ export const categoryContainer = document.querySelector('.category');
 
 // export let isMenuOpen = false;
 export const state = {
+  isMainPage: true,
+  isTrain: true,
   isMenuOpen: false,
   isClickStart: false,
+  isCardRotate: false,
   nameCategory: '', // на какой странице нахожусь
   currentCard: 0, // текущая карточка
   isModeGame: false, // активирован ли режим игры

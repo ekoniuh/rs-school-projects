@@ -12,65 +12,58 @@ const menu = new Menu();
 const game = new Game();
 
 categoryContainer.addEventListener('click', (event) => card.renderCards(event));
-buttonMenu.addEventListener('click', () => menu.openMenu(state.isMenuOpen));
+buttonMenu.addEventListener('click', (event) => menu.openMenu(event));
+// document.querySelector('.nav-box').addEventListener('click', (event) => menu.closeMenu(event));
 
 document.querySelector('.navigation').addEventListener('click', (event) => {
   card.renderCards(event);
   menu.closeMenu();
 });
-
 document.querySelector('.logo-title').addEventListener('click', () => {
   if (document.querySelector('.category').classList.contains('category_none')) {
-    //FIXME хочу удалять через ремув а не иннер
-    // document.querySelector('.cards').classList.remove();
+    state.isMainPage = true;
     document.querySelector('.cards').innerHTML = '';
     document.querySelector('.category').classList.toggle('category_none');
+
+    card.removeAnswers();
+    // card.showStartButton();
+    document
+      .querySelector('.start-game__btn')
+      .classList.add('start-game__btn_none');
+    document.querySelector('.repeat__btn').classList.add('repeat__btn_none');
   }
 });
 
 //FIXME: переименовать класс
-document
-  .querySelector('.navigation__link.navigation__link_active')
-  .addEventListener('click', () => {
-    if (
-      document.querySelector('.category').classList.contains('category_none')
-    ) {
-      // document.querySelector('.cards').classList.remove();
-      document.querySelector('.cards').innerHTML = '';
-      document.querySelector('.category').classList.toggle('category_none');
-    }
-  });
+document.querySelector('.main-page').addEventListener('click', () => {
+  card.goToMainPage();
+});
+
+// document.querySelector('.repeat-button').addEventListener('click', () => {
+//   game.checkedModeGame();
+// });
 
 document.querySelector('.switch__input').addEventListener('change', () => {
   //TODO: почему нажимается два раза на кнопку?
   state.isModeGame = !state.isModeGame;
   shuffle(state.wordGameArray);
-  // document
-  //   .querySelector('.repeat-button')
-  //   .classList.toggle('repeat-button_none');
 
-  Array.from(document.querySelectorAll('.cards .category-card__title')).forEach(
-    (item) => {
-      item.classList.toggle('category-card__title_none');
-    }
-  );
-  // Array.from(document.querySelectorAll('.cards .category-card__title')).forEach(
-  //   (item) => {
-  //     item.classList.toggle('category-card__title_none');
-  //   }
-  // );
+  if (state.isMainPage) {
+    return;
+  }
+  card.removeAnswers();
+  card.hideTitleCards();
+  card.showStartButton();
 });
 
-document.querySelector('.repeat-button').addEventListener('click', () => {
-  game.checkedModeGame();
-});
-
-document.querySelector('.start-game').addEventListener('click', () => {
+document.querySelector('.start-game__btn').addEventListener('click', () => {
   state.isClickStart = !state.isClickStart;
-  document.querySelector('.start-game').classList.toggle('start-game_none');
-  document
-    .querySelector('.repeat-button')
-    .classList.toggle('repeat-button_none');
+  game.checkedModeGame();
+  card.hideStartButton();
+});
+
+document.querySelector('.repeat__btn').addEventListener('click', () => {
+  game.checkedModeGame();
 });
 // document.querySelector('.repeat-button').addEventListener('click', () => {});
 // document.querySelector('.repeat-button').addEventListener('click', () => {});

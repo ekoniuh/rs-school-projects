@@ -3,15 +3,15 @@ import { state } from './state';
 import { shuffle } from './utils';
 export default class Game {
   checkedModeGame() {
-    const { length } = state.wordGameArray;
-    this.startGame(length);
+    const word = state.wordGameArray[state.wordGameArray.length - 1];
+    this.startGame(word);
     // if (!state.isModeGame) {
     // }
   }
 
-  startGame(length) {
+  startGame(word) {
     setTimeout(() => {
-      playAudio(state.wordGameArray[length - 1]);
+      playAudio(word);
     }, 1000);
     // if (state.playActive && state.wordGameArray.length) {
     //   playAudio(state.wordGameArray[state.wordGameArray.length - 1]);
@@ -39,11 +39,14 @@ export default class Game {
     card.dataset.checked = true;
     card.classList.toggle('category-card_train');
 
-    const div = document.createElement('div');
-    div.className = 'correct-answer';
-    document.querySelector('.repeat-button').after(div);
+    const img = document.createElement('img');
+    img.className = 'correct-answer';
+    img.src = './assets/images/answers/correct/correct.jpg';
+    img.alt = 'correct-answer';
+    document.querySelector('.repeat__btn').after(img);
 
     state.wordGameArray.pop();
+    this.checkedModeGame();
     if (!state.wordGameArray.length) {
       document.querySelector('.cards').innerHTML = '';
       const div = document.createElement('div');
@@ -59,10 +62,25 @@ export default class Game {
 
   errorAnswer() {
     playAudio('error');
-    const div = document.createElement('div');
-    div.className = 'error-answer';
-    document.querySelector('.repeat-button').before(div);
+    const img = document.createElement('img');
+    img.className = 'error-answer';
+    img.src = './assets/images/answers/error/error.jpg';
+    img.alt = 'error-answer';
+    document.querySelector('.repeat__btn').before(img);
   }
+
+  //   gameOver(){
+  // 	isGameStart = true;
+  // 	if(errorsCount){
+  // 		playSound('./.....');
+  // 		title.textContent= ...;
+
+  // 		setTimeout(() => {
+  // 			renderMainPage();
+
+  // 		}, 1000);
+  // 	}
+  // }
 
   // startGame() {
   //   if (isGameStart && state.gameArray.length) {
@@ -107,53 +125,5 @@ export default class Game {
   // 	}
   // 	}
 
-  // errorAnswer(event){
-
-  // 	errorsCount+=1;
-  // 	const card = target.closets('.card-game');
-  // 	const error = createIndicator('error');
-  // 	animateAnswer(card,'error');
-  // 	statsPanel.append(error);
-  // 	playAydio('....error.mp3')
   // }
-
-  // 	animateAnswer(card, indicator){
-  // 		card.classList.add('adssad{ind}');
-  // 		setTimeout(()
-  // 		card.classList.remove('{ind}'))
-  // 	}
-
-  // 	gameOver(){
-  // 		isGameStart = true;
-  // 		if(errorsCount){
-  // 			playSound('./.....');
-  // 			title.textContent= ...;
-
-  // 			setTimeout(() => {
-  // 				renderMainPage();
-
-  // 			}, 1000);
-  // 		}
-  // 	}
-
-  // gameOver(){
-  // 	isGameStart = true;
-  // 	if(errorsCount){
-  // 		playSound('./.....');
-  // 		title.textContent= ...;
-
-  // 		setTimeout(() => {
-  // 			renderMainPage();
-
-  // 		}, 1000);
-  // 	}
-  // }
-
-  // }
-
-  // cardsClick(event){
-  // 	const card = target.closest('.card-categ');
-  // 	const {word, isAnswered} = target.dataset;
-
-  // 	if(card && )
 }

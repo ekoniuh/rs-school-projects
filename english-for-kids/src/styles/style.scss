@@ -71,6 +71,10 @@ main {
 .navigation:nth-child(1) {
 }
 
+// .nav-box_none {
+//   display: none;
+// }
+
 .navigation {
   position: absolute;
   top: 0;
@@ -343,11 +347,7 @@ main {
   backface-visibility: hidden;
 }
 
-.back {
-  // transform: scale(-1, 1);
-  transform: rotateY(180deg);
-}
-
+.back,
 .font-rotate {
   transform: rotateY(180deg);
 }
@@ -356,39 +356,109 @@ main {
   transform: rotateY(360deg);
 }
 
-.repeat-button,
-.start-game {
-  // visibility: hidden;
+// .repeat-button,
+// .start-game {
+//   width: 100px;
+//   height: 50px;
+//   background: red;
+// }
 
+// .repeat-button_none {
+//   display: none;
+// }
+
+// .mode-game__btn,
+.repeat__btn {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 50%;
+  background-color: red;
+  box-shadow: 1px 1px 16px black;
+  transition: all 0.5s;
+}
+
+.repeat__btn img {
   width: 100px;
-  height: 50px;
-  background: red;
+  transition: all 0.5s;
 }
 
-.repeat-button_none {
+.start-game__btn {
+  vertical-align: middle;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 16px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.start-game__btn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.start-game__btn span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.start-game__btn:hover span {
+  padding-right: 25px;
+}
+
+.start-game__btn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.start-game__btn:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.repeat__btn_none,
+.start-game__btn_none {
   display: none;
 }
 
-.win {
-  width: 1000px;
-  height: 1000px;
-  background: red;
-}
-
-.start-game_none {
-  display: none;
-}
-
-.correct-answer {
-  width: 30px;
-  height: 30px;
-  background: blue;
-}
+.correct-answer,
 .error-answer {
-  width: 30px;
-  height: 30px;
-  background: rgb(0, 255, 106);
+  width: 50px;
+  height: 50px;
+  // background: blue;
 }
+
+.answers {
+  display: flex;
+  max-width: 1000px;
+  width: 100%;
+  &_none {
+    display: none;
+  }
+  &-container {
+    display: flex;
+    margin: 0 auto;
+  }
+}
+
+// .error-answer {
+//   width: 30px;
+//   height: 30px;
+//   // background: rgb(0, 255, 106);
+// }
 
 .footer {
   border-top: 1px red solid;

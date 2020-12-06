@@ -8,12 +8,14 @@ import {
 } from './state';
 import { playAudio } from './audio';
 import Game from './game';
-
+import { Menu } from './menu';
 const game = new Game();
+const menu = new Menu();
 export class Card {
   constructor(labelCard, className) {}
 
   returnCard(card) {
+    state.isCardRotate = true;
     card
       .closest('.card')
       .querySelector('.front')
@@ -22,11 +24,6 @@ export class Card {
       .closest('.card')
       .querySelector('.back')
       .classList.toggle('back-rotate');
-
-    // const flippedCard = document.querySelector('.card_fipped') || false;
-    // if (flipped && !target.closest('.card_flipped')) {
-    //   flippedCard.classList.toggle('card_flipped');
-    // }
   }
 
   removeContainerCards() {
@@ -72,6 +69,11 @@ export class Card {
       `
       );
     });
+
+    if (!state.isMainPage && state.isModeGame) {
+      this.hideTitleCards();
+      this.showStartButton();
+    }
   }
 
   getDataCardFromCategory(target) {
@@ -82,7 +84,10 @@ export class Card {
         .querySelector('.category-card__title p').innerText;
 
       state.cardCategoryArray = dataCard[state.nameCategory].cards;
-    } else if (target.classList.contains('navigation__link')) {
+    } else if (
+      target.classList.contains('navigation__link') &&
+      !target.classList.contains('main-page')
+    ) {
       state.nameCategory = target.innerText;
 
       state.cardCategoryArray = dataCard[target.innerText].cards;
@@ -96,7 +101,7 @@ export class Card {
     ) {
       return;
     }
-
+    state.isMainPage = !state.isMainPage;
     this.getDataCardFromCategory(target);
     this.createCard();
 
@@ -108,16 +113,18 @@ export class Card {
 
     state.containerCards.addEventListener('click', ({ target }) => {
       if (target.closest('.card')) {
+        const isClickRotate = !target.classList.contains('rotate');
         const card = target.closest('.card');
         const { word, checked } = card.dataset;
-        const isClickRotate = !target.classList.contains('rotate');
-        // if (card && !target.classList.contains('rotate') && !state.playActive) {
-        if (isClickRotate && !state.isModeGame) {
-          // const word = card.querySelector('.front p').textContent;
+
+        // if (state.isCardRotate) {
+        //   state.isCardRotate = false;
+        //   card.addEventListener('mouseout', () => this.returnCard(card));
+        // }
+
+        if (isClickRotate && !state.isModeGame && !state.isCardRotate) {
           playAudio(word);
-        }
-        // if (checked === 'false' && state.playActive) {
-        else if (checked === 'false' && state.isClickStart) {
+        } else if (checked === 'false' && state.isClickStart) {
           game.checkedWord(
             card,
             state.wordGameArray[state.wordGameArray.length - 1]
@@ -134,5 +141,59 @@ export class Card {
         this.returnCard(item);
       })
     );
+  }
+
+  showStartButton() {
+    document.querySelector('.answers').classList.toggle('answers_none');
+    document
+      .querySelector('.start-game__btn')
+      .classList.toggle('start-game__btn_none');
+  }
+
+  goToMainPage() {
+    if (
+      document.querySelector('.category').classList.contains('category_none')
+    ) {
+      // document.querySelector('.cards').classList.remove();
+      menu.closeMenu();
+      document.querySelector('.cards').innerHTML = '';
+      document.querySelector('.category').classList.toggle('category_none');
+    }
+  }
+
+  hideStartButton() {
+    document
+      .querySelector('.start-game__btn')
+      .classList.toggle('start-game__btn_none');
+    document.querySelector('.repeat__btn').classList.toggle('repeat__btn_none');
+  }
+
+  hideTitleCards() {
+    Array.from(
+      document.querySelectorAll('.cards .category-card__title')
+    ).forEach((item) => {
+      item.classList.toggle('category-card__title_none');
+    });
+  }
+
+  removeAnswers() {
+    if (
+      document.querySelector('.error-answer') ||
+      document.querySelector('.correct-answer')
+    ) {
+      Array.from(document.querySelectorAll('.error-answer')).forEach((item) => {
+        item.parentNode.removeChild(item);
+      });
+      Array.from(document.querySelectorAll('.correct-answer')).forEach(
+        (item) => {
+          item.parentNode.removeChild(item);
+        }
+      );
+      Array.from(document.querySelectorAll('.category-card_train')).forEach(
+        (item) => {
+          item.classList.remove('category-card_train');
+        }
+      );
+    }
   }
 }

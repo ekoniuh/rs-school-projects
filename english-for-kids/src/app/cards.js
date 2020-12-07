@@ -1,18 +1,29 @@
 import dataCard from '../data/cards.json';
+import statisticData from '../data/statisticsData';
+import { shuffle, createStatistic } from './utils';
+import checkedStatistic from './statistic';
 import {
   buttonMenu,
   hamburgerMenu,
   categoryContainer,
-  isMenuOpen,
   state,
+  navigation,
+  logo,
+  answersContainer,
+  startButton,
+  repeatButton,
+  mainPage,
 } from './state';
 import { playAudio } from './audio';
 import Game from './game';
 import { Menu } from './menu';
+import GameState from './gameState';
+const gameState = new GameState();
+
 const game = new Game();
 const menu = new Menu();
-export class Card {
-  constructor(labelCard, className) {}
+export default class Card {
+  // constructor(labelCard, className) {}
 
   returnCard(card) {
     state.isCardRotate = true;
@@ -27,7 +38,7 @@ export class Card {
   }
 
   removeContainerCards() {
-    document.querySelector('.category').classList.toggle('category_none');
+    categoryContainer.classList.toggle('category_none');
     // document.querySelector('.cards').classList.toggle('cards_none');
   }
 
@@ -71,11 +82,9 @@ export class Card {
     });
 
     if (!state.isMainPage && state.isModeGame) {
-      document.querySelector('.answers').classList.remove('answers_none');
-      document
-        .querySelector('.start-game__btn')
-        .classList.remove('start-game__btn_none');
-      // document.querySelector('.repeat__btn').classList.add('repeat__btn_none');
+      answersContainer.classList.remove('answers_none');
+      startButton.classList.remove('start-game__btn_none');
+      // repeatButton.classList.add('repeat__btn_none');
       this.hideTitleCards();
       // this.showStartButton();
     }
@@ -104,9 +113,16 @@ export class Card {
       !target.closest('.navigation__link') &&
       !target.classList.contains('main-page')
     ) {
-      console.log(target.classList.contains('main-page'));
       return;
     }
+
+    // if (target.closest('.navigation__link').textContent === 'Statistics') {
+    // if (target.dataset.statistic) {
+    //   createStatistic();
+    //   categoryContainer.classList.add('category_none');
+
+    //   return;
+    // }
 
     state.isMainPage = false;
     this.getDataCardFromCategory(target);
@@ -115,30 +131,32 @@ export class Card {
     state.wordGameArray = this.cardCategoryArray(state.nameCategory).map(
       (item) => item.word
     );
+    shuffle(state.wordGameArray);
 
-    state.containerCards = document.querySelector('.cards');
+    const containerCards = document.querySelector('.cards');
+    if (containerCards.dataset.cards !== 'cards') {
+      containerCards.addEventListener('click', ({ target }) => {
+        if (target.closest('.card')) {
+          const isClickRotate = !target.classList.contains('rotate');
+          const card = target.closest('.card');
+          const { word, checked } = card.dataset;
+          // state.statisticWord = word;
 
-    state.containerCards.addEventListener('click', ({ target }) => {
-      if (target.closest('.card')) {
-        const isClickRotate = !target.classList.contains('rotate');
-        const card = target.closest('.card');
-        const { word, checked } = card.dataset;
-
-        if (isClickRotate && !state.isModeGame && !state.isCardRotate) {
-          playAudio(word);
-        } else if (checked === 'false' && state.isClickStart) {
-          game.checkedWord(
-            card,
-            state.wordGameArray[state.wordGameArray.length - 1]
-          );
+          if (isClickRotate && !state.isModeGame && !state.isCardRotate) {
+            playAudio(word);
+          } else if (checked === 'false' && state.isClickStart) {
+            gameState.setStatistic('clicks', word);
+            game.checkedWord(
+              card,
+              state.wordGameArray[state.wordGameArray.length - 1]
+            );
+          }
         }
-      }
-    });
+      });
+      containerCards.dataset.cards = 'cards';
+    }
 
-    // не нравится
-    const arr = Array.from(document.querySelectorAll('.rotate'));
-
-    arr.forEach((item) =>
+    [...document.querySelectorAll('.rotate')].forEach((item) =>
       item.addEventListener('click', () => {
         this.returnCard(item);
       })
@@ -146,19 +164,15 @@ export class Card {
   }
 
   showStartButton() {
-    document.querySelector('.answers').classList.toggle('answers_none');
-    document
-      .querySelector('.start-game__btn')
-      .classList.toggle('start-game__btn_none');
+    answersContainer.classList.toggle('answers_none');
+    startButton.classList.toggle('start-game__btn_none');
   }
 
   goToMainPage() {
-    if (
-      document.querySelector('.category').classList.contains('category_none')
-    ) {
+    if (categoryContainer.classList.contains('category_none')) {
       menu.closeMenu();
       document.querySelector('.cards').innerHTML = '';
-      document.querySelector('.category').classList.toggle('category_none');
+      categoryContainer.classList.toggle('category_none');
     }
   }
 
@@ -166,7 +180,7 @@ export class Card {
     // document
     //   .querySelector('.start-game__btn')
     //   .classList.toggle('start-game__btn_none');
-    // document.querySelector('.repeat__btn').classList.toggle('repeat__btn_none');
+    // repeatButton.classList.toggle('repeat__btn_none');
   }
 
   hideTitleCards() {

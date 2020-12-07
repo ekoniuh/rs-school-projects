@@ -1,10 +1,7 @@
 import { buttonMenu, hamburgerMenu, state } from './state';
-// import moduleName from './state';
 
 export class Menu {
-  // constructor() {
-
-  // }
+ 
   openMenu({ target }) {
     // if (!state.isMenuOpen) {
     // if (target.classList.contains('hamburger') && !state.isMenuOpen) {
@@ -19,8 +16,6 @@ export class Menu {
     // state.isMenuOpen = !isModeGame;
   }
 
-  // target.closest('.navigation__link') ||
-  // target.closest('.header__hamburger') ||
   closeMenu() {
     // if (state.isMenuOpen) {
     //   if (!target.classList.contains('navigation')) {
@@ -28,8 +23,5 @@ export class Menu {
     buttonMenu.classList.toggle('hamburger__line_active');
     //     }
     //   }
-
-    //   // if (!target.closest('.navigation') ) {
-    //   // }
   }
 }

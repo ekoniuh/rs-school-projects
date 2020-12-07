@@ -1,69 +1,49 @@
 import '../styles/style.scss';
-import dataCard from '../data/cards.json';
-import { doc } from 'prettier';
-import { buttonMenu, hamburgerMenu, categoryContainer, state } from './state';
+import {
+  buttonMenu,
+  categoryContainer,
+  navigation,
+  logo,
+  answersContainer,
+  startButton,
+  repeatButton,
+  mainPage,
+  state,
+} from './state';
 import { Menu } from './menu';
-import { playAudio } from './audio';
-import { Card } from './cards';
+import Card from './cards';
 import Game from './game';
-import { shuffle, statistic } from './utils';
+import { showMainPage } from './utils';
+
 const card = new Card();
 const menu = new Menu();
 const game = new Game();
-statistic();
+
+alert(
+  'Здравствуйте. Если вас не затруднит, не могли бы вы проверить задание ближе к выходным?(это сообщение относится к студентам)'
+);
+
 categoryContainer.addEventListener('click', (event) => card.renderCards(event));
 buttonMenu.addEventListener('click', (event) => menu.openMenu(event));
-// document.querySelector('.nav-box').addEventListener('click', (event) => menu.closeMenu(event));
-
-document.querySelector('.navigation').addEventListener('click', (event) => {
+navigation.addEventListener('click', (event) => {
   card.renderCards(event);
   menu.closeMenu();
 });
 
-document.querySelector('.logo-title').addEventListener('click', () => {
-  if (document.querySelector('.category').classList.contains('category_none')) {
-    state.isMainPage = true;
-    state.isClickStart = false;
-    document.querySelector('.cards').innerHTML = '';
-    card.removeAnswers();
-
-    document.querySelector('.category').classList.toggle('category_none');
-
-    // card.showStartButton();
-    document.querySelector('.answers').classList.add('answers_none');
-    document
-      .querySelector('.start-game__btn')
-      .classList.add('start-game__btn_none');
-    document.querySelector('.repeat__btn').classList.add('repeat__btn_none');
-  }
-});
+logo.addEventListener('click', () => showMainPage(card));
 
 //FIXME: переименовать класс
-document.querySelector('.main-page').addEventListener('click', () => {
-  if (document.querySelector('.category').classList.contains('category_none')) {
-    state.isMainPage = true;
-    state.isClickStart = false;
-    document.querySelector('.cards').innerHTML = '';
-    card.removeAnswers();
-
-    document.querySelector('.category').classList.toggle('category_none');
-
-    // card.showStartButton();
-    document.querySelector('.answers').classList.add('answers_none');
-    document
-      .querySelector('.start-game__btn')
-      .classList.add('start-game__btn_none');
-    document.querySelector('.repeat__btn').classList.add('repeat__btn_none');
-  }
-  // card.goToMainPage();
+mainPage.addEventListener('click', (event) => {
+  event.stopPropagation();
+  showMainPage(card);
+  menu.closeMenu();
 });
 
 document.querySelector('.switch__input').addEventListener('change', () => {
   //TODO: почему нажимается два раза на кнопку?
   state.isModeGame = !state.isModeGame;
   state.isClickStart = false;
-  shuffle(state.wordGameArray);
-  console.log(state.wordGameArray);
+  // shuffle(state.wordGameArray);
   if (state.isMainPage) {
     return;
   }
@@ -71,25 +51,24 @@ document.querySelector('.switch__input').addEventListener('change', () => {
   card.hideTitleCards();
   // card.showStartButton();
 
-  document.querySelector('.answers').classList.toggle('answers_none');
-  document
-    .querySelector('.start-game__btn')
-    .classList.remove('start-game__btn_none');
-  document.querySelector('.repeat__btn').classList.add('repeat__btn_none');
+  answersContainer.classList.toggle('answers_none');
+  startButton.classList.remove('start-game__btn_none');
+  repeatButton.classList.add('repeat__btn_none');
 });
 
-document.querySelector('.start-game__btn').addEventListener('click', () => {
+startButton.addEventListener('click', () => {
   state.isClickStart = true;
   game.startGame();
   // card.hideStartButton();
-  document
-    .querySelector('.start-game__btn')
-    .classList.add('start-game__btn_none');
-  document.querySelector('.repeat__btn').classList.remove('repeat__btn_none');
+  startButton.classList.add('start-game__btn_none');
+  repeatButton.classList.remove('repeat__btn_none');
 });
 
-document.querySelector('.repeat__btn').addEventListener('click', () => {
+repeatButton.addEventListener('click', () => {
   game.startGame();
 });
-// document.querySelector('.repeat-button').addEventListener('click', () => {});
+
+// document.querySelector('.repeat-button').addEventListener('click', (event) => {
+//   event.stopPropagation();
+// });
 // document.querySelector('.repeat-button').addEventListener('click', () => {});

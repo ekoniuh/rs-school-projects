@@ -1,11 +1,25 @@
 import { playAudio } from './audio';
-import { state } from './state';
+import {
+  buttonMenu,
+  hamburgerMenu,
+  categoryContainer,
+  state,
+  navigation,
+  logo,
+  answersContainer,
+  startButton,
+  repeatButton,
+  mainPage,
+} from './state';
 import { shuffle } from './utils';
+import checkedStatistic from './statistic';
+import GameState from './gameState';
+const gameState = new GameState();
 export default class Game {
-  checkedModeGame() {
-    // if (!state.isModeGame) {
-    // }
-  }
+  // checkedModeGame() {
+  //   // if (!state.isModeGame) {
+  //   // }
+  // }
 
   startGame() {
     const word = state.wordGameArray[state.wordGameArray.length - 1];
@@ -26,9 +40,11 @@ export default class Game {
     if (state.wordGameArray.length > 0) {
       if (word === wordPlay) {
         this.correctAnswer(card);
+        gameState.setStatistic('correct', word);
       } else {
-        // gameStat.errorClick(arr.text);
         this.errorAnswer();
+        // checkedStatistic('wrong', word);
+        gameState.setStatistic('wrong', word);
       }
     }
   }
@@ -42,7 +58,7 @@ export default class Game {
     img.className = 'correct-answer';
     img.src = './assets/images/answers/correct/correct.jpg';
     img.alt = 'correct-answer';
-    document.querySelector('.repeat__btn').after(img);
+    repeatButton.after(img);
 
     state.wordGameArray.pop();
     this.startGame();
@@ -61,6 +77,16 @@ export default class Game {
     }
   }
 
+  errorAnswer() {
+    state.errors += 1;
+    playAudio('error');
+    const img = document.createElement('img');
+    img.className = 'error-answer';
+    img.src = './assets/images/answers/error/error.jpg';
+    img.alt = 'error-answer';
+    repeatButton.before(img);
+  }
+
   finishGame(win) {
     document.querySelector('.cards').innerHTML = '';
     const div = document.createElement('div');
@@ -74,16 +100,6 @@ export default class Game {
       document.querySelector('.sum-errors').remove();
       document.querySelector('.category').classList.toggle('category_none');
     }, 2000);
-  }
-
-  errorAnswer() {
-    state.errors += 1;
-    playAudio('error');
-    const img = document.createElement('img');
-    img.className = 'error-answer';
-    img.src = './assets/images/answers/error/error.jpg';
-    img.alt = 'error-answer';
-    document.querySelector('.repeat__btn').before(img);
   }
 
   //   gameOver(){

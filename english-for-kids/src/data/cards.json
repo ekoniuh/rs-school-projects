@@ -6,49 +6,81 @@
         "word": "cry",
         "translation": "плакать",
         "image": "cry.jpg",
-        "audioSrc": "audio/cry.mp3"
+        "audioSrc": "audio/cry.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "dance",
         "translation": "танцевать",
         "image": "dance.jpg",
-        "audioSrc": "audio/dance.mp3"
+        "audioSrc": "audio/dance.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "dive",
         "translation": "нырять",
         "image": "dive.jpg",
-        "audioSrc": "audio/dive.mp3"
+        "audioSrc": "audio/dive.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "draw",
         "translation": "рисовать",
         "image": "draw.jpg",
-        "audioSrc": "audio/draw.mp3"
+        "audioSrc": "audio/draw.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "fish",
         "translation": "ловить рыбу",
         "image": "fish.jpg",
-        "audioSrc": "audio/fish.mp3"
+        "audioSrc": "audio/fish.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "fly",
         "translation": "летать",
         "image": "fly.jpg",
-        "audioSrc": "audio/fly.mp3"
+        "audioSrc": "audio/fly.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "hug",
         "translation": "обнимать",
         "image": "hug.jpg",
-        "audioSrc": "audio/hug.mp3"
+        "audioSrc": "audio/hug.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "jump",
         "translation": "прыгать",
         "image": "jump.jpg",
-        "audioSrc": "audio/jump.mp3"
+        "audioSrc": "audio/jump.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       }
     ]
   },
@@ -59,49 +91,81 @@
         "word": "open",
         "translation": "открывать",
         "image": "open.jpg",
-        "audioSrc": "audio/open.mp3"
+        "audioSrc": "audio/open.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "play",
         "translation": "играть",
         "image": "play.jpg",
-        "audioSrc": "audio/play.mp3"
+        "audioSrc": "audio/play.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "point",
         "translation": "указывать",
         "image": "point.jpg",
-        "audioSrc": "audio/point.mp3"
+        "audioSrc": "audio/point.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "ride",
         "translation": "ездить",
         "image": "ride.jpg",
-        "audioSrc": "audio/ride.mp3"
+        "audioSrc": "audio/ride.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "run",
         "translation": "бегать",
         "image": "run.jpg",
-        "audioSrc": "audio/run.mp3"
+        "audioSrc": "audio/run.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "sing",
         "translation": "петь",
         "image": "sing.jpg",
-        "audioSrc": "audio/sing.mp3"
+        "audioSrc": "audio/sing.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "skip",
         "translation": "пропускать, прыгать",
         "image": "skip.jpg",
-        "audioSrc": "audio/skip.mp3"
+        "audioSrc": "audio/skip.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "swim",
         "translation": "плавать",
         "image": "swim.jpg",
-        "audioSrc": "audio/swim.mp3"
+        "audioSrc": "audio/swim.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       }
     ]
   },
@@ -112,49 +176,81 @@
         "word": "cat",
         "translation": "кот",
         "image": "cat.jpg",
-        "audioSrc": "audio/cat.mp3"
+        "audioSrc": "audio/cat.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "chick",
         "translation": "цыплёнок",
         "image": "chick.jpg",
-        "audioSrc": "audio/chick.mp3"
+        "audioSrc": "audio/chick.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "chicken",
         "translation": "курица",
         "image": "chicken.jpg",
-        "audioSrc": "audio/chicken.mp3"
+        "audioSrc": "audio/chicken.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "dog",
         "translation": "собака",
         "image": "dog.jpg",
-        "audioSrc": "audio/dog.mp3"
+        "audioSrc": "audio/dog.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "horse",
         "translation": "лошадь",
         "image": "horse.jpg",
-        "audioSrc": "audio/horse.mp3"
+        "audioSrc": "audio/horse.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "pig",
         "translation": "свинья",
         "image": "pig.jpg",
-        "audioSrc": "audio/pig.mp3"
+        "audioSrc": "audio/pig.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "rabbit",
         "translation": "кролик",
         "image": "rabbit.jpg",
-        "audioSrc": "audio/rabbit.mp3"
+        "audioSrc": "audio/rabbit.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "sheep",
         "translation": "овца",
         "image": "sheep.jpg",
-        "audioSrc": "audio/sheep.mp3"
+        "audioSrc": "audio/sheep.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       }
     ]
   },
@@ -165,49 +261,81 @@
         "word": "bird",
         "translation": "птица",
         "image": "bird.jpg",
-        "audioSrc": "audio/bird.mp3"
+        "audioSrc": "audio/bird.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "fish",
         "translation": "рыба",
         "image": "fish1.jpg",
-        "audioSrc": "audio/fish.mp3"
+        "audioSrc": "audio/fish.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "frog",
         "translation": "жаба",
         "image": "frog.jpg",
-        "audioSrc": "audio/frog.mp3"
+        "audioSrc": "audio/frog.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "giraffe",
         "translation": "жирафа",
         "image": "giraffe.jpg",
-        "audioSrc": "audio/giraffe.mp3"
+        "audioSrc": "audio/giraffe.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "lion",
         "translation": "лев",
         "image": "lion.jpg",
-        "audioSrc": "audio/lion.mp3"
+        "audioSrc": "audio/lion.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "mouse",
         "translation": "мышь",
         "image": "mouse.jpg",
-        "audioSrc": "audio/mouse.mp3"
+        "audioSrc": "audio/mouse.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "turtle",
         "translation": "черепаха",
         "image": "turtle.jpg",
-        "audioSrc": "audio/turtle.mp3"
+        "audioSrc": "audio/turtle.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "dolphin",
         "translation": "дельфин",
         "image": "dolphin.jpg",
-        "audioSrc": "audio/dolphin.mp3"
+        "audioSrc": "audio/dolphin.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       }
     ]
   },
@@ -218,49 +346,81 @@
         "word": "skirt",
         "translation": "юбка",
         "image": "skirt.jpg",
-        "audioSrc": "audio/skirt.mp3"
+        "audioSrc": "audio/skirt.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "pants",
         "translation": "брюки",
         "image": "pants.jpg",
-        "audioSrc": "audio/pants.mp3"
+        "audioSrc": "audio/pants.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "blouse",
         "translation": "блузка",
         "image": "blouse.jpg",
-        "audioSrc": "audio/blouse.mp3"
+        "audioSrc": "audio/blouse.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "dress",
         "translation": "платье",
         "image": "dress.jpg",
-        "audioSrc": "audio/dress.mp3"
+        "audioSrc": "audio/dress.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "boot",
         "translation": "ботинок",
         "image": "boot.jpg",
-        "audioSrc": "audio/boot.mp3"
+        "audioSrc": "audio/boot.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "shirt",
         "translation": "рубашка",
         "image": "shirt.jpg",
-        "audioSrc": "audio/shirt.mp3"
+        "audioSrc": "audio/shirt.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "coat",
         "translation": "пальто",
         "image": "coat.jpg",
-        "audioSrc": "audio/coat.mp3"
+        "audioSrc": "audio/coat.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "shoe",
         "translation": "туфли",
         "image": "shoe.jpg",
-        "audioSrc": "audio/shoe.mp3"
+        "audioSrc": "audio/shoe.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       }
     ]
   },
@@ -271,49 +431,81 @@
         "word": "sad",
         "translation": "грустный",
         "image": "sad.jpg",
-        "audioSrc": "audio/sad.mp3"
+        "audioSrc": "audio/sad.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "angry",
         "translation": "сердитый",
         "image": "angry.jpg",
-        "audioSrc": "audio/angry.mp3"
+        "audioSrc": "audio/angry.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "happy",
         "translation": "счастливый",
         "image": "happy.jpg",
-        "audioSrc": "audio/happy.mp3"
+        "audioSrc": "audio/happy.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "tired",
         "translation": "уставший",
         "image": "tired.jpg",
-        "audioSrc": "audio/tired.mp3"
+        "audioSrc": "audio/tired.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "surprised",
         "translation": "удивлённый",
         "image": "surprised.jpg",
-        "audioSrc": "audio/surprised.mp3"
+        "audioSrc": "audio/surprised.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "scared",
         "translation": "испуганный",
         "image": "scared.jpg",
-        "audioSrc": "audio/scared.mp3"
+        "audioSrc": "audio/scared.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "smile",
         "translation": "улыбка",
         "image": "smile.jpg",
-        "audioSrc": "audio/smile.mp3"
+        "audioSrc": "audio/smile.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "laugh",
         "translation": "смех",
         "image": "laugh.jpg",
-        "audioSrc": "audio/laugh.mp3"
+        "audioSrc": "audio/laugh.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       }
     ]
   },
@@ -324,49 +516,81 @@
         "word": "sweet",
         "translation": "сладости",
         "image": "sweets.jpg",
-        "audioSrc": "audio/sweet.mp3"
+        "audioSrc": "audio/sweet.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "shawarma",
         "translation": "шаурма",
         "image": "shawarma.jpg",
-        "audioSrc": "audio/shawarma.mp3"
+        "audioSrc": "audio/shawarma.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "omelette",
         "translation": "омлет",
         "image": "omelette.jpg",
-        "audioSrc": "audio/omelette.mp3"
+        "audioSrc": "audio/omelette.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "chicken",
         "translation": "курица",
         "image": "chicken-food.jpg",
-        "audioSrc": "audio/chicken.mp3"
+        "audioSrc": "audio/chicken.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "caviar",
         "translation": "икра",
         "image": "caviar.jpg",
-        "audioSrc": "audio/caviar.mp3"
+        "audioSrc": "audio/caviar.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "soup",
         "translation": "суп",
         "image": "soup.jpg",
-        "audioSrc": "audio/soup.mp3"
+        "audioSrc": "audio/soup.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "beard",
         "translation": "хлеб",
         "image": "beard.jpg",
-        "audioSrc": "audio/beard.mp3"
+        "audioSrc": "audio/beard.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "cutlet",
         "translation": "котлета",
         "image": "cutlet.jpg",
-        "audioSrc": "audio/cutlet.mp3"
+        "audioSrc": "audio/cutlet.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       }
     ]
   },
@@ -377,49 +601,81 @@
         "word": "wine",
         "translation": "вино",
         "image": "wine.jpg",
-        "audioSrc": "audio/wine.mp3"
+        "audioSrc": "audio/wine.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "water",
         "translation": "вода",
         "image": "water.jpg",
-        "audioSrc": "audio/water.mp3"
+        "audioSrc": "audio/water.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "juice",
         "translation": "сок",
         "image": "juice.jpg",
-        "audioSrc": "audio/juice.mp3"
+        "audioSrc": "audio/juice.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "tea",
         "translation": "чай",
         "image": "tea.jpg",
-        "audioSrc": "audio/tea.mp3"
+        "audioSrc": "audio/tea.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "cocktail",
         "translation": "коктейль",
         "image": "mojito.jpg",
-        "audioSrc": "audio/cocktail.mp3"
+        "audioSrc": "audio/cocktail.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "milk",
         "translation": "молоко",
         "image": "milk.jpg",
-        "audioSrc": "audio/milk.mp3"
+        "audioSrc": "audio/milk.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "coffee",
         "translation": "кофе",
         "image": "coffe.jpg",
-        "audioSrc": "audio/coffe.mp3"
+        "audioSrc": "audio/coffe.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       },
       {
         "word": "beer",
         "translation": "пиво",
         "image": "beer.jpg",
-        "audioSrc": "audio/beer.mp3"
+        "audioSrc": "audio/beer.mp3",
+        "clicks": 0,
+        "correct": 0,
+        "wrong": 0,
+        "errors": 0
       }
     ]
   }

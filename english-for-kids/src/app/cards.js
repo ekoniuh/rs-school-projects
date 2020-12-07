@@ -71,14 +71,18 @@ export class Card {
     });
 
     if (!state.isMainPage && state.isModeGame) {
+      document.querySelector('.answers').classList.remove('answers_none');
+      document
+        .querySelector('.start-game__btn')
+        .classList.remove('start-game__btn_none');
+      // document.querySelector('.repeat__btn').classList.add('repeat__btn_none');
       this.hideTitleCards();
-      this.showStartButton();
+      // this.showStartButton();
     }
   }
 
   getDataCardFromCategory(target) {
     if (target.closest('.category-card')) {
-      // TODO не нравится мне так брать имя категории
       state.nameCategory = target
         .closest('.category-card')
         .querySelector('.category-card__title p').innerText;
@@ -97,11 +101,14 @@ export class Card {
   renderCards({ target }) {
     if (
       !target.closest('.category-card') &&
-      !target.closest('.navigation__link')
+      !target.closest('.navigation__link') &&
+      !target.classList.contains('main-page')
     ) {
+      console.log(target.classList.contains('main-page'));
       return;
     }
-    state.isMainPage = !state.isMainPage;
+
+    state.isMainPage = false;
     this.getDataCardFromCategory(target);
     this.createCard();
 
@@ -116,11 +123,6 @@ export class Card {
         const isClickRotate = !target.classList.contains('rotate');
         const card = target.closest('.card');
         const { word, checked } = card.dataset;
-
-        // if (state.isCardRotate) {
-        //   state.isCardRotate = false;
-        //   card.addEventListener('mouseout', () => this.returnCard(card));
-        // }
 
         if (isClickRotate && !state.isModeGame && !state.isCardRotate) {
           playAudio(word);
@@ -154,7 +156,6 @@ export class Card {
     if (
       document.querySelector('.category').classList.contains('category_none')
     ) {
-      // document.querySelector('.cards').classList.remove();
       menu.closeMenu();
       document.querySelector('.cards').innerHTML = '';
       document.querySelector('.category').classList.toggle('category_none');
@@ -162,18 +163,23 @@ export class Card {
   }
 
   hideStartButton() {
-    document
-      .querySelector('.start-game__btn')
-      .classList.toggle('start-game__btn_none');
-    document.querySelector('.repeat__btn').classList.toggle('repeat__btn_none');
+    // document
+    //   .querySelector('.start-game__btn')
+    //   .classList.toggle('start-game__btn_none');
+    // document.querySelector('.repeat__btn').classList.toggle('repeat__btn_none');
   }
 
   hideTitleCards() {
-    Array.from(
-      document.querySelectorAll('.cards .category-card__title')
-    ).forEach((item) => {
-      item.classList.toggle('category-card__title_none');
-    });
+    [...document.querySelectorAll('.cards .category-card__title')].forEach(
+      (item) => {
+        item.classList.toggle('category-card__title_none');
+      }
+    );
+    [...document.querySelectorAll('.cards .category-card__img img')].forEach(
+      (item) => {
+        item.classList.toggle('card__img_play');
+      }
+    );
   }
 
   removeAnswers() {
@@ -181,19 +187,19 @@ export class Card {
       document.querySelector('.error-answer') ||
       document.querySelector('.correct-answer')
     ) {
-      Array.from(document.querySelectorAll('.error-answer')).forEach((item) => {
+      [
+        ...document.querySelectorAll('.error-answer'),
+        ...document.querySelectorAll('.correct-answer'),
+      ].forEach((item) => {
         item.parentNode.removeChild(item);
       });
-      Array.from(document.querySelectorAll('.correct-answer')).forEach(
-        (item) => {
-          item.parentNode.removeChild(item);
-        }
-      );
-      Array.from(document.querySelectorAll('.category-card_train')).forEach(
-        (item) => {
-          item.classList.remove('category-card_train');
-        }
-      );
+
+      [...document.querySelectorAll('.category-card_train')].forEach((item) => {
+        item.classList.remove('category-card_train');
+      });
+      [...document.querySelectorAll('.card')].forEach((card) => {
+        card.dataset.checked = 'false';
+      });
     }
   }
 }

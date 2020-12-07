@@ -321,10 +321,10 @@
     "label": "Food",
     "cards": [
       {
-        "word": "sweets",
+        "word": "sweet",
         "translation": "сладости",
         "image": "sweets.jpg",
-        "audioSrc": "audio/sweets.mp3"
+        "audioSrc": "audio/sweet.mp3"
       },
       {
         "word": "shawarma",
@@ -351,10 +351,10 @@
         "audioSrc": "audio/caviar.mp3"
       },
       {
-        "word": "borsht",
-        "translation": "борщ",
-        "image": "borsht.jpg",
-        "audioSrc": "audio/borsht.mp3"
+        "word": "soup",
+        "translation": "суп",
+        "image": "soup.jpg",
+        "audioSrc": "audio/soup.mp3"
       },
       {
         "word": "beard",
@@ -375,49 +375,49 @@
     "cards": [
       {
         "word": "wine",
-        "translation": "грустный",
+        "translation": "вино",
         "image": "wine.jpg",
         "audioSrc": "audio/wine.mp3"
       },
       {
         "word": "water",
-        "translation": "сердитый",
+        "translation": "вода",
         "image": "water.jpg",
         "audioSrc": "audio/water.mp3"
       },
       {
-        "word": "tomato juice",
-        "translation": "счастливый",
-        "image": "tomato juice.jpg",
-        "audioSrc": "audio/tomato juice.mp3"
+        "word": "juice",
+        "translation": "сок",
+        "image": "juice.jpg",
+        "audioSrc": "audio/juice.mp3"
       },
       {
         "word": "tea",
-        "translation": "уставший",
+        "translation": "чай",
         "image": "tea.jpg",
         "audioSrc": "audio/tea.mp3"
       },
       {
-        "word": "mojito",
-        "translation": "удивлённый",
+        "word": "cocktail",
+        "translation": "коктейль",
         "image": "mojito.jpg",
-        "audioSrc": "audio/mojito.mp3"
+        "audioSrc": "audio/cocktail.mp3"
       },
       {
         "word": "milk",
-        "translation": "испуганный",
+        "translation": "молоко",
         "image": "milk.jpg",
         "audioSrc": "audio/milk.mp3"
       },
       {
-        "word": "coffe",
-        "translation": "улыбка",
+        "word": "coffee",
+        "translation": "кофе",
         "image": "coffe.jpg",
         "audioSrc": "audio/coffe.mp3"
       },
       {
         "word": "beer",
-        "translation": "смех",
+        "translation": "пиво",
         "image": "beer.jpg",
         "audioSrc": "audio/beer.mp3"
       }

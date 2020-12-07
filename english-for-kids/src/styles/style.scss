@@ -285,8 +285,8 @@ main {
 
 .category-card,
 .card {
-  width: 300px;
-  height: 250px;
+  width: 280px;
+  height: 240px;
   position: relative;
   transform-style: preserve-3d;
   margin: 15px;
@@ -294,24 +294,21 @@ main {
   cursor: pointer;
   background-repeat: no-repeat;
   background-position: center;
-
-  /* transition: 0.6s; */
   background-size: auto 100%;
-
-  /* width: 280px;
-  height: 280px; */
   border-radius: 30px;
   box-shadow: 3px 3px 20px 3px rgba(17, 17, 17, 0.25);
 
   &__img img {
-    width: 240px;
-    height: 210px;
+    width: 100%;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     object-fit: cover;
     transition: all 0.6s;
+  }
 
-    /* border: 2px solid #fff; */
+  &__img_play {
+    height: 100%;
+    border-radius: 30px;
   }
 
   &__title {
@@ -326,6 +323,7 @@ main {
 
   &__title p {
     padding: 15px 0;
+    margin: 0 auto;
   }
 
   &_train {
@@ -333,11 +331,12 @@ main {
   }
 }
 
+.category-card {
+  display: none;
+}
+
 .front,
 .back {
-  // border-radius: 19px;
-  // box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.05);
-  // background: white;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -356,18 +355,6 @@ main {
   transform: rotateY(360deg);
 }
 
-// .repeat-button,
-// .start-game {
-//   width: 100px;
-//   height: 50px;
-//   background: red;
-// }
-
-// .repeat-button_none {
-//   display: none;
-// }
-
-// .mode-game__btn,
 .repeat__btn {
   border: none;
   cursor: pointer;
@@ -454,6 +441,27 @@ main {
   }
 }
 
+.success {
+  background: url(../assets/images/answers/minions/success.png) no-repeat;
+  height: 400px;
+  background-size: contain;
+  background-position: center;
+}
+
+.error {
+  background: url(../assets/images/answers/minions/error.png) no-repeat;
+  height: 400px;
+  background-size: contain;
+  background-position: center;
+}
+
+.sum-errors {
+  text-align: center;
+  font-size: 32px;
+  color: red;
+  text-shadow: 2px 1px #000000a3;
+}
+
 // .error-answer {
 //   width: 30px;
 //   height: 30px;
@@ -536,7 +544,7 @@ main {
 .rotate {
   width: 40px;
   height: 40px;
-  background: url(../assets/images/play-audio.png);
+  background: url(../assets/images/rotate.png);
   background-size: cover;
   border: none;
   cursor: pointer;

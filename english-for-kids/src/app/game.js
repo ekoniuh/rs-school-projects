@@ -3,13 +3,12 @@ import { state } from './state';
 import { shuffle } from './utils';
 export default class Game {
   checkedModeGame() {
-    const word = state.wordGameArray[state.wordGameArray.length - 1];
-    this.startGame(word);
     // if (!state.isModeGame) {
     // }
   }
 
-  startGame(word) {
+  startGame() {
+    const word = state.wordGameArray[state.wordGameArray.length - 1];
     setTimeout(() => {
       playAudio(word);
     }, 1000);
@@ -46,21 +45,39 @@ export default class Game {
     document.querySelector('.repeat__btn').after(img);
 
     state.wordGameArray.pop();
-    this.checkedModeGame();
+    this.startGame();
     if (!state.wordGameArray.length) {
-      document.querySelector('.cards').innerHTML = '';
-      const div = document.createElement('div');
-      div.className = 'win';
+      // FIXME: фигово написал функцию
+      if (!state.errors) {
+        this.finishGame('success');
+      } else {
+        this.finishGame('error');
 
-      document.querySelector('.category').before(div);
-      setTimeout(() => {
-        document.querySelector('.win').remove();
-        document.querySelector('.category').classList.toggle('category_none');
-      }, 1000);
+        const h2 = document.createElement('h2');
+        h2.className = 'sum-errors';
+        h2.innerHTML = 'ERORROS:' + state.errors;
+        document.querySelector('.error').after(h2);
+      }
     }
   }
 
+  finishGame(win) {
+    document.querySelector('.cards').innerHTML = '';
+    const div = document.createElement('div');
+    div.className = `${win}`;
+
+    document.querySelector('.category').before(div);
+
+    setTimeout(() => {
+      document.querySelector(`.${win}`).remove();
+      // FIXME
+      document.querySelector('.sum-errors').remove();
+      document.querySelector('.category').classList.toggle('category_none');
+    }, 2000);
+  }
+
   errorAnswer() {
+    state.errors += 1;
     playAudio('error');
     const img = document.createElement('img');
     img.className = 'error-answer';

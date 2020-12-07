@@ -58,7 +58,7 @@ export default class Card {
         }">
         <div class="front">
           <div class="category-card__img">
-            <img src="../assets/images/${item.image}" alt="Action (set A)">
+            <img src="./assets/images/${item.image}" alt="Action (set A)">
           </div>
           <div class="category-card__title">
             <p>${item.word}</p>
@@ -69,7 +69,7 @@ export default class Card {
         </div>
         <div class="back">
           <div class="category-card__img">
-            <img src="../assets/images/${item.image}" alt="Action (set A)">
+            <img src="./assets/images/${item.image}" alt="Action (set A)">
           </div>
           <div class="category-card__title">
             <p>${item.translation}</p>

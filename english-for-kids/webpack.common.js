@@ -17,7 +17,6 @@ module.exports = {
     PATHS,
   },
   entry: './src/app/index.js',
-  // main: path.resolve(PATHS.src, './scr'),
   output: {
     filename: 'index.js',
     path: PATHS.dist,
@@ -30,11 +29,20 @@ module.exports = {
         use: [{ loader: 'html-loader' }],
       },
       {
-        test: /\.(png|svg|jpe?g|gif|mp3)$/,
+        test: /\.(png|svg|jpe?g|gif)$/,
         use: [
           {
             loader: 'file-loader',
-            options: { name: 'assets/[name].[ext]' },
+            options: { name: './assets/images/[name].[ext]' },
+          },
+        ],
+      },
+      {
+        test: /\.(mp3)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: { name: './assets/audio/[name].[ext]' },
           },
         ],
       },

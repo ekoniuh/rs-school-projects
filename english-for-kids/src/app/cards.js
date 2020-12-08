@@ -18,8 +18,8 @@ import { playAudio } from './audio';
 import Game from './game';
 import { Menu } from './menu';
 import GameState from './gameState';
-const gameState = new GameState();
 
+const gameState = new GameState();
 const game = new Game();
 const menu = new Menu();
 export default class Card {
@@ -37,9 +37,14 @@ export default class Card {
       .classList.toggle('back-rotate');
   }
 
-  removeContainerCards() {
-    categoryContainer.classList.toggle('category_none');
-    // document.querySelector('.cards').classList.toggle('cards_none');
+  removeContainerCards({ target }) {
+    if (target.closest('.navigation__link')) {
+      document
+        .querySelector('.navigation__link_active')
+        .classList.remove('navigation__link_active');
+      target.classList.add('navigation__link_active');
+      document.querySelector('.cards').innerHTML = '';
+    }
   }
 
   cardCategoryArray(nameCategory) {
@@ -48,7 +53,8 @@ export default class Card {
   }
 
   createCard() {
-    this.removeContainerCards();
+    categoryContainer.classList.add('category_none');
+
     state.cardCategoryArray.forEach((item) => {
       document.querySelector('.cards').insertAdjacentHTML(
         'beforeend',
@@ -110,19 +116,10 @@ export default class Card {
   renderCards({ target }) {
     if (
       !target.closest('.category-card') &&
-      !target.closest('.navigation__link') &&
-      !target.classList.contains('main-page')
+      !target.closest('.navigation__link')
     ) {
       return;
     }
-
-    // if (target.closest('.navigation__link').textContent === 'Statistics') {
-    // if (target.dataset.statistic) {
-    //   createStatistic();
-    //   categoryContainer.classList.add('category_none');
-
-    //   return;
-    // }
 
     state.isMainPage = false;
     this.getDataCardFromCategory(target);
@@ -134,6 +131,7 @@ export default class Card {
     shuffle(state.wordGameArray);
 
     const containerCards = document.querySelector('.cards');
+
     if (containerCards.dataset.cards !== 'cards') {
       containerCards.addEventListener('click', ({ target }) => {
         if (target.closest('.card')) {

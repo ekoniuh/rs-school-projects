@@ -11,27 +11,34 @@ export default class GameState {
   }
 
   resetStats() {
-    this.stats = statisticData.forEach((item) => {
-      item.clicks = 0;
-      item.correct = 0;
-      item.wrong = 0;
-      item.errors = 0;
-    });
+    this.stats = statisticData;
 
     this.saveStats();
   }
 
   setStatistic(field, word) {
-    // TODO
-    const itemWord = this.stats.find((item) => item.word === word);
-    itemWord[`${field}`] += 1;
-    // console.log(statisticData[index].clicks);
-    // statisticData.forEach((item, index) => {
-    //   if (item.word === word) {
-    //     const obj = statisticData[index];
-    // }
-    // });
+    let indexItem = 0;
+    this.stats.forEach((item, index) => {
+      if (item.word === word) {
+        indexItem = index;
+      }
+    });
+
+    this.stats[indexItem][`${field}`] += 1;
     this.saveStats();
+  }
+
+  sortStatistic(word) {
+    this.stats.sort((a, b) => (a[`${word}`] > b[`${word}`] ? 1 : -1));
+    this.saveStats();
+  }
+
+  sortReverseStatistic(word) {
+    this.stats.sort((a, b) => a[`${word}`] - b[`${word}`]).reverse();
+  }
+
+  getStats() {
+    this.stats = JSON.parse(localStorage.getItem('gameState')) || statisticData;
   }
 
   // trainClick(text) {

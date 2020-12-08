@@ -1,6 +1,6 @@
 const statisticData = [
   {
-    label: 'Action (set A)',
+    category: 'Action (set A)',
     word: 'cry',
     translation: 'плакать',
     clicks: 0,
@@ -9,7 +9,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Action (set A)',
+    category: 'Action (set A)',
     word: 'dance',
     translation: 'танцевать',
     clicks: 0,
@@ -18,7 +18,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Action (set A)',
+    category: 'Action (set A)',
     word: 'dive',
     translation: 'нырять',
 
@@ -28,7 +28,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Action (set A)',
+    category: 'Action (set A)',
     word: 'draw',
     translation: 'рисовать',
 
@@ -38,7 +38,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Action (set A)',
+    category: 'Action (set A)',
     word: 'fish',
     translation: 'ловить рыбу',
 
@@ -48,7 +48,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Action (set A)',
+    category: 'Action (set A)',
     word: 'fly',
     translation: 'летать',
 
@@ -58,7 +58,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Action (set A)',
+    category: 'Action (set A)',
     word: 'hug',
     translation: 'обнимать',
 
@@ -68,7 +68,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Action (set A)',
+    category: 'Action (set A)',
     word: 'jump',
     translation: 'прыгать',
 
@@ -79,7 +79,7 @@ const statisticData = [
   },
 
   {
-    label: 'Action (set B)',
+    category: 'Action (set B)',
     word: 'open',
     translation: 'открывать',
 
@@ -89,7 +89,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Action (set B)',
+    category: 'Action (set B)',
     word: 'play',
     translation: 'играть',
 
@@ -99,7 +99,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Action (set B)',
+    category: 'Action (set B)',
     word: 'point',
     translation: 'указывать',
 
@@ -109,7 +109,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Action (set B)',
+    category: 'Action (set B)',
     word: 'ride',
     translation: 'ездить',
 
@@ -119,7 +119,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Action (set B)',
+    category: 'Action (set B)',
     word: 'run',
     translation: 'бегать',
 
@@ -129,7 +129,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Action (set B)',
+    category: 'Action (set B)',
     word: 'sing',
     translation: 'петь',
 
@@ -139,7 +139,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Action (set B)',
+    category: 'Action (set B)',
     word: 'skip',
     translation: 'пропускать, прыгать',
 
@@ -149,7 +149,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Action (set B)',
+    category: 'Action (set B)',
     word: 'swim',
     translation: 'плавать',
 
@@ -159,7 +159,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Animal (set A)',
+    category: 'Animal (set A)',
     word: 'cat',
     translation: 'кот',
 
@@ -169,7 +169,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Animal (set A)',
+    category: 'Animal (set A)',
     word: 'chick',
     translation: 'цыплёнок',
 
@@ -179,7 +179,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Animal (set A)',
+    category: 'Animal (set A)',
     word: 'chicken',
     translation: 'курица',
 
@@ -189,7 +189,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Animal (set A)',
+    category: 'Animal (set A)',
     word: 'dog',
     translation: 'собака',
 
@@ -199,7 +199,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Animal (set A)',
+    category: 'Animal (set A)',
     word: 'horse',
     translation: 'лошадь',
 
@@ -209,7 +209,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Animal (set A)',
+    category: 'Animal (set A)',
     word: 'pig',
     translation: 'свинья',
 
@@ -219,7 +219,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Animal (set A)',
+    category: 'Animal (set A)',
     word: 'rabbit',
     translation: 'кролик',
     clicks: 0,
@@ -228,7 +228,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Animal (set A)',
+    category: 'Animal (set A)',
     word: 'sheep',
     translation: 'овца',
     clicks: 0,
@@ -238,7 +238,7 @@ const statisticData = [
   },
 
   {
-    label: 'Animal (set B)',
+    category: 'Animal (set B)',
     word: 'bird',
     translation: 'птица',
     clicks: 0,
@@ -247,7 +247,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Animal (set B)',
+    category: 'Animal (set B)',
     word: 'fish',
     translation: 'рыба',
     clicks: 0,
@@ -256,7 +256,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Animal (set B)',
+    category: 'Animal (set B)',
     word: 'frog',
     translation: 'жаба',
     clicks: 0,
@@ -265,7 +265,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Animal (set B)',
+    category: 'Animal (set B)',
     word: 'giraffe',
     translation: 'жирафа',
     clicks: 0,
@@ -274,7 +274,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Animal (set B)',
+    category: 'Animal (set B)',
     word: 'lion',
     translation: 'лев',
     clicks: 0,
@@ -283,7 +283,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Animal (set B)',
+    category: 'Animal (set B)',
     word: 'mouse',
     translation: 'мышь',
     clicks: 0,
@@ -292,7 +292,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Animal (set B)',
+    category: 'Animal (set B)',
     word: 'turtle',
     translation: 'черепаха',
     clicks: 0,
@@ -301,7 +301,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Animal (set B)',
+    category: 'Animal (set B)',
     word: 'dolphin',
     translation: 'дельфин',
     clicks: 0,
@@ -310,7 +310,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Clothes',
+    category: 'Clothes',
     word: 'skirt',
     translation: 'юбка',
     clicks: 0,
@@ -319,7 +319,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Clothes',
+    category: 'Clothes',
     word: 'pants',
     translation: 'брюки',
     clicks: 0,
@@ -328,7 +328,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Clothes',
+    category: 'Clothes',
     word: 'blouse',
     translation: 'блузка',
     clicks: 0,
@@ -337,7 +337,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Clothes',
+    category: 'Clothes',
     word: 'dress',
     translation: 'платье',
     clicks: 0,
@@ -346,7 +346,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Clothes',
+    category: 'Clothes',
     word: 'boot',
     translation: 'ботинок',
     clicks: 0,
@@ -355,7 +355,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Clothes',
+    category: 'Clothes',
     word: 'shirt',
     translation: 'рубашка',
     clicks: 0,
@@ -364,7 +364,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Clothes',
+    category: 'Clothes',
     word: 'coat',
     translation: 'пальто',
     clicks: 0,
@@ -373,7 +373,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Clothes',
+    category: 'Clothes',
     word: 'shoe',
     translation: 'туфли',
     clicks: 0,
@@ -383,7 +383,7 @@ const statisticData = [
   },
 
   {
-    label: 'Emotions',
+    category: 'Emotions',
     word: 'sad',
     translation: 'грустный',
 
@@ -393,7 +393,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Emotions',
+    category: 'Emotions',
     word: 'angry',
     translation: 'сердитый',
 
@@ -403,7 +403,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Emotions',
+    category: 'Emotions',
     word: 'happy',
     translation: 'счастливый',
 
@@ -413,7 +413,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Emotions',
+    category: 'Emotions',
     word: 'tired',
     translation: 'уставший',
 
@@ -423,7 +423,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Emotions',
+    category: 'Emotions',
     word: 'surprised',
     translation: 'удивлённый',
 
@@ -433,7 +433,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Emotions',
+    category: 'Emotions',
     word: 'scared',
     translation: 'испуганный',
 
@@ -443,7 +443,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Emotions',
+    category: 'Emotions',
     word: 'smile',
     translation: 'улыбка',
 
@@ -453,7 +453,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Emotions',
+    category: 'Emotions',
     word: 'laugh',
     translation: 'смех',
 
@@ -464,7 +464,7 @@ const statisticData = [
   },
 
   {
-    label: 'Food',
+    category: 'Food',
     word: 'sweet',
     translation: 'сладости',
 
@@ -474,7 +474,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Food',
+    category: 'Food',
     word: 'shawarma',
     translation: 'шаурма',
 
@@ -484,7 +484,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Food',
+    category: 'Food',
     word: 'omelette',
     translation: 'омлет',
 
@@ -494,7 +494,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Food',
+    category: 'Food',
     word: 'chicken',
     translation: 'курица',
 
@@ -504,7 +504,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Food',
+    category: 'Food',
     word: 'caviar',
     translation: 'икра',
 
@@ -514,7 +514,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Food',
+    category: 'Food',
     word: 'soup',
     translation: 'суп',
 
@@ -524,7 +524,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Food',
+    category: 'Food',
     word: 'beard',
     translation: 'хлеб',
 
@@ -534,7 +534,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Food',
+    category: 'Food',
     word: 'cutlet',
     translation: 'котлета',
 
@@ -545,7 +545,7 @@ const statisticData = [
   },
 
   {
-    label: 'Beverages',
+    category: 'Beverages',
     word: 'wine',
     translation: 'вино',
 
@@ -555,7 +555,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Beverages',
+    category: 'Beverages',
     word: 'water',
     translation: 'вода',
 
@@ -565,7 +565,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Beverages',
+    category: 'Beverages',
     word: 'juice',
     translation: 'сок',
 
@@ -575,7 +575,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Beverages',
+    category: 'Beverages',
     word: 'tea',
     translation: 'чай',
 
@@ -585,7 +585,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Beverages',
+    category: 'Beverages',
     word: 'cocktail',
     translation: 'коктейль',
 
@@ -595,7 +595,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Beverages',
+    category: 'Beverages',
     word: 'milk',
     translation: 'молоко',
 
@@ -605,7 +605,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Beverages',
+    category: 'Beverages',
     word: 'coffee',
     translation: 'кофе',
 
@@ -615,7 +615,7 @@ const statisticData = [
     errors: 0,
   },
   {
-    label: 'Beverages',
+    category: 'Beverages',
     word: 'beer',
     translation: 'пиво',
 

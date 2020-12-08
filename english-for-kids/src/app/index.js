@@ -9,23 +9,27 @@ import {
   repeatButton,
   mainPage,
   state,
+  statisticButton,
 } from './state';
 import { Menu } from './menu';
 import Card from './cards';
 import Game from './game';
-import { showMainPage } from './utils';
+import GameState from './gameState';
+import { showMainPage, toStatisticPage, removeStatistic } from './utils';
 
 const card = new Card();
 const menu = new Menu();
 const game = new Game();
-
-alert(
-  'Здравствуйте. Если вас не затруднит, не могли бы вы проверить задание ближе к выходным?(это сообщение относится к студентам)'
-);
+const gameState = new GameState();
+// alert(
+//   'Здравствуйте. Если вас не затруднит, не могли бы вы проверить задание ближе к выходным?(это сообщение относится к студентам)'
+// );
 
 categoryContainer.addEventListener('click', (event) => card.renderCards(event));
 buttonMenu.addEventListener('click', (event) => menu.openMenu(event));
 navigation.addEventListener('click', (event) => {
+  card.removeContainerCards(event);
+  removeStatistic();
   card.renderCards(event);
   menu.closeMenu();
 });
@@ -39,18 +43,26 @@ mainPage.addEventListener('click', (event) => {
   menu.closeMenu();
 });
 
+statisticButton.addEventListener('click', (event) => {
+  event.stopPropagation();
+  state.isClickStatistic = true;
+  card.removeContainerCards(event);
+  toStatisticPage(card, gameState);
+  menu.closeMenu();
+});
+
 document.querySelector('.switch__input').addEventListener('change', () => {
-  //TODO: почему нажимается два раза на кнопку?
   state.isModeGame = !state.isModeGame;
   state.isClickStart = false;
-  // shuffle(state.wordGameArray);
+  document.querySelector('.switch__slider').textContent = !state.isModeGame
+    ? 'Train'
+    : 'Play';
+
   if (state.isMainPage) {
     return;
   }
   card.removeAnswers();
   card.hideTitleCards();
-  // card.showStartButton();
-
   answersContainer.classList.toggle('answers_none');
   startButton.classList.remove('start-game__btn_none');
   repeatButton.classList.add('repeat__btn_none');

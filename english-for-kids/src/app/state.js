@@ -7,9 +7,11 @@ export const answersContainer = document.querySelector('.answers');
 export const startButton = document.querySelector('.start-game__btn');
 export const repeatButton = document.querySelector('.repeat__btn');
 export const mainPage = document.querySelector('.main-page');
+export const statisticButton = document.querySelector('.statistic');
 
 // export let isMenuOpen = false;
 export const state = {
+  isClickStatistic: false,
   isMainPage: true,
   isTrain: true,
   isMenuOpen: false,

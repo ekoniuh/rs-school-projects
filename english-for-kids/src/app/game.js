@@ -10,29 +10,18 @@ import {
   startButton,
   repeatButton,
   mainPage,
+  statisticButton,
 } from './state';
 import { shuffle } from './utils';
 import checkedStatistic from './statistic';
 import GameState from './gameState';
 const gameState = new GameState();
 export default class Game {
-  // checkedModeGame() {
-  //   // if (!state.isModeGame) {
-  //   // }
-  // }
-
   startGame() {
     const word = state.wordGameArray[state.wordGameArray.length - 1];
     setTimeout(() => {
       playAudio(word);
     }, 1000);
-    // if (state.playActive && state.wordGameArray.length) {
-    //   playAudio(state.wordGameArray[state.wordGameArray.length - 1]);
-    // } else {
-
-    // state.playActive = !state.playActive;
-    // state.wordGameArray[state.wordGameArray.length - 1];
-    // }
   }
 
   checkedWord(card, wordPlay) {
@@ -43,7 +32,6 @@ export default class Game {
         gameState.setStatistic('correct', word);
       } else {
         this.errorAnswer();
-        // checkedStatistic('wrong', word);
         gameState.setStatistic('wrong', word);
       }
     }
@@ -63,7 +51,6 @@ export default class Game {
     state.wordGameArray.pop();
     this.startGame();
     if (!state.wordGameArray.length) {
-      // FIXME: фигово написал функцию
       if (!state.errors) {
         this.finishGame('success');
       } else {

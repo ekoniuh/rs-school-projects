@@ -17,9 +17,9 @@ import {
 import { playAudio } from './audio';
 import Game from './game';
 import { Menu } from './menu';
-import GameState from './gameState';
+import gameState from './gameState';
 
-const gameState = new GameState();
+// const gameState = new GameState();
 const game = new Game();
 const menu = new Menu();
 export default class Card {

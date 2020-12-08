@@ -14,16 +14,12 @@ import {
 import { Menu } from './menu';
 import Card from './cards';
 import Game from './game';
-import GameState from './gameState';
+import gameState from './gameState';
 import { showMainPage, toStatisticPage, removeStatistic } from './utils';
 
 const card = new Card();
 const menu = new Menu();
 const game = new Game();
-const gameState = new GameState();
-// alert(
-//   'Здравствуйте. Если вас не затруднит, не могли бы вы проверить задание ближе к выходным?(это сообщение относится к студентам)'
-// );
 
 categoryContainer.addEventListener('click', (event) => card.renderCards(event));
 buttonMenu.addEventListener('click', (event) => menu.openMenu(event));

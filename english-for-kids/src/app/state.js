@@ -11,6 +11,7 @@ export const statisticButton = document.querySelector('.statistic');
 
 // export let isMenuOpen = false;
 export const state = {
+  isClickSortReverse: true,
   isClickStatistic: false,
   isMainPage: true,
   isTrain: true,

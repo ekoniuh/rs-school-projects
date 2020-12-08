@@ -11,10 +11,6 @@ import {
   startButton,
   repeatButton,
 } from './state';
-// import Card from './cards';
-
-// debugger;
-// const card = new Card();
 
 export function shuffle(arr) {
   arr.sort(() => Math.random() - 0.5);
@@ -25,7 +21,6 @@ export function showMainPage(card) {
     state.isMainPage = true;
     resetPage(card);
     categoryContainer.classList.toggle('category_none');
-    // document.querySelector('.statistics').remove();
   }
 }
 
@@ -71,13 +66,13 @@ export function createStatistic(gameState) {
       <table class="table">
         <caption class="table__name">Cards</caption>
         <tr class="table__row_head">
-          <td class="table__sortable">Word</td>
-          <td class="table__sortable">Translation</td>
-          <td class="table__sortable"><span>↓</span>Category</td>
-          <td class="table__sortable">Clicks</td>
-          <td class="table__sortable">Correct</td>
-          <td class="table__sortable">Wrong</td>
-          <td class="table__sortable">% errors</td>
+          <td class="table__sortable" data-sort="false">Word</td>
+          <td class="table__sortable" data-sort="false">Translation</td>
+          <td class="table__sortable" data-sort="false">Category</td>
+          <td class="table__sortable" data-sort="false">Clicks</td>
+          <td class="table__sortable" data-sort="false">Correct</td>
+          <td class="table__sortable" data-sort="false">Wrong</td>
+          <td class="table__sortable" data-sort="false">% errors</td>
         </tr>
         
       </table>
@@ -90,11 +85,18 @@ export function createStatistic(gameState) {
   document
     .querySelector('.table__row_head')
     .addEventListener('click', ({ target }) => {
-      gameState.sortStatistic(target.textContent.toLowerCase());
-      // console.log(target.textContent.toLowerCase());
+      if (target.dataset.sort === 'false') {
+        target.dataset.sort = 'true';
+        gameState.sortStatistic(target.textContent.toLowerCase());
+      } else {
+        target.dataset.sort = 'false';
+        gameState.sortReverseStatistic();
+      }
+
       [...document.querySelectorAll('.table__row')].forEach((item) => {
         item.remove();
       });
+
       renderStatistic(gameState);
     });
 
@@ -102,19 +104,18 @@ export function createStatistic(gameState) {
     .querySelector('.statistics__button_reset')
     .addEventListener('click', () => {
       gameState.resetStats();
-      // document.querySelectorAll('.table__row_head').innerHTML = '';
+
       [...document.querySelectorAll('.table__row')].forEach((item) => {
         item.remove();
       });
       renderStatistic(gameState);
     });
-  // const fragment = document.createDocumentFragment;
 }
 
 function renderStatistic(gameState) {
   gameState.getStats();
+
   gameState.stats.forEach((item) => {
-    console.log('item.word', item.category);
     document.querySelector('.table__row_head').insertAdjacentHTML(
       'afterend',
       `<tr class="table__row">

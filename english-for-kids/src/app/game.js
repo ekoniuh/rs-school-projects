@@ -14,8 +14,8 @@ import {
 } from './state';
 import { shuffle } from './utils';
 import checkedStatistic from './statistic';
-import GameState from './gameState';
-const gameState = new GameState();
+import gameState from './gameState';
+
 export default class Game {
   startGame() {
     const word = state.wordGameArray[state.wordGameArray.length - 1];
@@ -44,9 +44,10 @@ export default class Game {
 
     const img = document.createElement('img');
     img.className = 'correct-answer';
-    img.src = './assets/images/answers/correct/correct.jpg';
+    img.src = 'https://www.flaticon.com/svg/static/icons/svg/725/725107.svg';
     img.alt = 'correct-answer';
-    repeatButton.after(img);
+    document.querySelector('.answer-wrap').append(img);
+    // repeatButton.after(img);
 
     state.wordGameArray.pop();
     this.startGame();
@@ -69,9 +70,9 @@ export default class Game {
     playAudio('error');
     const img = document.createElement('img');
     img.className = 'error-answer';
-    img.src = './assets/images/answers/error/error.jpg';
+    img.src = 'https://www.flaticon.com/svg/static/icons/svg/569/569513.svg';
     img.alt = 'error-answer';
-    repeatButton.before(img);
+    document.querySelector('.answer-wrap').append(img);
   }
 
   finishGame(win) {

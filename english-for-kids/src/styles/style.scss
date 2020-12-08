@@ -15,6 +15,7 @@ html {
 h1 {
   font-family: 'Nerko One', cursive;
   font-size: 5rem;
+  cursor: pointer;
 }
 
 body {
@@ -22,6 +23,12 @@ body {
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 1.6rem;
   /* background-color: #fff; */
+}
+
+.body {
+  background-color: white;
+  background-image: radial-gradient(#9ed8d324 5px, transparent 5px);
+  background-size: 30px 30px;
 }
 
 main {
@@ -72,6 +79,11 @@ main {
 //   display: none;
 // }
 
+.answer-wrap {
+  margin: 14px auto;
+  width: 1024px;
+}
+
 .navigation {
   position: absolute;
   top: 0;
@@ -94,9 +106,7 @@ main {
   }
 
   &__link {
-    max-width: fit-content;
-    margin: 22px;
-    padding: 10px 10px;
+    padding: 16px 10px;
     line-height: 1.6rem;
 
     cursor: pointer;
@@ -110,7 +120,6 @@ main {
       position: 0 65%;
       size: 0% 0;
     }
-
     &_active {
       font-weight: 600;
       color: rgb(0, 0, 0);
@@ -118,12 +127,59 @@ main {
     }
 
     &:hover {
-      color: rgb(0, 0, 0);
-      border-bottom: 1px solid rgb(14, 7, 7);
-      transition: all 0.3s ease-in;
-      transform: scale(1.2);
+      color: #090909;
+      background-size: 100% 100%;
+      box-shadow: inset 5px 0 0 0 #b73aaa;
+      transition: all 0.7s;
+      // color: rgb(0, 0, 0);
+      // border-bottom: 1px solid rgb(14, 7, 7);
+      // transition: all 0.3s ease-in;
+      // transform: scale(1.2);
+    }
+    &::before {
+      content: '';
+      display: inline-block;
+      position: relative;
+      width: 40px;
+      height: 40px;
+      margin-right: 32px;
+      top: 10px;
+      background-position: center;
+      background-size: contain;
+      transition: 0.3s ease;
     }
   }
+}
+
+.main-page::before {
+  background-image: url(https://image.flaticon.com/icons/png/512/66/66282.png);
+}
+.action-a::before {
+  background-image: url(https://www.flaticon.com/svg/static/icons/svg/2513/2513260.svg);
+}
+.action-b::before {
+  background-image: url(https://www.flaticon.com/svg/static/icons/svg/2513/2513222.svg);
+}
+.animal-a::before {
+  background-image: url(https://www.flaticon.com/svg/static/icons/svg/2930/2930627.svg);
+}
+.animal-b::before {
+  background-image: url(https://www.flaticon.com/svg/static/icons/svg/616/616451.svg);
+}
+.clothes::before {
+  background-image: url(https://www.flaticon.com/svg/static/icons/svg/1127/1127487.svg);
+}
+.emotions::before {
+  background-image: url(https://www.flaticon.com/svg/static/icons/svg/1935/1935230.svg);
+}
+.food::before {
+  background-image: url(https://www.flaticon.com/svg/static/icons/svg/123/123282.svg);
+}
+.beverages::before {
+  background-image: url(https://www.flaticon.com/svg/static/icons/svg/3050/3050153.svg);
+}
+.statistic::before {
+  background-image: url(https://www.flaticon.com/svg/static/icons/svg/1088/1088950.svg);
 }
 
 .hamburger {
@@ -259,6 +315,32 @@ main {
   margin-bottom: 100px;
 }
 
+.statistics__button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 29px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #ff5200;
+  background-color: #0ce8f057;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  margin-right: 10px;
+  font-family: 'Nerko One';
+}
+
+.statistics__button:hover {
+  background-color: #0ceaf0;
+}
+
+.statistics__button:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
 .statistics__buttons {
   width: 100%;
   display: flex;
@@ -269,28 +351,9 @@ main {
   margin-bottom: 10px;
 }
 
-.statistics__button_wide {
-  width: 280px;
-}
-
-.statistics__button {
-  width: 140px;
-  height: 50px;
-  font-size: 1.4rem;
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1.4rem;
-  color: #fff;
-  margin-top: 10px;
-  margin-left: 20px;
-  border: none;
-  outline: none;
-  background-color: #a87361;
-  border-radius: 6px;
-  transition: all 0.4s;
-  box-shadow: 3px 3px 15px 2px rgba(138, 83, 0, 0.25),
-    -3px -3px 15px 2px rgba(138, 83, 0, 0.22);
-}
+// .statistics__button_wide {
+//   width: 280px;
+// }
 
 .statistics__table {
   width: 100%;
@@ -310,16 +373,14 @@ main {
 .table__name {
   padding: 10px;
   height: 44px;
-  background: rgb(211, 186, 150);
-  font-size: 1.6rem;
-  font-style: normal;
+  background: #f71010a6;
+  font-size: 2.6rem;
+  font-family: cursive;
   font-weight: bold;
   line-height: 1.6rem;
   color: #fff;
   text-align: center;
   vertical-align: middle;
-  box-shadow: 3px 3px 15px 2px rgba(138, 83, 0, 0.25),
-    -3px -3px 15px 2px rgba(138, 83, 0, 0.22);
 }
 
 .table__row:nth-child(even) {
@@ -333,13 +394,12 @@ main {
 .table__row td,
 .table__row_head {
   height: 36px;
-  padding: 6px;
-  font-size: 1.2rem;
-  font-style: normal;
-  font-weight: normal;
+  font-family: cursive;
+  font-size: 2rem;
   line-height: 1.2em;
   text-align: center;
   vertical-align: middle;
+  color: #050505cc;
 }
 
 .table__row_head {
@@ -347,6 +407,16 @@ main {
   font-weight: 600;
   font-family: 'Nerko One';
 }
+
+.table__sortable:hover {
+  color: #ff0707;
+  transition: 0.5s all;
+  cursor: pointer;
+}
+
+// .table__sortable:after {
+//   content: '↓';
+// }
 
 .category,
 .cards {
@@ -378,6 +448,17 @@ main {
   background-size: auto 100%;
   border-radius: 30px;
   box-shadow: 3px 3px 20px 3px rgba(17, 17, 17, 0.25);
+  background: #ffefba; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #ffffff,
+    #ffefba
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #ffffff,
+    #ffefba
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   &__img img {
     width: 100%;
@@ -394,7 +475,11 @@ main {
 
   &__title {
     display: flex;
-    padding: 10px 10px;
+    font-family: 'Chewy', cursive;
+    font-size: 27px;
+    color: #8680b5;
+    justify-content: space-between;
+    letter-spacing: 3px;
     justify-content: space-between;
 
     &_none {
@@ -442,9 +527,10 @@ main {
   cursor: pointer;
   outline: none;
   border-radius: 50%;
-  background-color: red;
-  box-shadow: 1px 1px 16px black;
+  background-color: #ff0000a3;
+  box-shadow: 0px 0px 14px red;
   transition: all 0.5s;
+  margin-top: -57px;
 }
 
 .repeat__btn img {
@@ -507,7 +593,14 @@ main {
 .error-answer {
   width: 50px;
   height: 50px;
-  // background: blue;
+  margin-right: 10px;
+  box-shadow: 0px 0px 5px 2px rgb(17 17 17 / 55%);
+  border-radius: 50%;
+}
+
+.error-answer {
+  background: red;
+  border-radius: 50%;
 }
 
 .answers {
@@ -626,8 +719,10 @@ main {
 .rotate {
   width: 40px;
   height: 40px;
-  background: url(../assets/images/rotate.png);
+  background: url(https://www.flaticon.com/svg/static/icons/svg/318/318255.svg);
   background-size: cover;
   border: none;
   cursor: pointer;
+  margin-top: 8px;
+  margin-right: 18px;
 }

@@ -1,42 +1,26 @@
 import dataCard from '../data/cards.json';
-import statisticData from '../data/statisticsData';
-import { shuffle, createStatistic } from './utils';
-import checkedStatistic from './statistic';
+import { shuffle } from './utils';
 import {
-  buttonMenu,
-  hamburgerMenu,
+  
+  
   categoryContainer,
   state,
-  navigation,
-  logo,
+  
   answersContainer,
   startButton,
-  repeatButton,
-  mainPage,
 } from './state';
 import { playAudio } from './audio';
 import Game from './game';
 import Menu from './menu';
 import gameState from './gameState';
 
-// const gameState = new GameState();
 const game = new Game();
 const menu = new Menu();
 export default class Card {
-  // constructor(labelCard, className) {}
 
-  returnCard(card, isClickRotate) {
-    if (isClickRotate) {
-      card
-        .closest('.card')
-        .querySelector('.front')
-        .classList.toggle('font-rotate');
-      card
-        .closest('.card')
-        .querySelector('.back')
-        .classList.toggle('back-rotate');
-    }
-    // state.isCardRotate = true;
+  returnCard(card) {
+    card.closest('.card').classList.toggle('flipped');
+    card.closest('.card').querySelector('.front').classList.toggle('opacity');
   }
 
   removeContainerCards({ target }) {
@@ -50,7 +34,6 @@ export default class Card {
   }
 
   cardCategoryArray(nameCategory) {
-    // if (target.classname)
     return dataCard[`${nameCategory}`].cards;
   }
 
@@ -61,18 +44,14 @@ export default class Card {
       document.querySelector('.cards').insertAdjacentHTML(
         'beforeend',
         `
-        <div class="card" data-disabled="true" data-checked="false" data-word="${
-          item.word
-        }">
+        <div class="card" data-disabled="true" data-checked="false" data-word="${item.word}">
         <div class="front">
           <div class="category-card__img">
             <img src="./assets/images/${item.image}" alt="Action (set A)">
           </div>
           <div class="category-card__title">
             <p>${item.word}</p>
-            ${
-              this.type === 'category' ? '' : '<button class="rotate"></button>'
-            }
+            ${this.type === 'category' ? '' : '<button class="rotate"></button>'}
           </div>
         </div>
         <div class="back">
@@ -85,7 +64,7 @@ export default class Card {
         </div>
     
       </div>
-      `
+      `,
       );
     });
 
@@ -121,15 +100,11 @@ export default class Card {
   }
 
   renderCards({ target }) {
-    if (
-      !target.closest('.category-card') &&
-      !target.closest('.navigation__link')
-    ) {
+    if (!target.closest('.category-card') && !target.closest('.navigation__link')) {
       return;
     }
     document.querySelector('.answer-wrap').classList.add('answer-wrap_none');
 
-    // state.isClickStatistic = false;
     state.isMainPage = false;
 
     this.getDataCardFromCategory(target);
@@ -137,45 +112,44 @@ export default class Card {
     this.createCard();
     menu.addStyleActiveLink();
 
-    state.wordGameArray = this.cardCategoryArray(state.nameCategory).map(
-      (item) => item.word
-    );
+    state.wordGameArray = this.cardCategoryArray(state.nameCategory).map((item) => item.word);
     shuffle(state.wordGameArray);
 
     const containerCards = document.querySelector('.cards');
 
     this.clickCard(containerCards);
-
-    // [...document.querySelectorAll('.rotate')].forEach((item) =>
-    //   item.addEventListener('click', () => {
-    //     this.returnCard(item);
-    //   })
-    // );
   }
 
   clickCard(containerCards) {
     if (containerCards.dataset.cards !== 'cards') {
+      [...document.querySelectorAll('.card')].forEach((card) => {
+        card.addEventListener('mouseleave', ({ target }) => {
+          if (state.isClickRotate) {
+            this.returnCard(target);
+            state.isClickRotate = false;
+            state.isCardRotate = false;
+            // state.isCardRotate = true;
+          }
+        });
+      });
+
       containerCards.addEventListener('click', ({ target }) => {
-        if (target.closest('.card')) {
+        if (target.closest('.card') && !state.isCardRotate) {
           state.isClickRotate = target.classList.contains('rotate');
 
           const card = target.closest('.card');
           const { word, checked } = card.dataset;
+          if (state.isClickRotate) {
+            this.returnCard(card);
+            state.isClickRotate = true;
+            state.isCardRotate = true;
+          }
 
-          this.clickButtonRotateCard(card, target);
-
-          if (
-            !state.isClickRotate &&
-            !state.isModeGame &&
-            !state.isCardRotate
-          ) {
+          if (!state.isClickRotate && !state.isModeGame && !state.isCardRotate) {
             playAudio(word);
           } else if (checked === 'false' && state.isClickStart) {
             gameState.setStatistic('clicks', word);
-            game.checkedWord(
-              card,
-              state.wordGameArray[state.wordGameArray.length - 1]
-            );
+            game.checkedWord(card, state.wordGameArray[state.wordGameArray.length - 1]);
           }
         }
       });
@@ -183,19 +157,7 @@ export default class Card {
     }
   }
 
-  clickButtonRotateCard(card, target) {
-    if (state.isClickRotate) {
-      document.querySelector('.rotate').addEventListener('click', () => {
-        // state.isClickRotate = true;
-        this.returnCard(card, state.isClickRotate);
-      });
-
-      card.addEventListener('mouseleave', () => {
-        this.returnCard(card, state.isClickRotate);
-        state.isClickRotate = false;
-      });
-    }
-  }
+  
 
   showStartButton() {
     answersContainer.classList.toggle('answers_none');
@@ -210,31 +172,18 @@ export default class Card {
     }
   }
 
-  hideStartButton() {
-    // document
-    //   .querySelector('.start-game__btn')
-    //   .classList.toggle('start-game__btn_none');
-    // repeatButton.classList.toggle('repeat__btn_none');
-  }
-
+ 
   hideTitleCards() {
-    [...document.querySelectorAll('.cards .category-card__title')].forEach(
-      (item) => {
-        item.classList.toggle('category-card__title_none');
-      }
-    );
-    [...document.querySelectorAll('.cards .category-card__img img')].forEach(
-      (item) => {
-        item.classList.toggle('card__img_play');
-      }
-    );
+    [...document.querySelectorAll('.cards .category-card__title')].forEach((item) => {
+      item.classList.toggle('category-card__title_none');
+    });
+    [...document.querySelectorAll('.cards .category-card__img img')].forEach((item) => {
+      item.classList.toggle('card__img_play');
+    });
   }
 
   removeAnswers() {
-    if (
-      document.querySelector('.error-answer') ||
-      document.querySelector('.correct-answer')
-    ) {
+    if (document.querySelector('.error-answer') || document.querySelector('.correct-answer')) {
       [
         ...document.querySelectorAll('.error-answer'),
         ...document.querySelectorAll('.correct-answer'),

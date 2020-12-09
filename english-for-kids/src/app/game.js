@@ -1,21 +1,6 @@
 import { playAudio } from './audio';
-import {
-  buttonMenu,
-  hamburgerMenu,
-  categoryContainer,
-  state,
-  navigation,
-  logo,
-  answersContainer,
-  startButton,
-  repeatButton,
-  mainPage,
-  statisticButton,
-} from './state';
-import { shuffle } from './utils';
-import checkedStatistic from './statistic';
+import { state, answersContainer, repeatButton } from './state';
 import gameState from './gameState';
-import { doc } from 'prettier';
 
 export default class Game {
   startGame() {
@@ -38,7 +23,7 @@ export default class Game {
       }
     }
   }
-
+ 
   correctAnswer(card) {
     playAudio('correct');
     card.dataset.checked = true;
@@ -101,62 +86,4 @@ export default class Game {
     document.querySelector('.answer-wrap').innerHTML = '';
     document.querySelector('.answer-wrap').classList.add('answer-wrap_none');
   }
-
-  //   gameOver(){
-  // 	isGameStart = true;
-  // 	if(errorsCount){
-  // 		playSound('./.....');
-  // 		title.textContent= ...;
-
-  // 		setTimeout(() => {
-  // 			renderMainPage();
-
-  // 		}, 1000);
-  // 	}
-  // }
-
-  // startGame() {
-  //   if (isGameStart && state.gameArray.length) {
-  //     playAudio(state.gameArray[state.gameArray.length - 1]);
-  //   } else {
-  //     // state.play = !state.play;
-  //     isGameStart = true;
-  //     // errorsCount = 0;
-  //     // buttonStart.classList.add('change button');
-  //     // buttonStart.setAttribute('title', 'Repeat'); // повторение саунд
-  //     state.gameArray = shuffle(state.gameArray);
-  //     // playSound(последние элемент в массиве плэй)
-  //   }
-  // }
-
-  // repeatWords(){
-  // 	const categotyChecked = document.querySelector('in').nodeValue;
-  // 	if(categotyChecked === 'all'){
-  // 		cardsArray = gameStat.stats.filter((item) => percentErrorCalc(item));
-
-  // 	} else {
-  // 		cardsArray = gameStat.stats.filter((item, index) => index < 8 );
-  // 	}
-  // }
-
-  // 	correctAnswerGame(){
-  // 		const img = event.target;
-  // 		const card = img.closets('.card-game');
-  // 		img.dataset.isAnswered = true;
-  // 		StatsPanel.append(correct); // add stars
-  // 	animateAnswer();
-  // 	playSound();
-  // 	gameArray.pop();
-  // 	if(gameArray.length){
-  // 		setTimeout(() => {
-  // 			card.classList.add('card-game_end');
-
-  // 		}, 1000);
-  // 	}else {
-  // 		gameOver();
-
-  // 	}
-  // 	}
-
-  // }
 }

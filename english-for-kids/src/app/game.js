@@ -15,6 +15,7 @@ import {
 import { shuffle } from './utils';
 import checkedStatistic from './statistic';
 import gameState from './gameState';
+import { doc } from 'prettier';
 
 export default class Game {
   startGame() {
@@ -26,6 +27,7 @@ export default class Game {
 
   checkedWord(card, wordPlay) {
     const { word } = card.dataset;
+    document.querySelector('.answer-wrap').classList.remove('answer-wrap_none');
     if (state.wordGameArray.length > 0) {
       if (word === wordPlay) {
         this.correctAnswer(card);
@@ -55,12 +57,13 @@ export default class Game {
       if (!state.errors) {
         this.finishGame('success');
       } else {
-        this.finishGame('error');
+        this.finishGame('failure');
 
         const h2 = document.createElement('h2');
         h2.className = 'sum-errors';
         h2.innerHTML = 'ERORROS:' + state.errors;
-        document.querySelector('.error').after(h2);
+        state.errors = 0;
+        document.querySelector('.failure').after(h2);
       }
     }
   }
@@ -76,18 +79,27 @@ export default class Game {
   }
 
   finishGame(win) {
+    playAudio(win);
+
     document.querySelector('.cards').innerHTML = '';
     const div = document.createElement('div');
     div.className = `${win}`;
 
     document.querySelector('.category').before(div);
 
+    answersContainer.classList.add('answers_none');
+    repeatButton.classList.add('repeat__btn_none');
+
     setTimeout(() => {
       document.querySelector(`.${win}`).remove();
-      // FIXME
-      document.querySelector('.sum-errors').remove();
+      if (document.querySelector('.sum-errors')) {
+        document.querySelector('.sum-errors').remove();
+      }
       document.querySelector('.category').classList.toggle('category_none');
     }, 2000);
+
+    document.querySelector('.answer-wrap').innerHTML = '';
+    document.querySelector('.answer-wrap').classList.add('answer-wrap_none');
   }
 
   //   gameOver(){

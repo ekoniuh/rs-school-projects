@@ -11,6 +11,7 @@ export const statisticButton = document.querySelector('.statistic');
 
 // export let isMenuOpen = false;
 export const state = {
+  isClickRotate: false,
   isClickSortReverse: true,
   isClickStatistic: false,
   isMainPage: true,
@@ -25,5 +26,6 @@ export const state = {
   wordGameArray: [],
   cardCategoryArray: [],
   errors: 0,
+  hash: '',
   endGame: false,
 };

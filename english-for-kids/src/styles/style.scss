@@ -18,25 +18,28 @@ h1 {
   cursor: pointer;
 }
 
-body {
+.body {
   width: 100%;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 1.6rem;
-  /* background-color: #fff; */
-}
-
-.body {
-  background-color: white;
-  background-image: radial-gradient(#9ed8d324 5px, transparent 5px);
-  background-size: 30px 30px;
+  background: #f05555a1;
 }
 
 main {
   margin: {
-    top: 24px;
+    top: 40px;
     bottom: 24px;
   }
 }
+
+// .root {
+//   position: absolute;
+//   background-color: rgb(61 61 61 / 62%);
+//   width: 100vw;
+//   height: 100vh;
+//   /* z-index: 1000; */
+//   cursor: pointer;
+// }
 
 .menu-open {
   background-color: rgba(61, 61, 61, 0);
@@ -60,8 +63,8 @@ main {
   z-index: 999;
   width: 100%;
   padding: 15px 0;
-  background: #fff;
-  box-shadow: 7px 4px 20px rgb(0 0 0 / 25%);
+  background: white;
+  box-shadow: 7px 4px 20px rgb(0 0 0 / 72%);
   &__wrapper {
     display: flex;
     align-items: center;
@@ -75,13 +78,18 @@ main {
   padding: 0 40px;
 }
 
-// .nav-box_none {
-//   display: none;
-// }
-
 .answer-wrap {
-  margin: 14px auto;
-  width: 1024px;
+  display: flex;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  width: calc(100% - 40px);
+  height: 70px;
+  margin: 0 auto;
+  overflow: hidden;
+  flex-direction: row;
+  &_none {
+    display: none;
+  }
 }
 
 .navigation {
@@ -95,7 +103,6 @@ main {
     top: 80px;
     left: 80px;
   }
-  /* background: linear-gradient(60deg, #4DADF7 0%, #ffe082 100%); */
   background: white;
   box-shadow: 5px 0 30px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease-in;
@@ -106,9 +113,8 @@ main {
   }
 
   &__link {
-    padding: 16px 10px;
+    padding: 12px 10px;
     line-height: 1.6rem;
-
     cursor: pointer;
     transition: all 0.3s ease-in;
     background: {
@@ -122,8 +128,14 @@ main {
     }
     &_active {
       font-weight: 600;
-      color: rgb(0, 0, 0);
-      border-bottom: 2px solid rgb(0, 0, 0);
+      color: black;
+      border-bottom: 2px solid black;
+      background-image: linear-gradient(
+        rgb(255 227 142 / 50%) 0%,
+        rgba(255, 224, 130, 0.5) 100%
+      );
+      background: #61c1414d;
+      box-shadow: inset 5px 0 0 0 #b73aaa;
     }
 
     &:hover {
@@ -147,6 +159,7 @@ main {
       background-position: center;
       background-size: contain;
       transition: 0.3s ease;
+      background-repeat: no-repeat;
     }
   }
 }
@@ -209,7 +222,7 @@ main {
       width: 100%;
       height: 3px;
       content: '';
-      background-color: #c2b8b5;
+      background-color: #4dadf7;
       border-radius: 5px;
     }
 
@@ -408,6 +421,13 @@ main {
   font-family: 'Nerko One';
 }
 
+.table__row_errors:after {
+  content: ', %';
+  font-weight: 400;
+  font-size: 24px;
+  font-family: cursive;
+}
+
 .table__sortable:hover {
   color: #ff0707;
   transition: 0.5s all;
@@ -431,7 +451,49 @@ main {
   display: none;
 }
 
-.card_fipped {
+// hover card
+
+.category,
+.cards {
+  visibility: hidden;
+}
+
+.category > .category-card,
+.cards > .card {
+  visibility: visible;
+}
+
+.category > .category-card,
+.cards > .card {
+  transition: opacity 150ms linear 100ms, transform 150ms ease-in-out 100ms;
+}
+
+.category:hover > .category-card,
+.cards:hover > .card {
+  opacity: 0.7;
+  transform: scale(0.97);
+}
+
+.category > .category-card:hover,
+.cards > .card:hover {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 0ms, 0ms;
+  box-shadow: 3px 3px 16px 3px rgba(255, 255, 255, 0.71);
+}
+
+.category > .category-card:active,
+.cards > .card:active {
+  transform: translateY(4px);
+}
+
+.cards > .category-card_train:hover {
+  transform: none;
+  box-shadow: 3px 3px 16px 3px rgba(72, 255, 0, 0.71);
+}
+
+.cards > .category-card_train:active {
+  transform: none;
 }
 
 .category-card,
@@ -447,7 +509,7 @@ main {
   background-position: center;
   background-size: auto 100%;
   border-radius: 30px;
-  box-shadow: 3px 3px 20px 3px rgba(17, 17, 17, 0.25);
+  box-shadow: 3px 3px 16px 3px rgb(0 0 0 / 71%);
   background: #ffefba; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
@@ -493,7 +555,9 @@ main {
   }
 
   &_train {
-    opacity: 0.5;
+    filter: blur(5px);
+    box-shadow: 3px 3px 16px 3px rgba(72, 255, 0, 0.71);
+    transform: scale(0.97);
   }
 }
 
@@ -527,15 +591,23 @@ main {
   cursor: pointer;
   outline: none;
   border-radius: 50%;
-  background-color: #ff0000a3;
-  box-shadow: 0px 0px 14px red;
-  transition: all 0.5s;
+  background-color: #f9f9f9;
+  box-shadow: 0px 4px 6px #3000ff;
+  transition: all 0.2s;
   margin-top: -57px;
 }
 
 .repeat__btn img {
-  width: 100px;
-  transition: all 0.5s;
+  width: 80px;
+  transition: all 0.2s;
+}
+
+.repeat__btn:hover {
+  transform: translateY(5px);
+}
+
+.repeat__btn:active {
+  transform: scale(0.98);
 }
 
 .start-game__btn {
@@ -593,7 +665,7 @@ main {
 .error-answer {
   width: 50px;
   height: 50px;
-  margin-right: 10px;
+  margin: 10px 5px;
   box-shadow: 0px 0px 5px 2px rgb(17 17 17 / 55%);
   border-radius: 50%;
 }
@@ -623,7 +695,7 @@ main {
   background-position: center;
 }
 
-.error {
+.failure {
   background: url(../assets/images/answers/minions/error.png) no-repeat;
   height: 400px;
   background-size: contain;
@@ -637,11 +709,16 @@ main {
   text-shadow: 2px 1px #000000a3;
 }
 
-// .error-answer {
-//   width: 30px;
-//   height: 30px;
-//   // background: rgb(0, 255, 106);
-// }
+.rotate {
+  width: 40px;
+  height: 40px;
+  background: url(https://www.flaticon.com/svg/static/icons/svg/318/318255.svg);
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+  margin-top: 8px;
+  margin-right: 18px;
+}
 
 .footer {
   border-top: 1px red solid;
@@ -710,19 +787,58 @@ main {
 
   .navigation {
     width: 320px;
-    padding-top: 120;
+    padding-top: 80px;
     padding-left: 40px;
+  }
+
+  .category-card,
+  .card {
+    width: 240px;
+    height: 200px;
+  }
+  .category-card__title p,
+  .card__title p {
+    padding: 0;
+  }
+  .navigation__link::before {
+    width: 23px;
+    height: 29px;
   }
 }
 
-//____________________
-.rotate {
-  width: 40px;
-  height: 40px;
-  background: url(https://www.flaticon.com/svg/static/icons/svg/318/318255.svg);
-  background-size: cover;
-  border: none;
-  cursor: pointer;
-  margin-top: 8px;
-  margin-right: 18px;
+@media screen and (max-height: 900px) {
+  .header {
+    padding: 0;
+  }
+  .wrapper {
+    padding: 10px 40px;
+  }
+
+  .footer .wrap {
+    padding: 6px 20px;
+  }
+
+  .category-card,
+  .card {
+    width: 240px;
+    height: 200px;
+  }
+  .category-card__title p,
+  .card__title p {
+    padding: 0;
+  }
+
+  .navigation__link {
+    padding: 8px 10px;
+  }
+
+  .navigation__link::before {
+    width: 23px;
+    height: 29px;
+  }
+
+  .rotate {
+    margin-top: 0;
+  }
 }
+//____________________

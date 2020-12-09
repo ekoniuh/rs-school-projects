@@ -2,30 +2,44 @@ import { doc } from 'prettier';
 import statisticData from '../data/statisticsData';
 import {
   buttonMenu,
-  hamburgerMenu,
   categoryContainer,
-  state,
   navigation,
   logo,
   answersContainer,
   startButton,
   repeatButton,
+  mainPage,
+  state,
+  statisticButton,
 } from './state';
-
+// import menu from './menu';
 export function shuffle(arr) {
   arr.sort(() => Math.random() - 0.5);
 }
 
 export function showMainPage(card) {
   if (categoryContainer.classList.contains('category_none')) {
+    // state.isClickStatistic = true;
+    state.hash = 'main-page';
+    card.setLocationHash(state.hash);
+    // state.isClickStatistic = false;
     state.isMainPage = true;
+
+    document
+      .querySelector('.navigation__link_active')
+      .classList.remove('navigation__link_active');
+    document
+      .querySelector('.main-page')
+      .classList.add('navigation__link_active');
+
     resetPage(card);
     categoryContainer.classList.toggle('category_none');
+    document.querySelector('.answer-wrap').classList.add('answer-wrap_none');
   }
 }
 
 export function toStatisticPage(card, gameState) {
-  state.isMainPage = false;
+  // state.isMainPage = false;
   resetPage(card);
 
   categoryContainer.classList.add('category_none');
@@ -53,6 +67,28 @@ function resetPage(card) {
 }
 
 export function createStatistic(gameState) {
+  createHeaderStatistic();
+  renderStatistic(gameState);
+
+  document
+    .querySelector('.table__row_head')
+    .addEventListener('click', ({ target }) => {
+      checkedSortStatistic(target, gameState);
+    });
+
+  document
+    .querySelector('.statistics__button_reset')
+    .addEventListener('click', () => {
+      gameState.resetStats();
+
+      [...document.querySelectorAll('.table__row')].forEach((item) => {
+        item.remove();
+      });
+      renderStatistic(gameState);
+    });
+}
+
+function createHeaderStatistic() {
   document.querySelector('main').insertAdjacentHTML(
     'beforeend',
     `
@@ -72,7 +108,7 @@ export function createStatistic(gameState) {
           <td class="table__sortable" data-sort="false">Clicks</td>
           <td class="table__sortable" data-sort="false">Correct</td>
           <td class="table__sortable" data-sort="false">Wrong</td>
-          <td class="table__sortable" data-sort="false">% errors</td>
+          <td class="table__sortable table__row_errors" data-sort="false">errors</td>
         </tr>
         
       </table>
@@ -80,36 +116,22 @@ export function createStatistic(gameState) {
   </div>
 `
   );
+}
+
+function checkedSortStatistic(target, gameState) {
+  if (target.dataset.sort === 'false') {
+    target.dataset.sort = 'true';
+    gameState.sortStatistic(target.textContent.toLowerCase());
+  } else {
+    target.dataset.sort = 'false';
+    gameState.sortReverseStatistic();
+  }
+
+  [...document.querySelectorAll('.table__row')].forEach((item) => {
+    item.remove();
+  });
+
   renderStatistic(gameState);
-
-  document
-    .querySelector('.table__row_head')
-    .addEventListener('click', ({ target }) => {
-      if (target.dataset.sort === 'false') {
-        target.dataset.sort = 'true';
-        gameState.sortStatistic(target.textContent.toLowerCase());
-      } else {
-        target.dataset.sort = 'false';
-        gameState.sortReverseStatistic();
-      }
-
-      [...document.querySelectorAll('.table__row')].forEach((item) => {
-        item.remove();
-      });
-
-      renderStatistic(gameState);
-    });
-
-  document
-    .querySelector('.statistics__button_reset')
-    .addEventListener('click', () => {
-      gameState.resetStats();
-
-      [...document.querySelectorAll('.table__row')].forEach((item) => {
-        item.remove();
-      });
-      renderStatistic(gameState);
-    });
 }
 
 function renderStatistic(gameState) {
@@ -129,4 +151,22 @@ function renderStatistic(gameState) {
   </tr>`
     );
   });
+}
+
+export function changeSwitchButton(state, card) {
+  state.isModeGame = !state.isModeGame;
+  state.isClickStart = false;
+  document.querySelector('.switch__slider').textContent = !state.isModeGame
+    ? 'Train'
+    : 'Play';
+  console.log('state.isClickStatistic', state.isClickStatistic);
+
+  if (state.isMainPage && !state.isClickStatistic) {
+    return;
+  }
+  card.removeAnswers();
+  card.hideTitleCards();
+  answersContainer.classList.toggle('answers_none');
+  startButton.classList.remove('start-game__btn_none');
+  repeatButton.classList.add('repeat__btn_none');
 }

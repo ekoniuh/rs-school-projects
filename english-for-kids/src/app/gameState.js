@@ -24,6 +24,7 @@ class GameState {
     });
 
     this.stats[indexItem][`${field}`] += 1;
+    this.calcErrors(indexItem, field);
     this.saveStats();
   }
 
@@ -36,6 +37,15 @@ class GameState {
   sortReverseStatistic() {
     this.stats.reverse();
     this.saveStats();
+  }
+
+  calcErrors(indexItem, field) {
+    this.stats[indexItem].errors = Math.round(
+      (this.stats[indexItem].wrong /
+        (this.stats[indexItem].wrong + this.stats[indexItem].correct)) *
+        100
+    );
+        this.saveStats();
   }
 
   getStats() {

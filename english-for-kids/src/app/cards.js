@@ -16,7 +16,7 @@ import {
 } from './state';
 import { playAudio } from './audio';
 import Game from './game';
-import { Menu } from './menu';
+import Menu from './menu';
 import gameState from './gameState';
 
 // const gameState = new GameState();
@@ -25,16 +25,18 @@ const menu = new Menu();
 export default class Card {
   // constructor(labelCard, className) {}
 
-  returnCard(card) {
-    state.isCardRotate = true;
-    card
-      .closest('.card')
-      .querySelector('.front')
-      .classList.toggle('font-rotate');
-    card
-      .closest('.card')
-      .querySelector('.back')
-      .classList.toggle('back-rotate');
+  returnCard(card, isClickRotate) {
+    if (isClickRotate) {
+      card
+        .closest('.card')
+        .querySelector('.front')
+        .classList.toggle('font-rotate');
+      card
+        .closest('.card')
+        .querySelector('.back')
+        .classList.toggle('back-rotate');
+    }
+    // state.isCardRotate = true;
   }
 
   removeContainerCards({ target }) {
@@ -90,14 +92,18 @@ export default class Card {
     if (!state.isMainPage && state.isModeGame) {
       answersContainer.classList.remove('answers_none');
       startButton.classList.remove('start-game__btn_none');
-      // repeatButton.classList.add('repeat__btn_none');
+
       this.hideTitleCards();
-      // this.showStartButton();
     }
+  }
+
+  setLocationHash(nameHash) {
+    window.location.hash = nameHash;
   }
 
   getDataCardFromCategory(target) {
     if (target.closest('.category-card')) {
+      state.hash = target.closest('.category-card').dataset.hash;
       state.nameCategory = target
         .closest('.category-card')
         .querySelector('.category-card__title p').innerText;
@@ -107,6 +113,7 @@ export default class Card {
       target.classList.contains('navigation__link') &&
       !target.classList.contains('main-page')
     ) {
+      state.hash = target.dataset.hash;
       state.nameCategory = target.innerText;
 
       state.cardCategoryArray = dataCard[target.innerText].cards;
@@ -120,10 +127,15 @@ export default class Card {
     ) {
       return;
     }
+    document.querySelector('.answer-wrap').classList.add('answer-wrap_none');
 
+    // state.isClickStatistic = false;
     state.isMainPage = false;
+
     this.getDataCardFromCategory(target);
+    this.setLocationHash(state.hash);
     this.createCard();
+    menu.addStyleActiveLink();
 
     state.wordGameArray = this.cardCategoryArray(state.nameCategory).map(
       (item) => item.word
@@ -132,15 +144,31 @@ export default class Card {
 
     const containerCards = document.querySelector('.cards');
 
+    this.clickCard(containerCards);
+
+    // [...document.querySelectorAll('.rotate')].forEach((item) =>
+    //   item.addEventListener('click', () => {
+    //     this.returnCard(item);
+    //   })
+    // );
+  }
+
+  clickCard(containerCards) {
     if (containerCards.dataset.cards !== 'cards') {
       containerCards.addEventListener('click', ({ target }) => {
         if (target.closest('.card')) {
-          const isClickRotate = !target.classList.contains('rotate');
+          state.isClickRotate = target.classList.contains('rotate');
+
           const card = target.closest('.card');
           const { word, checked } = card.dataset;
-          // state.statisticWord = word;
 
-          if (isClickRotate && !state.isModeGame && !state.isCardRotate) {
+          this.clickButtonRotateCard(card, target);
+
+          if (
+            !state.isClickRotate &&
+            !state.isModeGame &&
+            !state.isCardRotate
+          ) {
             playAudio(word);
           } else if (checked === 'false' && state.isClickStart) {
             gameState.setStatistic('clicks', word);
@@ -153,12 +181,20 @@ export default class Card {
       });
       containerCards.dataset.cards = 'cards';
     }
+  }
 
-    [...document.querySelectorAll('.rotate')].forEach((item) =>
-      item.addEventListener('click', () => {
-        this.returnCard(item);
-      })
-    );
+  clickButtonRotateCard(card, target) {
+    if (state.isClickRotate) {
+      document.querySelector('.rotate').addEventListener('click', () => {
+        // state.isClickRotate = true;
+        this.returnCard(card, state.isClickRotate);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        this.returnCard(card, state.isClickRotate);
+        state.isClickRotate = false;
+      });
+    }
   }
 
   showStartButton() {

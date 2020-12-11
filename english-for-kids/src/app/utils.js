@@ -1,18 +1,5 @@
-import { doc } from 'prettier';
-import statisticData from '../data/statisticsData';
-import {
-  buttonMenu,
-  categoryContainer,
-  navigation,
-  logo,
-  answersContainer,
-  startButton,
-  repeatButton,
-  mainPage,
-  state,
-  statisticButton,
-} from './state';
-// import menu from './menu';
+import { categoryContainer, answersContainer, startButton, repeatButton, state } from './state';
+
 export function shuffle(arr) {
   arr.sort(() => Math.random() - 0.5);
 }
@@ -25,12 +12,8 @@ export function showMainPage(card) {
     // state.isClickStatistic = false;
     state.isMainPage = true;
 
-    document
-      .querySelector('.navigation__link_active')
-      .classList.remove('navigation__link_active');
-    document
-      .querySelector('.main-page')
-      .classList.add('navigation__link_active');
+    document.querySelector('.navigation__link_active').classList.remove('navigation__link_active');
+    document.querySelector('.main-page').classList.add('navigation__link_active');
 
     resetPage(card);
     categoryContainer.classList.toggle('category_none');
@@ -39,7 +22,6 @@ export function showMainPage(card) {
 }
 
 export function toStatisticPage(card, gameState) {
-  // state.isMainPage = false;
   resetPage(card);
 
   categoryContainer.classList.add('category_none');
@@ -70,22 +52,18 @@ export function createStatistic(gameState) {
   createHeaderStatistic();
   renderStatistic(gameState);
 
-  document
-    .querySelector('.table__row_head')
-    .addEventListener('click', ({ target }) => {
-      checkedSortStatistic(target, gameState);
-    });
+  document.querySelector('.table__row_head').addEventListener('click', ({ target }) => {
+    checkedSortStatistic(target, gameState);
+  });
 
-  document
-    .querySelector('.statistics__button_reset')
-    .addEventListener('click', () => {
-      gameState.resetStats();
+  document.querySelector('.statistics__button_reset').addEventListener('click', () => {
+    gameState.resetStats();
 
-      [...document.querySelectorAll('.table__row')].forEach((item) => {
-        item.remove();
-      });
-      renderStatistic(gameState);
+    [...document.querySelectorAll('.table__row')].forEach((item) => {
+      item.remove();
     });
+    renderStatistic(gameState);
+  });
 }
 
 function createHeaderStatistic() {
@@ -114,7 +92,7 @@ function createHeaderStatistic() {
       </table>
     </div>
   </div>
-`
+`,
   );
 }
 
@@ -148,7 +126,7 @@ function renderStatistic(gameState) {
     <td>${item.correct}</td>
     <td>${item.wrong}</td>
     <td>${item.errors}</td>
-  </tr>`
+  </tr>`,
     );
   });
 }
@@ -156,10 +134,7 @@ function renderStatistic(gameState) {
 export function changeSwitchButton(state, card) {
   state.isModeGame = !state.isModeGame;
   state.isClickStart = false;
-  document.querySelector('.switch__slider').textContent = !state.isModeGame
-    ? 'Train'
-    : 'Play';
-  console.log('state.isClickStatistic', state.isClickStatistic);
+  document.querySelector('.switch__slider').textContent = !state.isModeGame ? 'Train' : 'Play';
 
   if (state.isMainPage && !state.isClickStatistic) {
     return;

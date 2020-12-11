@@ -34,8 +34,7 @@ export default class Game {
     img.src = 'https://www.flaticon.com/svg/static/icons/svg/725/725107.svg';
     img.alt = 'correct-answer';
     document.querySelector('.answer-wrap').append(img);
-    // repeatButton.after(img);
-
+   
     state.wordGameArray.pop();
     this.startGame();
     if (!state.wordGameArray.length) {

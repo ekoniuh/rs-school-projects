@@ -20,5 +20,3 @@ export default class Menu {
       .classList.add('navigation__link_active');
   }
 }
-
-// export default new Menu;

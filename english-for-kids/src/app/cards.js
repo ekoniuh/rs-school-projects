@@ -1,14 +1,6 @@
 import dataCard from '../data/cards.json';
 import { shuffle } from './utils';
-import {
-  
-  
-  categoryContainer,
-  state,
-  
-  answersContainer,
-  startButton,
-} from './state';
+import { categoryContainer, state, answersContainer, startButton } from './state';
 import { playAudio } from './audio';
 import Game from './game';
 import Menu from './menu';
@@ -17,7 +9,6 @@ import gameState from './gameState';
 const game = new Game();
 const menu = new Menu();
 export default class Card {
-
   returnCard(card) {
     card.closest('.card').classList.toggle('flipped');
     card.closest('.card').querySelector('.front').classList.toggle('opacity');
@@ -128,7 +119,6 @@ export default class Card {
             this.returnCard(target);
             state.isClickRotate = false;
             state.isCardRotate = false;
-            // state.isCardRotate = true;
           }
         });
       });
@@ -146,8 +136,10 @@ export default class Card {
           }
 
           if (!state.isClickRotate && !state.isModeGame && !state.isCardRotate) {
+            // debugger;
             playAudio(word);
           } else if (checked === 'false' && state.isClickStart) {
+            // debugger;
             gameState.setStatistic('clicks', word);
             game.checkedWord(card, state.wordGameArray[state.wordGameArray.length - 1]);
           }
@@ -156,8 +148,6 @@ export default class Card {
       containerCards.dataset.cards = 'cards';
     }
   }
-
-  
 
   showStartButton() {
     answersContainer.classList.toggle('answers_none');
@@ -172,7 +162,6 @@ export default class Card {
     }
   }
 
- 
   hideTitleCards() {
     [...document.querySelectorAll('.cards .category-card__title')].forEach((item) => {
       item.classList.toggle('category-card__title_none');

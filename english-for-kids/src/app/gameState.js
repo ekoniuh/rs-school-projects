@@ -39,13 +39,13 @@ class GameState {
     this.saveStats();
   }
 
-  calcErrors(indexItem, field) {
+  calcErrors(indexItem) {
     this.stats[indexItem].errors = Math.round(
-      (this.stats[indexItem].wrong /
+      (this.stats[indexItem].wrong
         (this.stats[indexItem].wrong + this.stats[indexItem].correct)) *
-        100
+        100,
     );
-        this.saveStats();
+    this.saveStats();
   }
 
   getStats() {

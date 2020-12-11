@@ -9,7 +9,6 @@ export const repeatButton = document.querySelector('.repeat__btn');
 export const mainPage = document.querySelector('.main-page');
 export const statisticButton = document.querySelector('.statistic');
 
-// export let isMenuOpen = false;
 export const state = {
   isClickRotate: false,
   isClickSortReverse: true,

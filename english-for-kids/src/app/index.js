@@ -4,7 +4,6 @@ import {
   categoryContainer,
   navigation,
   logo,
-  answersContainer,
   startButton,
   repeatButton,
   mainPage,
@@ -15,12 +14,7 @@ import Menu from './menu';
 import Card from './cards';
 import Game from './game';
 import gameState from './gameState';
-import {
-  showMainPage,
-  toStatisticPage,
-  removeStatistic,
-  changeSwitchButton,
-} from './utils';
+import { showMainPage, toStatisticPage, removeStatistic, changeSwitchButton } from './utils';
 
 const card = new Card();
 const game = new Game();
@@ -45,8 +39,7 @@ logo.addEventListener('click', () => showMainPage(card));
 
 mainPage.addEventListener('click', (event) => {
   event.stopPropagation();
-  // state.isClickStatistic = true;
-  state.hash = event.target.dataset.hash;
+    state.hash = event.target.dataset.hash;
   card.setLocationHash(state.hash);
   showMainPage(card);
   menu.closeMenu();
@@ -55,8 +48,7 @@ mainPage.addEventListener('click', (event) => {
 statisticButton.addEventListener('click', (event) => {
   event.stopPropagation();
   state.isMainPage = true;
-  // state.isClickStatistic = true;
-  state.hash = event.target.dataset.hash;
+    state.hash = event.target.dataset.hash;
   card.setLocationHash(state.hash);
   card.removeContainerCards(event);
   toStatisticPage(card, gameState);

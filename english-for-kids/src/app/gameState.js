@@ -41,7 +41,7 @@ class GameState {
 
   calcErrors(indexItem) {
     this.stats[indexItem].errors = Math.round(
-      (this.stats[indexItem].wrong
+      (this.stats[indexItem].wrong /
         (this.stats[indexItem].wrong + this.stats[indexItem].correct)) *
         100,
     );

@@ -135,7 +135,7 @@ export function changeSwitchButton(state, card) {
   state.isModeGame = !state.isModeGame;
   state.isClickStart = false;
   document.querySelector('.switch__slider').textContent = !state.isModeGame ? 'Train' : 'Play';
-
+  
   if (state.isMainPage && !state.isClickStatistic) {
     return;
   }

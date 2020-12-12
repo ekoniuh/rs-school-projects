@@ -76,6 +76,10 @@ button {
   }
 }
 
+.switch__label--index {
+  z-index: -1;
+}
+
 .navigation {
   position: absolute;
   top: 0;
@@ -219,6 +223,7 @@ button {
 .switch {
   &__label {
     position: relative;
+    // z-index: -1;
     display: inline-block;
     width: 140px;
     height: 40px;
@@ -411,6 +416,10 @@ button {
   padding-top: 20px;
   padding-bottom: 20px;
   visibility: hidden;
+}
+
+.cards {
+  padding-bottom: 100px;
 }
 
 .category_none {
@@ -731,8 +740,21 @@ button {
     font-size: 1.6rem;
   }
 
-  .statistics__table {
-    min-width: 650px;
+  .footer__inner {
+    order: 2;
+  }
+
+  .statistics {
+    padding: 0 10px;
+  }
+
+  .table__row td,
+  .table__row_head {
+    font-size: 1.2rem;
+  }
+
+  .statistics__button_wide {
+    margin-bottom: 20px;
   }
 }
 
@@ -759,6 +781,10 @@ button {
   .navigation__link::before {
     width: 23px;
     height: 29px;
+  }
+
+  .rotate {
+    margin-top: 0;
   }
 }
 
@@ -795,5 +821,9 @@ button {
 
   .rotate {
     margin-top: 0;
+  }
+
+  .statistics {
+    padding: 0 10px;
   }
 }

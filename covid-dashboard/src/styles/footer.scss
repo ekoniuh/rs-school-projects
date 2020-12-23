@@ -1,0 +1,43 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: white;
+  border-top: 1px red solid;
+  box-shadow: 7px 4px 20px #b9a4a4;
+
+  .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // max-width: 1360px;
+    margin: 0 auto;
+    padding: 10px 30px;
+  }
+
+  &__inner {
+    font-family: cursive;
+  }
+
+  .social-list {
+    display: flex;
+    transition: all 0.3s;
+
+    &__item {
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+      &:hover {
+        transition: all 0.3s;
+        transform: scale(1.1);
+      }
+
+      & .rsschool-logo {
+        width: 72px;
+      }
+      &-img {
+        width: 40px;
+      }
+    }
+  }
+}

@@ -1,0 +1,198 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="./assets/images/flaticon-covid.svg" type="image/x-icon">
+	<!-- <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet"> -->
+	<!-- <link rel="shortcut icon" href="assets/favicon.ico"> -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
+		integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
+		crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<title>covid-dashboard</title>
+
+</head>
+
+<body class="body">
+	<header class="header">
+		<!-- <div class="use-keyboard-input"></div> -->
+		<div class="logo">COVID-19 Dashboard</div>
+		<input type="text" class="search-country use-keyboard-input" id="input-search" placeholder="...search">
+	</header>
+	<main class="main">
+		<div class="wrapper">
+			<div class="left-container">
+				<div class="global-data box-shadow  full-screen__btn-relative">
+					<!-- <img src="https://www.flaticon.com/svg/static/icons/svg/456/456311.svg" alt="" class="full-screen__btn">
+					<h2 class="global-title">TOTAL CASES</h2>
+					<span class="total-count">74672924</span> -->
+				</div>
+				<div class="country-wrap box-shadow full-screen__btn-relative">
+					<img src="https://www.flaticon.com/svg/static/icons/svg/456/456311.svg" alt="" class="full-screen__btn">
+
+					<div class="head-info">
+						<div class="head__title">
+							<h4>Total all/today</h4>
+							<h4>Population/100 000</h4>
+						</div>
+
+						<div class="switch-wrap">
+							<label class="switch switch-time-all">
+
+								<input type="checkbox" class="switch-change time-all global-info__switch" data-switch-active="false"
+									data-switch="time-all">
+								<span class="slider"></span>
+							</label>
+							<label class="switch switch-absolute-value">
+
+								<input type="checkbox" class="switch-change global-info__switch" data-switch-active="false"
+									data-switch="absolute-value">
+								<span class="slider"></span>
+							</label>
+						</div>
+						<select class="select-parameter">
+							<option class="table-point" value="cases">Total cases</option>
+							<option class="table-point" value="deaths">Total deaths</option>
+							<option class="table-point" value="recovered">Total recovered</option>
+						</select>
+					</div>
+
+				</div>
+				<!-- 
+					<thead>
+						<tr>
+							<th> -->
+				<!-- <div class="table-title">
+					<span>Country</span> -->
+				<!-- <button class="btn btn-search btn-outline-secondary" type="button">
+									</button> -->
+				<!-- </div> -->
+				<!-- </th>
+							<th> -->
+
+				<!-- </th>
+						</tr>
+					</thead> -->
+
+			</div>
+
+			<div class="center-container box-shadow full-screen__btn-relative">
+				<div class="map-box">
+					<img src="https://www.flaticon.com/svg/static/icons/svg/456/456311.svg" alt="" class="full-screen__btn">
+
+				</div>
+			</div>
+
+			<div class="right-container">
+
+				<div class="global-info box-shadow full-screen__btn-relative">
+					<img src="https://www.flaticon.com/svg/static/icons/svg/456/456311.svg" alt="" class="full-screen__btn">
+					<div class="head-info">
+						<div class="switch-wrap">
+							<div class="time-wrap head__title">
+								<h4>Total all/today</h4>
+								<label class="switch switch-time-all">
+									<input type="checkbox" class="switch-change time-all country-info__switch" data-switch-active="false"
+										data-switch="time-all">
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="absolute-value-wrap head__title">
+								<h4>Population/100 000</h4>
+								<label class="switch switch-absolute-value">
+									<input type="checkbox" class="switch-change  country-info__switch" data-switch-active="false"
+										data-switch="absolute-value">
+									<span class="slider"></span>
+								</label>
+							</div>
+
+						</div>
+					</div>
+					<!-- <div class="cases-wrap"> -->
+
+					<!-- <table class="stat-table table">
+							<thead>
+								<tr class="table-cases-wrap">
+									<th class="cases-head">Total cases</th>
+									<th class="cases-head">Total deaths</th>
+									<th class="cases-head">Total healed</th>
+								</tr>
+							</thead>
+						</table> -->
+					<!-- </div> -->
+				</div>
+				<div class="graph-container box-shadow full-screen__btn-relative">
+					<div class="graph-control__wrap">
+
+						<div class="head-info">
+
+							<div class="head__title">
+								<h4>Total all/today</h4>
+								<h4>Population/100 000</h4>
+							</div>
+
+							<div class="switch-wrap">
+								<label class="switch switch-time-all">
+
+									<input type="checkbox" class="switch-change time-all graph-info__switch" data-switch-active="false"
+										data-switch="time-all">
+									<span class="slider"></span>
+								</label>
+								<label class="switch switch-absolute-value">
+
+									<input type="checkbox" class="switch-change graph-info__switch" data-switch-active="false"
+										data-switch="absolute-value">
+									<span class="slider"></span>
+								</label>
+							</div>
+							<select class="select-parameter">
+								<option class="table-point" value="cases">Total cases</option>
+								<option class="table-point" value="deaths">Total deaths</option>
+								<option class="table-point" value="recovered">Total recovered</option>
+							</select>
+						</div>
+					</div>
+					<img src="https://www.flaticon.com/svg/static/icons/svg/456/456311.svg" alt="" class="full-screen__btn">
+					<div class="canvas-container">
+						<!-- <canvas class="canvas-graph popChart" id="popChart">
+
+						</canvas> -->
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+	<footer class="footer">
+		<div class="wrap">
+			<div class="footer__inner">
+				<span>2020 © COVID-19 Dashboard</span>
+			</div>
+			<div class="social-list">
+				<a href="https://github.com/ekoniuh" class="social-list__item" alt="github" target="_blank">
+					<img src="https://www.flaticon.com/svg/static/icons/svg/1688/1688400.svg" class="social-list__item-img"
+						alt="github-logo" title="github account ekoniuh">
+				</a>
+				<a href="https://github.com/EgorSuschenko" class="social-list__item" alt="github" target="_blank">
+					<img src="https://www.flaticon.com/svg/static/icons/svg/2317/2317981.svg" class="social-list__item-img"
+						alt="github-logo" title="github account Egor Suschenko">
+				</a>
+				<a href="https://github.com/rombas" class="social-list__item" alt="github" target="_blank">
+					<img src="https://www.flaticon.com/svg/static/icons/svg/2463/2463510.svg" class="social-list__item-img"
+						alt="rsschool-logo" title="github account rombas">
+				</a>
+				<a href="https://rs.school/js/" class="social-list__item" alt="rsschool">
+					<img src="./assets/images/footer-socials/rs-school.svg" class="social-list__item-img rsschool-logo"
+						alt="rsschool-logo">
+				</a>
+			</div>
+		</div>
+	</footer>
+
+</body>
+
+</html>

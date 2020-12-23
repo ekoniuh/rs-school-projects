@@ -1,0 +1,29 @@
+.full-screen__active {
+  position: fixed !important;
+  width: 96% !important;
+  height: 83% !important;
+  background: #838fa0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 8%;
+  left: 2%;
+  z-index: 1;
+  border: none !important;
+  box-shadow: 0 0 11px #4ea091 !important;
+}
+
+.full-screen__btn {
+  cursor: pointer;
+  width: 24px;
+  position: absolute;
+  top: -9px;
+  right: -13px;
+  background: white;
+  border-radius: 6px;
+}
+
+.full-screen__btn-relative {
+  position: relative;
+}

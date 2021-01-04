@@ -10,7 +10,7 @@
  
 1. What is Web performance optimization?
 2. Optimization methods and tool
-3. Why is website optimization important?****
+3. Why is website optimization important?
 
 ## 3.1 slide
 

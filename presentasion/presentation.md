@@ -1,5 +1,7 @@
 [a link to your YouTube video](https://youtu.be/ArIKptoG8Kw)
+
 [a link to your Reveal presentation's deploy](https://rolling-scopes-school.github.io/ekoniuh-JS2020Q3/presentasion/)
+
 [a link to the transcript of your presentation](https://github.com/rolling-scopes-school/ekoniuh-JS2020Q3/blob/presentation/presentasion/presentation.md)
 
 
@@ -25,7 +27,7 @@ Web performance is the objective measurements and the perceived user experience 
 
 ## 4.1 slide
 
- каждым годом веб приложения становятся все больше и сложнее, что сказывается на их производительности. А производительность приложения влияет на его конкурентоспособность на рынке. Для этого веб разработчикам стоит быть знакомыми с различными техниками улучшения производительности. Основными направлениями, по которым можно поработать для улучшения производительности вебприложения являются
+The web applications are becoming more and more complex every year, affecting them  productivity (продактивити). And the performance of the application affects its competitiveness   on the market. For this purpose web developers should be familiar with different performance improvement technicians. Main lines of reference work to improve the performance of the web application is
 
 1. Animation performance and frame rate
 2. Critical rendering path
@@ -40,7 +42,7 @@ Web performance is the objective measurements and the perceived user experience 
 11. Recommended Web Performance Timings: How long is too long?
 12. Understanding latency
 
-Поговорим подробнее о каждом из пунктов...
+Let's talk in more detail about each of the points...
 
 ## 5.1 slide
 

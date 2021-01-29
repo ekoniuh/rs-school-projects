@@ -1,4 +1,3 @@
-// import cardsData from 'data/cards';
 import statisticData from '../data/statisticsData';
 class GameState {
   constructor() {
@@ -30,7 +29,6 @@ class GameState {
 
   sortStatistic(word) {
     this.stats.sort((a, b) => (a[`${word}`] < b[`${word}`] ? 1 : -1));
-    // this.stats.sort((a, b) => a[`${word}`] - b[`${word}`]);
     this.saveStats();
   }
 

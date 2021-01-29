@@ -23,18 +23,32 @@ export default class Game {
       }
     }
   }
- 
+
+  createElementImg(element, className, src, alt) {
+    const img = document.createElement(element);
+    img.className = className;
+    img.src = src;
+    img.alt = alt;
+    return img;
+  }
+
+  createElement(element, className) {
+    const tag = document.createElement(element);
+    tag.className = className;
+    return tag;
+  }
+
   correctAnswer(card) {
     playAudio('correct');
     card.dataset.checked = true;
     card.classList.toggle('category-card_train');
 
-    const img = document.createElement('img');
-    img.className = 'correct-answer';
-    img.src = 'https://www.flaticon.com/svg/static/icons/svg/725/725107.svg';
-    img.alt = 'correct-answer';
+    const classNameImg = 'correct-answer';
+    const srcImg = 'https://www.flaticon.com/svg/static/icons/svg/725/725107.svg';
+
+    const img = this.createElementImg('img', classNameImg, srcImg, classNameImg);
     document.querySelector('.answer-wrap').append(img);
-   
+
     state.wordGameArray.pop();
     this.startGame();
     if (!state.wordGameArray.length) {
@@ -43,8 +57,8 @@ export default class Game {
       } else {
         this.finishGame('failure');
 
-        const h2 = document.createElement('h2');
-        h2.className = 'sum-errors';
+        const h2 = this.createElement('h2', 'sum-errors');
+
         h2.innerHTML = 'ERORROS:' + state.errors;
         state.errors = 0;
         document.querySelector('.failure').after(h2);

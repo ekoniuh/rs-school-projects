@@ -1,15 +1,16 @@
 import { categoryContainer, answersContainer, startButton, repeatButton, state } from './state';
 
+const DECREASE_SORT_STATISTIC = 'false';
+const INCREASE_SORT_STATISTIC = 'true';
+
 export function shuffle(arr) {
   arr.sort(() => Math.random() - 0.5);
 }
 
 export function showMainPage(card) {
   if (categoryContainer.classList.contains('category_none')) {
-    // state.isClickStatistic = true;
     state.hash = 'main-page';
     card.setLocationHash(state.hash);
-    // state.isClickStatistic = false;
     state.isMainPage = true;
 
     document.querySelector('.navigation__link_active').classList.remove('navigation__link_active');
@@ -97,11 +98,11 @@ function createHeaderStatistic() {
 }
 
 function checkedSortStatistic(target, gameState) {
-  if (target.dataset.sort === 'false') {
-    target.dataset.sort = 'true';
+  if (target.dataset.sort === DECREASE_SORT_STATISTIC ) {
+    target.dataset.sort = INCREASE_SORT_STATISTIC ;
     gameState.sortStatistic(target.textContent.toLowerCase());
   } else {
-    target.dataset.sort = 'false';
+    target.dataset.sort = DECREASE_SORT_STATISTIC ;
     gameState.sortReverseStatistic();
   }
 

@@ -223,7 +223,7 @@ button {
 .switch {
   &__label {
     position: relative;
-    // z-index: -1;
+    
     display: inline-block;
     width: 140px;
     height: 40px;
@@ -426,11 +426,6 @@ button {
   display: none;
 }
 
-// .category > .category-card,
-// .cards > .card {
-
-// }
-
 .category > .category-card,
 .cards > .card {
   visibility: visible;
@@ -440,21 +435,15 @@ button {
 .category:hover > .category-card,
 .cards:hover > .card {
   opacity: 0.7;
-  // transform: scale(0.97);
 }
 
 .category > .category-card:hover,
 .cards > .card:hover {
   box-shadow: 3px 3px 16px 3px rgba(255, 255, 255, 0.71);
   opacity: 1;
-  // transform: scale(1);
   transition-delay: 0ms, 0ms;
 }
 
-// .category > .category-card:active,
-// .cards > .card:active {
-//   transform: translateY(4px);
-// }
 
 .cards > .category-card_train:hover {
   box-shadow: 3px 3px 16px 3px rgba(72, 255, 0, 0.71);

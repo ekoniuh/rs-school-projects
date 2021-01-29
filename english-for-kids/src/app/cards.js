@@ -8,8 +8,10 @@ import gameState from './gameState';
 
 const game = new Game();
 const menu = new Menu();
+
+const INCORRECT_CARD_FLAG = 'false';
 export default class Card {
-  returnCard(card) {
+   returnCard(card) {
     card.closest('.card').classList.toggle('flipped');
     card.closest('.card').querySelector('.front').classList.toggle('opacity');
   }
@@ -136,10 +138,8 @@ export default class Card {
           }
 
           if (!state.isClickRotate && !state.isModeGame && !state.isCardRotate) {
-            // debugger;
             playAudio(word);
-          } else if (checked === 'false' && state.isClickStart) {
-            // debugger;
+          } else if (checked === INCORRECT_CARD_FLAG && state.isClickStart) {
             gameState.setStatistic('clicks', word);
             game.checkedWord(card, state.wordGameArray[state.wordGameArray.length - 1]);
           }
@@ -184,7 +184,7 @@ export default class Card {
         item.classList.remove('category-card_train');
       });
       [...document.querySelectorAll('.card')].forEach((card) => {
-        card.dataset.checked = 'false';
+        card.dataset.checked = INCORRECT_CARD_FLAG;
       });
     }
   }

@@ -49,4 +49,21 @@ const objectDataWorld = {
   },
 };
 
-export default objectDataWorld;
+const styleData = {
+  type: 'bar',
+  data: {
+    datasets: [
+      {
+        data: [],
+        backgroundColor: '#5bfff7',
+      },
+    ],
+  },
+  options: {
+    legend: {
+      display: false,
+    },
+  },
+};
+
+export { objectDataWorld, styleData };

@@ -92,8 +92,8 @@ export default class Keyboard {
       'space',
     ];
 
-    const createIconHTML = (icon_name) => {
-      return `<i class="material-icons">${icon_name}</i>`;
+    const createIconHTML = (iconName) => {
+      return `<i class="material-icons">${iconName}</i>`;
     };
 
     keyLayout.forEach((key) => {

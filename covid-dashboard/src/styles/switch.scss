@@ -26,9 +26,11 @@
   left: 0;
   right: 0;
   bottom: 0;
+  border-radius: 3px;
   background-color: #ccc;
   -webkit-transition: 0.4s;
   transition: 0.4s;
+  box-shadow: 0 0 5px #e91e63;
 }
 
 .slider:before {

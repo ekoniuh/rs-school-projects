@@ -15,6 +15,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   user-select: none;
   transition: bottom 0.4s;
+  z-index: 3;
 }
 
 .keyboard--hidden {
@@ -48,10 +49,8 @@
 }
 
 .keyboard__key:active {
-  // height: 43px;
-  // width: 5%;
   background: rgb(245 24 24 / 63%);
-  // transform: translateY(3px);
+
   transform: scale(0.95);
   transition: all 0.1s;
 }
@@ -86,7 +85,7 @@
 
 @media screen and (max-width: 1200px) {
   .keyboard {
-    top: 64px;
+    top: 84px;
     height: 264px;
     transition: left 0.4s;
   }

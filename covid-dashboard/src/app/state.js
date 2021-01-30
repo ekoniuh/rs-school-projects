@@ -1,7 +1,5 @@
 const stateGlobalTable = {
-  // switchParameterPeriod: '',
   switchParameterState: 'cases',
-  // switchParameterValue: '',
   isClickCountry: false,
   isSwitchActive: null,
   isSwitchParameterPeriod: false,
@@ -16,17 +14,27 @@ const stateCountryTable = {
   keyParameterPeriod: 'deaths',
   keyParameterValue: 'recovered',
   keyView: '',
-  // switchParameterValue: '',
   switchParameterState: '',
   isSwitchActive: null,
   isSwitchParameterPeriod: false,
   isSwitchParameterValue: false,
   defaultDataGlobal: [],
 
-  // keyValue: 'cases',
 };
 
-const objDataWord = {
-  
-}
-export { stateGlobalTable, stateCountryTable };
+const stateGraph = {
+  countryData: [],
+  nameCountry: null,
+  keyParameterState: 'cases',
+  keyParameterPeriod: 'deaths',
+  keyParameterValue: 'recovered',
+  keyView: '',
+  switchParameterState: 'cases',
+  isSwitchActive: null,
+  isSwitchParameterPeriod: false,
+  isSwitchParameterValue: false,
+  defaultDataGlobal: [],
+
+};
+
+export { stateGlobalTable, stateCountryTable, stateGraph };

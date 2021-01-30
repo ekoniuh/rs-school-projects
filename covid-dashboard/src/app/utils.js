@@ -1,13 +1,13 @@
-// import { doc } from 'prettier';
 import { stateCountryTable } from './state';
 
 const ONE_HUNDRED_THOUSAND = 100000;
+
 export function addFieldPerOneHundredThousand(data) {
   data.forEach((country) => {
     country.casesToday = country.todayCases;
     country.deathsToday = country.todayDeaths;
     country.recoveredToday = country.todayRecovered;
-
+  
     country.casesPerOneHundredThousand = Number(
       Math.round((country.cases / country.population) * ONE_HUNDRED_THOUSAND)
     );
@@ -40,25 +40,72 @@ export function addFieldPerOneHundredThousand(data) {
   });
 }
 
+function addDailyStatisticCases(key, data) {
+  data[key].value.forEach((total, index) => {
+    if (index + 1 !== data.length) {
+      data[`${key}Today`].value[index] = Math.abs(
+        data[key].value[index + 1] - total
+      );
+    }
+  });
+  data[`${key}Today`].date = data[key].date;
+  data[`${key}Today`].value.pop();
+  data[`${key}Today`].date.pop();
+}
+
+function addStatisticCountryPerOneHundredThousand(key, data, population) {
+  data[key].value.forEach((total, index) => {
+    data[`${key}PerOneHundredThousand`].value[index] = Number(
+      Math.round((total / population) * ONE_HUNDRED_THOUSAND).toFixed(3)
+    );
+  });
+  data[`${key}PerOneHundredThousand`].date = data[key].date;
+  data[`${key}Today`].value.forEach((total, index) => {
+    data[`${key}TodayPerOneHundredThousand`].value[index] = Number(
+      Math.round((total / population) * ONE_HUNDRED_THOUSAND).toFixed(3)
+    );
+  });
+  data[`${key}TodayPerOneHundredThousand`].date = data[key].date;
+}
+
+export function addFieldCountryDailyDataGraph(data, population) {
+  Object.keys(data).forEach((key) => {
+    if (key === 'cases') {
+      addDailyStatisticCases(key, data);
+      addStatisticCountryPerOneHundredThousand(key, data, population);
+    }
+
+    if (key === 'deaths') {
+      addDailyStatisticCases(key, data);
+      addStatisticCountryPerOneHundredThousand(key, data, population);
+    }
+
+    if (key === 'recovered') {
+      addDailyStatisticCases(key, data);
+      addStatisticCountryPerOneHundredThousand(key, data, population);
+    }
+  });
+}
+
 export function sortData(data, key) {
   data.sort((a, b) => (a[key] < b[key] ? 1 : -1));
 }
 
 function changeKeyValue(statePeople, isPeriod, isValueAbsolute) {
   let keyValue = '';
-  if (isPeriod === true && isValueAbsolute === true) {
+  if (isPeriod && isValueAbsolute) {
     keyValue = `${statePeople}TodayPerOneHundredThousand`;
     stateCountryTable.keyView = 'TodayPerOneHundredThousand';
   }
-  if (isPeriod === false && isValueAbsolute === false) {
+  if (!isPeriod && !isValueAbsolute) {
     keyValue = `${statePeople}`;
     stateCountryTable.keyView = '';
   }
-  if (isPeriod === true && isValueAbsolute === false) {
+  if (isPeriod && !isValueAbsolute) {
     keyValue = `${statePeople}Today`;
     stateCountryTable.keyView = 'Today';
   }
-  if (isPeriod === false && isValueAbsolute === true) {
+  if (!isPeriod && isValueAbsolute) {
     keyValue = `${statePeople}PerOneHundredThousand`;
     stateCountryTable.keyView = 'PerOneHundredThousand';
   }
@@ -131,7 +178,6 @@ function getDataToday() {
 
 export function createWindowGlobalTotal(data) {
   return `
-					<img src="https://www.flaticon.com/svg/static/icons/svg/456/456311.svg" alt="" class="full-screen__btn">
           <h2 class="global-title">TOTAL CASES</h2>
           <span class="total-count">${data}</span>
 					<span class="total-data">${getDataToday()}</span>

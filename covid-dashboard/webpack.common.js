@@ -7,8 +7,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const PATHS = {
   src: path.join(__dirname, 'src'),
   dist: path.join(__dirname, 'dist'),
-  assetsImage: path.join(__dirname, '.covid-dashboard/src/assets/images'),
-  // assetsAudio: path.join(__dirname, '.covid-dashboard/src/assets/audio'),
+  assetsImage: path.join(__dirname, './src/assets/images'),
+  // assetsAudio: path.join(__dirname, './src/assets/audio'),
   public: path.join(__dirname, 'public'),
 };
 
@@ -16,7 +16,7 @@ module.exports = {
   externals: {
     PATHS,
   },
-  entry: '.covid-dashboard/src/app/index.js',
+  entry: './src/app/index.js',
   output: {
     filename: 'index.js',
     path: PATHS.dist,
@@ -33,7 +33,7 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            options: { name: '.covid-dashboard/src/assets/images/[name].[ext]' },
+            options: { name: './src/assets/images/[name].[ext]' },
           },
         ],
       },
@@ -42,7 +42,7 @@ module.exports = {
       //   use: [
       //     {
       //       loader: 'file-loader',
-      //       options: { name: '.covid-dashboard/src/assets/audio/[name].[ext]' },
+      //       options: { name: './src/assets/audio/[name].[ext]' },
       //     },
       //   ],
       // },
@@ -74,7 +74,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       title: 'covid-dashboard	',
-      template: '.covid-dashboard/src/index.html',
+      template: './src/index.html',
     }),
     new CopyPlugin({
       patterns: [

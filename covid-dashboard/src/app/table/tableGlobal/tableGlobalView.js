@@ -11,7 +11,6 @@ export default class CasesGlobalModelView {
   render() {
     this.viewWrapper.innerHTML = this.buildList();
     return this.viewWrapper;
-    // ${this.buildModeButtons()}
   }
 
   buildList() {
@@ -23,6 +22,7 @@ export default class CasesGlobalModelView {
   }
 
   buildRow(item) {
+
     return `<tr class="country-item">
 							${this.buildImg(item.countryInfo, item.country)}
 							 ${this.buildTotalConfirmed(item[stateGlobalTable.keyValue])}
@@ -38,13 +38,4 @@ export default class CasesGlobalModelView {
               ${keyValue}
             </td>`;
   }
-
-  // buildModeButtons() {
-  //   return `<button onclick={() => {sort()}}>a</button>
-  // 	<button>a</button><button>a</button>`;
-  // }
-
-  // updateList(data) {
-  //   this.list;
-  // }
 }

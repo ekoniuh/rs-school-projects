@@ -1,21 +1,15 @@
-import dataGraph from '../../data/objectDataWorld';
-
 export default class GraphModel {
   constructor(dataGraph) {
     this.dataGraph = dataGraph;
+
     this.apiAnswer = {};
     this.dataTimeAll = null;
     this.loadingData = this.initData();
-    // this.loadingDataCountry = this.initDataCountry();
   }
 
   async initData() {
     await this.fetchDataGraph();
   }
-
-  // async initDataCountry() {
-  //   await this.fetchDataCountry();
-  // }
 
   async fetchDataGraph() {
     const link = 'https://disease.sh/v3/covid-19/historical/all?lastdays=300';
@@ -25,27 +19,19 @@ export default class GraphModel {
       this.apiAnswer = await summaryPerDate.json();
       this.getDataWorld(this.apiAnswer);
     } catch (error) {
-      console.log(error);
-    }
+      console.error(error);    }
   }
 
   async fetchDataCountry(nameCountry) {
-    console.log('name', nameCountry);
     const urlTimeAll = `https://disease.sh/v3/covid-19/historical/${nameCountry}?lastdays=366`;
-    // const urlDaily = `https://disease.sh/v3/covid-19/historical/${nameCountry}?lastdays=366`;
+
     try {
       const dataTimeAll = await fetch(urlTimeAll);
       this.dataTimeAll = await dataTimeAll.json();
 
-      // const dataDaily = await fetch(urlDaily);
-      // this.dataDaily = await dataDaily.json();
-
-      // console.log('apiAnswer', this.dataTimeAll.timelines);
-      // console.log('apiAnswer', this.dataDaily);
       this.getDataWorld(this.dataTimeAll.timeline);
-      // console.log('apiAnswer', this.dataGraph);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 

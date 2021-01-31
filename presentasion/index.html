@@ -1,0 +1,237 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>reveal.js</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h2>Web Performance Optimization</h2>
+				<img width="480" src="./img/2.1 web-performance-optimization-tools.jpg">
+				<p style="text-align: right; color:violet; font-size: 40%;">My name is <b>Yauheni Koniukh</b></p>
+			</section>
+			<section>
+				<h4>This 10-minute guide will cover following:</h4>
+				<ul style="font-size: 80%">
+					<li class="fragment fade-right">What is Web performance optimization?</li>
+					<li class="fragment fade-right">Optimization methods and tool</li>
+					<li class="fragment fade-right"> Why is website optimization important?</li>
+				</ul>
+			</section>
+			<section>
+				<h3>What is Web performance optimization?</h3>
+				<img width="480" src="./img/3.1.png">
+				<p style="text-align: center; color:violet; font-size: 40%;">Web performance is the objective measurements and
+					the perceived user experience of load time and runtime.</p>
+			</section>
+			<section>
+
+				<ul style="font-size: 80%">
+					<li class="fragment fade-right">Animation performance and frame rate</li>
+					<li class="fragment fade-right">Critical rendering path</li>
+					<li class="fragment fade-right">CSS and JavaScript animation performance
+					<li class="fragment fade-right">Lazy loading</li>
+					<li class="fragment fade-right">Navigation and resource timings</li>
+					<li class="fragment fade-right">Optimizing startup performance</li>
+					<li class="fragment fade-right">Performance budgets</li>
+					<li class="fragment fade-right">Performance fundamentals</li>
+					<li class="fragment fade-right">Performance Monitoring: RUM vs synthetic monitoring</li>
+					<li class="fragment fade-right">Populating the page: how browsers work</li>
+					<li class="fragment fade-right"> Recommended Web Performance Timings: How long is too long?</li>
+					<li class="fragment fade-right">Understanding latency</li>
+				</ul>
+			</section>
+
+			<section>
+				<section>
+					<h3>Lazy loading</h3>
+					<img width="680" src="./img/5.2.png">
+					<p style="text-align: center; color:violet; font-size: 60%;">Lazy loading is a strategy to identify resources
+						as
+						non-blocking (non-critical) and load these only when needed.</p>
+				</section>
+				<section>
+					<p style="font-size: 80%; color:rgb(6, 129, 236); text-align: left;">Lazy loading can be applied to multiple
+						resources and through
+						multiple strategies: </p>
+					<ul style="font-size: 80%">
+						<li class="fragment fade-right">Code splitting</li>
+						<li class="fragment fade-right">Script type module</li>
+						<li class="fragment fade-right">Loading attribute</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Code splitting</h3>
+					<img width="380" src="./img/5.1.jpg">
+					<p style="text-align: center; color:rgb(124, 193, 211); font-size: 60%;">JavaScript, CSS and HTML can be split
+						into
+						smaller chunks. This enables sending the minimal code required to provide value upfront, improving page-load
+						times. The rest can be loaded on demand.</p>
+					<ul style="font-size: 60%">
+						<li class="fragment fade-right">Entry point splitting: separates code by entry point(s) in the app
+						</li>
+						<li class="fragment fade-right">Dynamic splitting: separates code where dynamic import() statements are used
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3> Script type module</h3>
+					<img width="580" src="./img/5.5 Script type module.png">
+					<p style="text-align: center; color:rgb(199, 199, 199); font-size: 60%;">Any script tag with <span
+							style="color:white; background: rgb(95, 95, 95)">type="module"</span> is treated like
+						a JavaScript module and is deferred by default.</p>
+				</section>
+				<section>
+					<h3>Loading attribute</h3>
+					<img width="380" src="./img/5.6 Loading attribute.png">
+					<p style="text-align: center; color:violet; font-size: 60%;">The loading attribute on an <span
+							style="color:white; background: rgb(95, 95, 95)">img</span> element (or the
+						loading attribute on an <span style="color:white; background: rgb(95, 95, 95)">iframe</span> ) can be used
+						to
+						instruct the browser to defer loading of <span
+							style="color:white; background: rgb(95, 95, 95)">images/iframes</span>
+						that are off-screen until the user scrolls near them.</p>
+				</section>
+			</section>
+			<section>
+
+				<section>
+					<h3>Critical rendering path</h3>
+					<img width="680" src="./img/6.1 Critical rendering path.png">
+				</section>
+				<section>
+					<h3>How does the browser rendering engine work?</h3>
+					<p style="text-align: center; color:rgb(255, 245, 255); font-size: 60%;">In order to render content the
+						browser has to go through a series of steps:</p>
+					<ul style="font-size: 60%">
+						<li class="fragment">The Document Object Model (DOM) is created as the HTML is parsed.
+						</li>
+						<li class="fragment">The HTML may request JavaScript, which may, in turn, alter the DOM.
+						</li>
+						<li class="fragment">The HTML includes or makes requests for styles, which in turn builds the CSS Object
+							Model (CSSOM).
+						</li>
+						<li class="fragment">The browser engine combines the two to create the Render Tree.
+						</li>
+						<li class="fragment">Layout determines the size and location of everything on the page.
+						</li>
+						<li class="fragment">Once layout is determined, pixels are painted to the screen.
+						</li>
+					</ul>
+				</section>
+
+			</section>
+			<section>
+				<h3>CSS and JavaScript animation performance</h3>
+				<img width="680" src="./img/7.1 animation.png">
+			</section>
+			<section>
+				<h3>Navigation and resource timings</h3>
+				<img width="780" src="./img/8.1 Navigation and resource timings.png">
+			</section>
+			<section>
+				<h3>Optimizing startup performance</h3>
+				<p style="text-align: left; color:rgb(255, 245, 255); font-size: 60%;">There are other things beyond going
+					asynchronous, which can help you improve your app's startup time. Here are a few of them:</p>
+				<ul style="font-size: 60%">
+					<li class="fragment">Download time</li>
+					<li class="fragment">GPU factors</li>
+					<li class="fragment">Data size</li>
+			</section>
+			<section>
+				<section>
+					<h3>Performance budgets</h3>
+					<img width="780" src="./img/10.1.png">
+				</section>
+				<section>
+					<h5>A budget exists to reflect your
+						reachable goals.</h5>
+					<p style="text-align:left; color:rgb(255, 245, 255); font-size: 60%;">These goals can be:</p>
+					<ul style="font-size: 60%">
+						<li class="fragment">Timing based (e.g. Time to Interactive, First Contentful Paint).</li>
+						<li class="fragment">Quantity-based (e.g. amount of JS files/total image size).</li>
+						<li class="fragment">Rule-based (e.g. PageSpeed index, Lighthouse score).</li>
+					</ul>
+					<p style="text-align:left; color:rgb(255, 245, 255); font-size: 50%;">
+						A performance budget helps you protect optimal behavior for your current users while enabling you to tap
+						into
+						new markets and deliver custom experiences.</p>
+				</section>
+			</section>
+			<section>
+				<h3>Performance fundamentals</h3>
+				<p style="text-align:left; color:rgb(255, 245, 255); font-size: 60%;">Exists essential performance metrics:
+				</p>
+				<ul style="font-size: 60%">
+					<li class="fragment">Responsiveness means how fast the system provides outputs (possibly multiple ones) in
+						response to user inputs.</li>
+					<li class="fragment">Framerate is the rate at which the system changes pixels displayed to the user. </li>
+					<li class="fragment">Memory usage</li>
+					<li class="fragment">Power usage</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Performance Monitoring: RUM vs synthetic monitoring</h3>
+				<img width="780" src="./img/12.1 Performance Monitoring.jpg">
+				<p style="text-align:left; color:rgb(255, 245, 255); font-size: 60%;">Synthetic monitoring and real user
+					monitoring (RUM) are two approaches for monitoring and providing insight into web performance.
+				</p>
+			</section>
+			<section>
+				<h3>Recommended Web Performance Timings: How long is too long?</h3>
+				<img width="330" src="./img/pngtree-sand-watch-illustration-vector-on-white-background-png-image_2053746.jpg">
+				<p style="text-align:left; color:rgb(255, 245, 255); font-size: 60%;">Synthetic monitoring and real user
+					There are no clear set rules as to what constitutes a slow pace when loading pages, but there are specific
+					guidelines for indicating content will load (1 second), idling (50ms), animating (16.7s) and responding to
+					user input (50 to 200ms).</p>
+			</section>
+			<section>
+				<section>
+					<h3>Understanding latency</h3>
+					<img width="780" src="./img/14.1.jpg">
+				</section>
+				<section>
+					<img width="980" src="./img/13.1.png">
+				</section>
+				<section>
+					<img width="980" src="./img/13.3.png">
+				</section>
+			</section>
+			
+			<section>
+
+			</section>
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+</body>
+
+</html>

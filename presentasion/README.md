@@ -2,7 +2,7 @@
 
 [a link to your Reveal presentation's deploy](https://rolling-scopes-school.github.io/ekoniuh-JS2020Q3/presentasion/)
 
-[a link to the transcript of your presentation](https://github.com/rolling-scopes-school/ekoniuh-JS2020Q3/blob/presentation/presentasion/presentation.md)
+[a link to the transcript of your presentation](https://github.com/rolling-scopes-school/ekoniuh-JS2020Q3/blob/presentasion/presentasion/README.md)
 
 
 ```

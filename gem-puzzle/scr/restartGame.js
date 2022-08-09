@@ -1,12 +1,12 @@
-import state from './state';
-import { buildCell } from './renderCell';
-import { restartGame, field, counterStep } from './renderContent';
-import { getRandomArray, changeSizeFonts } from './utils';
+import state from "./state";
+import { buildCell } from "./renderCell";
+import { restartGame, field, counterStep } from "./renderContent";
+import { getRandomArray, changeSizeFonts } from "./utils";
 
 function getRestartGame(size) {
   state.rotate += 360;
   restartGame.style.transform = `rotate(-${state.rotate}deg)`;
-  field.innerHTML = '';
+  field.innerHTML = "";
   state.min = 0;
   state.sec = 0;
   state.counterMove = 0;

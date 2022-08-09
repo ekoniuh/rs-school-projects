@@ -1,19 +1,19 @@
-const merge = require('webpack-merge');
-const { EnvironmentPlugin } = require('webpack');
+const merge = require("webpack-merge");
+const { EnvironmentPlugin } = require("webpack");
 
-const webpackCommon = require('./webpack.common.js');
+const webpackCommon = require("./webpack.common.js");
 
 const { PATHS } = webpackCommon.externals;
 const strategy = {
-  'module.rules.use': 'prepend',
+  "module.rules.use": "prepend",
 };
 
 module.exports = merge.smartStrategy(strategy)(webpackCommon, {
-  mode: 'development',
+  mode: "development",
   output: {
-    filename: '[name].js',
+    filename: "[name].js",
   },
-  devtool: 'eval-cheap-module-source-map',
+  devtool: "eval-cheap-module-source-map",
   devServer: {
     contentBase: PATHS.dist,
     port: 8081,
@@ -25,11 +25,11 @@ module.exports = merge.smartStrategy(strategy)(webpackCommon, {
     },
   },
   module: {
-    rules: [{ test: /\.((c|sa|sc)ss)$/i, use: [{ loader: 'style-loader' }] }],
+    rules: [{ test: /\.((c|sa|sc)ss)$/i, use: [{ loader: "style-loader" }] }],
   },
   plugins: [
     new EnvironmentPlugin({
-      NODE_ENV: 'development',
+      NODE_ENV: "development",
     }),
   ],
 });

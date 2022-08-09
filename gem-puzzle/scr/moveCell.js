@@ -1,21 +1,21 @@
-import state from './state';
-import { saveScores } from './getLocalStorage';
-import { field, time, counterStep, volumeBtn } from './renderContent';
-import { setSaveScores } from './setLocalStorage';
+import state from "./state";
+import { saveScores } from "./getLocalStorage";
+import { field, time, counterStep, volumeBtn } from "./renderContent";
+import { setSaveScores } from "./setLocalStorage";
 
 const createHandleVolumeState = () => {
-  volumeBtn.classList.toggle('volume-on');
+  volumeBtn.classList.toggle("volume-on");
   state.isSoundOnOff = !state.isSoundOnOff;
 };
 
-volumeBtn.addEventListener('click', () =>
+volumeBtn.addEventListener("click", () =>
   createHandleVolumeState(state.isSoundOnOff)
 );
 
 function volume() {
   if (state.isSoundOnOff) {
-    const audio = document.querySelector('.audio-play');
-    audio.src = './assets/audio.mp3';
+    const audio = document.querySelector(".audio-play");
+    audio.src = "./assets/audio.mp3";
     audio.pause();
     audio.play();
   }
@@ -69,7 +69,7 @@ function move(index, widthCell) {
 
 function mouseMoveCell(event) {
   const { target } = event;
-  if (!target.classList.contains('field-item')) {
+  if (!target.classList.contains("field-item")) {
     return;
   }
 
@@ -78,7 +78,7 @@ function mouseMoveCell(event) {
   const fieldLeft = field.getBoundingClientRect().left;
   const fieldTop = field.getBoundingClientRect().top;
   function moveAt(clientX, clientY) {
-    target.classList.add('field-item_animation');
+    target.classList.add("field-item_animation");
     target.style.left = `${clientX - fieldLeft - shiftCurX}px`;
     target.style.top = `${clientY - fieldTop - shiftCurY}px`;
   }
@@ -89,13 +89,13 @@ function mouseMoveCell(event) {
     moveAt(mouseEvent.clientX, mouseEvent.clientY);
   }
 
-  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener("mousemove", onMouseMove);
 
   field.onmouseup = () => {
     // state.counterMove += 1;
-    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener("mousemove", onMouseMove);
     target.onmouseup = null;
-    target.classList.remove('field-item_animation');
+    target.classList.remove("field-item_animation");
   };
 }
 export { move, mouseMoveCell };

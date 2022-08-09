@@ -1,9 +1,9 @@
-import { settings, fieldSizeDisplay, field } from './renderContent';
-import state from './state';
+import { settings, fieldSizeDisplay, field } from "./renderContent";
+import state from "./state";
 
 export function getSizeGame() {
-  settings.classList.toggle('menu-item__anime');
-  fieldSizeDisplay.classList.toggle('field-size__box_display');
+  settings.classList.toggle("menu-item__anime");
+  fieldSizeDisplay.classList.toggle("field-size__box_display");
 }
 
 export function getRandomArray() {
@@ -14,10 +14,10 @@ export function getRandomArray() {
 
 export function changeSizeFonts(size) {
   if (size > state.BASIC_SIZE_FONT) {
-    field.classList.add('field-font__size_s');
-    field.classList.remove('field-font__size_l');
+    field.classList.add("field-font__size_s");
+    field.classList.remove("field-font__size_l");
   } else {
-    field.classList.remove('field-font__size_s');
-    field.classList.add('field-font__size_l');
+    field.classList.remove("field-font__size_s");
+    field.classList.add("field-font__size_l");
   }
 }

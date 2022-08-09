@@ -1,10 +1,10 @@
-import { saveScores } from './getLocalStorage';
-import { menu, menuWrapper, menuList } from './renderContent';
+import { saveScores } from "./getLocalStorage";
+import { menu, menuWrapper, menuList } from "./renderContent";
 //+
 
 function renderScoresList() {
   menuWrapper.insertAdjacentHTML(
-    'beforeEnd',
+    "beforeEnd",
     `<div class="best-scores__box">
         <button class="menu-back__button_scores"></button>
         <h2 class="best-scores__title">Best scores</h2>
@@ -28,8 +28,8 @@ function renderScoresList() {
   );
 
   for (let i = 0; i < saveScores.time.length; i += 1) {
-    document.querySelector('.scores-list').insertAdjacentHTML(
-      'beforeEnd',
+    document.querySelector(".scores-list").insertAdjacentHTML(
+      "beforeEnd",
       `<li class="scores-list__item" data-index = ${i}>
         <span class="scores-title__date">
         <span class="score-item__numbering"> ${i + 1} </span>
@@ -51,36 +51,36 @@ function renderScoresList() {
 }
 
 function createSaveScores() {
-  if (document.querySelector('.best-scores__box')) {
-    document.querySelector('.best-scores__box').remove();
+  if (document.querySelector(".best-scores__box")) {
+    document.querySelector(".best-scores__box").remove();
   }
 
-  menuList.classList.toggle('menu-list_offset-left');
+  menuList.classList.toggle("menu-list_offset-left");
 
   setTimeout(() => {
-    menuList.classList.toggle('menu-list_none');
-     }, 1000);
+    menuList.classList.toggle("menu-list_none");
+  }, 1000);
 
-  menu.classList.toggle('menu_offset-right-0');
-  menuWrapper.classList.toggle('menu-scores__change');
+  menu.classList.toggle("menu_offset-right-0");
+  menuWrapper.classList.toggle("menu-scores__change");
 
   setTimeout(() => {
     renderScoresList();
 
     document
-      .querySelector('.menu-back__button_scores')
-      .addEventListener('click', () => {
+      .querySelector(".menu-back__button_scores")
+      .addEventListener("click", () => {
         // menuList.style.display = 'flex';
-        menuList.classList.toggle('menu-list_none');
+        menuList.classList.toggle("menu-list_none");
         setTimeout(() => {
-          menuList.classList.toggle('menu-list_offset-left');
-          menu.classList.remove('menu_offset-right-0');
+          menuList.classList.toggle("menu-list_offset-left");
+          menu.classList.remove("menu_offset-right-0");
         }, 300);
 
-        menuWrapper.classList.toggle('menu-scores__change');
+        menuWrapper.classList.toggle("menu-scores__change");
         document
-          .querySelector('.best-scores__box')
-          .classList.toggle('best-scores__box_none');
+          .querySelector(".best-scores__box")
+          .classList.toggle("best-scores__box_none");
       });
   }, 1000);
 }

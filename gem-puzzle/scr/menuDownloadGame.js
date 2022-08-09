@@ -33,9 +33,7 @@ function renderMenuDownloadGame() {
 					<img src="./assets/55899ca177a419ff0334fd84_Arrow10.png" alt="next-save-item" title="next-save-item" class="next-save__item"  data-index = ${i}>
 				</div>
 				<div class="save-item__description">
-					<span class="board-size__load">Board size: ${saveObj['Board size'][i]}x${
-        saveObj['Board size'][i]
-      }</span>
+					<span class="board-size__load">Board size: ${saveObj['Board size'][i]}x${saveObj['Board size'][i]}</span>
 					<span class="time-game__load">time ${saveObj.timer[i]}</span>
 					<span class="move-game__load">move  ${saveObj['move counter'][i]}</span>
 				</div>
@@ -43,25 +41,18 @@ function renderMenuDownloadGame() {
     );
 
     if (!i) {
-      document
-        .querySelector('.save-list__item')
-        .classList.add('save-list__item_active');
+      document.querySelector('.save-list__item').classList.add('save-list__item_active');
     }
   }
 
   setTimeout(() => {
-    document
-      .querySelector('.save-list__box')
-      .classList.toggle('save-list__box_visible');
+    document.querySelector('.save-list__box').classList.toggle('save-list__box_visible');
   }, 1000);
 }
 
 function nextBackSaveItem(target, arrSaveItems) {
   const index = Number(target.dataset.index);
-  if (
-    target.className === 'next-save__item' &&
-    index !== arrSaveItems.length - 1
-  ) {
+  if (target.className === 'next-save__item' && index !== arrSaveItems.length - 1) {
     arrSaveItems[index].classList.remove('save-list__item_active');
     arrSaveItems[index + 1].classList.add('save-list__item_active');
   }

@@ -1,8 +1,8 @@
-import { field, time, counterStep } from './renderContent';
-import state from './state';
-import { move } from './moveCell';
-import { saveObj } from './getLocalStorage';
-import { changeSizeFonts } from './utils';
+import { field, time, counterStep } from "./renderContent";
+import state from "./state";
+import { move } from "./moveCell";
+import { saveObj } from "./getLocalStorage";
+import { changeSizeFonts } from "./utils";
 //+
 function buildCell(randomArray, size) {
   const widthCell = field.offsetWidth / size;
@@ -10,8 +10,8 @@ function buildCell(randomArray, size) {
 
   field.style.gridTemplateColumns = `repeat(${size}, 1fr);`;
   for (let i = 1; i < size * size; i += 1) {
-    const cell = document.createElement('div');
-    cell.className = 'field-item';
+    const cell = document.createElement("div");
+    cell.className = "field-item";
 
     const value = randomArray[i - 1] + 1;
     cell.innerHTML = value;
@@ -33,7 +33,7 @@ function buildCell(randomArray, size) {
     cell.style.width = `${widthCell}px`;
     cell.style.height = `${heightCell}px`;
 
-    cell.addEventListener('click', () => {
+    cell.addEventListener("click", () => {
       move(i, widthCell);
     });
   }
@@ -44,10 +44,10 @@ function buildCellDownload({ size, arrayCells, index }) {
   time.innerHTML = saveObj.timer[index];
   state.min = Number(saveObj.timer[index].substr(0, 2));
   state.sec = Number(saveObj.timer[index].substr(3, 2));
-  state.counterMove = Number(saveObj['move counter'][index]);
-  counterStep.innerHTML = saveObj['move counter'][index];
-
-  field.innerHTML = '';
+  state.counterMove = Number(saveObj["move counter"][index]);
+  counterStep.innerHTML = saveObj["move counter"][index];
+  debugger;
+  field.innerHTML = "";
   let randomArray = [];
   state.cells = [];
 
@@ -57,10 +57,10 @@ function buildCellDownload({ size, arrayCells, index }) {
 
   field.style.gridTemplateColumns = `repeat(${size}, 1fr);`;
   for (let i = 1; i < size * size; i += 1) {
-    const cell = document.createElement('div');
-    cell.className = 'field-item';
+    const cell = document.createElement("div");
+    cell.className = "field-item";
     cell.innerHTML = randomArray[i];
-
+    console.log('arrayCells[i].left', arrayCells[i].left);
     state.cells.push({
       value: randomArray[i],
       left: arrayCells[i].left,
@@ -76,7 +76,7 @@ function buildCellDownload({ size, arrayCells, index }) {
     cell.style.width = `${widthCell}px`;
     cell.style.height = `${heightCell}px`;
 
-    cell.addEventListener('click', () => {
+    cell.addEventListener("click", () => {
       move(i - 1, widthCell);
     });
   }

@@ -1,8 +1,9 @@
 function createContent() {
   document.body.insertAdjacentHTML(
-    'afterbegin',
+    "afterbegin",
     `		<section class="page">
     <div class="menu">
+    <img class="pause visible" src="./assets/home.png" title = "menu">
     <div class="menu-wrapper">
       <ul class="menu-list">
       <li class="menu-item play-game">Continue</li>
@@ -36,36 +37,35 @@ function createContent() {
 					<span class="description">Moves</span>
 					<span class="counter">0</span>
 				</div>
-        <img class="pause visible" src="./assets/pause-play.png" title = "pause">
-        <img class="restart-game" src="./assets/47-512.png" title = "Restart">
+        <img class="restart-game" src="./assets/47-512.png" title = "restart">
+        <audio src="./assets/audio.mp3" class="audio-play" type="audio/mp3"></audio>
         <div class="volume"></div>		
-			</div>
-			<div class="field field-font__size_l">
-			</div>
-			<audio src="./assets/audio.mp3" class="audio-play" type="audio/mp3"></audio>
+        </div>
+        <div class="field field-font__size_l">
+        </div>
 		</div>
 	</section>`
   );
 }
 createContent();
 
-const sizeField = document.querySelector('.select-box');
-const restartGame = document.querySelector('.restart-game');
-const field = document.querySelector('.field');
-const time = document.querySelector('.timer');
-const counterStep = document.querySelector('.counter');
-const continueGame = document.querySelector('.pause');
-const menu = document.querySelector('.menu');
-const playPauseGame = document.querySelector('.play-game');
-const newGame = document.querySelector('.new-game');
-const settings = document.querySelector('.settings');
-const saveGame = document.querySelector('.save-game');
-const loadGame = document.querySelector('.load-game');
-const bestScores = document.querySelector('.best-scores');
-const fieldSizeDisplay = document.querySelector('.field-size__box');
-const menuWrapper = document.querySelector('.menu-wrapper');
-const menuList = document.querySelector('.menu-list');
-const volumeBtn = document.querySelector('.volume');
+const sizeField = document.querySelector(".select-box");
+const restartGame = document.querySelector(".restart-game");
+const field = document.querySelector(".field");
+const time = document.querySelector(".timer");
+const counterStep = document.querySelector(".counter");
+const continueGame = document.querySelector(".pause");
+const menu = document.querySelector(".menu");
+const playPauseGame = document.querySelector(".play-game");
+const newGame = document.querySelector(".new-game");
+const settings = document.querySelector(".settings");
+const saveGame = document.querySelector(".save-game");
+const loadGame = document.querySelector(".load-game");
+const bestScores = document.querySelector(".best-scores");
+const fieldSizeDisplay = document.querySelector(".field-size__box");
+const menuWrapper = document.querySelector(".menu-wrapper");
+const menuList = document.querySelector(".menu-list");
+const volumeBtn = document.querySelector(".volume");
 
 export {
   sizeField,

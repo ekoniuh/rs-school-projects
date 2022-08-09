@@ -1,5 +1,5 @@
-import state from './state';
-import { time } from './renderContent';
+import state from "./state";
+import { time } from "./renderContent";
 
 function tick() {
   if (!state.isPlayPause) {

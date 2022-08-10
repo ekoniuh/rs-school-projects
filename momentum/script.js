@@ -83,8 +83,16 @@ btn.addEventListener('click', () => {
 });
 
 async function getQuote() {
-  const url = `https://quote-garden.herokuapp.com/api/v2/quotes/random`;
-  const res = await fetch(url);
+  const url = `https://zenquotes.io/api/today`;
+  const res = await fetch(url, {
+    headers: {
+      Accept: 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'X-Requested-With': 'XMLHttpRequest',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
+    },
+  });
   const data = await res.json();
   console.log(data);
   blockquote.textContent = data.quote.quoteText;
@@ -121,9 +129,7 @@ function showTime() {
   day.innerHTML = today.toLocaleString('en-En', options);
 
   // Output Time
-  time.innerHTML = `${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(
-    sec
-  )} ${showAmPm ? amPm : ''}`;
+  time.innerHTML = `${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)} ${showAmPm ? amPm : ''}`;
   setBgGreet();
 
   setTimeout(showTime, 1000);
@@ -142,9 +148,7 @@ function setBgGreet() {
   if (hour > 6 && hour < 12) {
     // Morning
     if (currentHour !== hour) {
-      document.body.style.backgroundImage = `url('./assets/images/morning/${
-        images[hour - 6]
-      }')`;
+      document.body.style.backgroundImage = `url('./assets/images/morning/${images[hour - 6]}')`;
       currentHour = hour;
     }
 
@@ -152,18 +156,14 @@ function setBgGreet() {
   } else if (hour > 12 && hour < 18) {
     // Afternoon
     if (currentHour !== hour) {
-      document.body.style.backgroundImage = `url('./assets/images/day/${
-        images[hour - 12]
-      }')`;
+      document.body.style.backgroundImage = `url('./assets/images/day/${images[hour - 12]}')`;
       currentHour = hour;
     }
     greeting.textContent = 'Good Afternoon, ';
   } else if (hour >= 18 && hour < 24) {
     // Evening
     if (currentHour !== hour) {
-      document.body.style.backgroundImage = `url('./assets/images/evening/${
-        images[hour - 18]
-      }')`;
+      document.body.style.backgroundImage = `url('./assets/images/evening/${images[hour - 18]}')`;
       currentHour = hour;
     }
     greeting.textContent = 'Good Evening, ';
@@ -171,9 +171,7 @@ function setBgGreet() {
   } else if (hour > 24 && hour < 6) {
     // Evening
     if (currentHour !== hour) {
-      document.body.style.backgroundImage = `url('./assets/images/night/${
-        images[hour - 6]
-      }')`;
+      document.body.style.backgroundImage = `url('./assets/images/night/${images[hour - 6]}')`;
       currentHour = hour;
     }
     greeting.textContent = 'Good Night, ';

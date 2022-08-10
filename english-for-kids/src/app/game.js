@@ -44,8 +44,7 @@ export default class Game {
     card.classList.toggle('category-card_train');
 
     const classNameImg = 'correct-answer';
-    const srcImg = 'https://www.flaticon.com/svg/static/icons/svg/725/725107.svg';
-
+    const srcImg = '../assets/images/star.png';
     const img = this.createElementImg('img', classNameImg, srcImg, classNameImg);
     document.querySelector('.answer-wrap').append(img);
 
@@ -71,7 +70,7 @@ export default class Game {
     playAudio('error');
     const img = document.createElement('img');
     img.className = 'error-answer';
-    img.src = 'https://www.flaticon.com/svg/static/icons/svg/569/569513.svg';
+    img.src = '../assets/images/star-empty.png';
     img.alt = 'error-answer';
     document.querySelector('.answer-wrap').append(img);
   }

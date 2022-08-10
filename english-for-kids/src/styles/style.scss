@@ -117,7 +117,7 @@ button {
     }
     &::before {
       position: relative;
-      top: 10px;
+      top: 5px;
       display: inline-block;
       width: 40px;
       height: 40px;
@@ -146,34 +146,34 @@ button {
 }
 
 .main-page::before {
-  background-image: url(https://image.flaticon.com/icons/png/512/66/66282.png);
+  background-image: url(../assets/images/icons-menu/main.png);
 }
 .action-a::before {
-  background-image: url(https://www.flaticon.com/svg/static/icons/svg/2513/2513260.svg);
+  background-image: url(../assets/images/icons-menu/action-a.png);
 }
 .action-b::before {
-  background-image: url(https://www.flaticon.com/svg/static/icons/svg/2513/2513222.svg);
+  background-image: url(../assets/images/icons-menu/action-b.png);
 }
 .animal-a::before {
-  background-image: url(https://www.flaticon.com/svg/static/icons/svg/2930/2930627.svg);
+  background-image: url(../assets/images/icons-menu/animal-a.png);
 }
 .animal-b::before {
-  background-image: url(https://www.flaticon.com/svg/static/icons/svg/616/616451.svg);
+  background-image: url(../assets/images/icons-menu/animal-b.png);
 }
 .clothes::before {
-  background-image: url(https://www.flaticon.com/svg/static/icons/svg/1127/1127487.svg);
+  background-image: url(../assets/images/icons-menu/clothes.png);
 }
 .emotions::before {
-  background-image: url(https://www.flaticon.com/svg/static/icons/svg/1935/1935230.svg);
+  background-image: url(../assets/images/icons-menu/emotions.png);
 }
 .food::before {
-  background-image: url(https://www.flaticon.com/svg/static/icons/svg/123/123282.svg);
+  background-image: url(../assets/images/icons-menu/food.png);
 }
 .beverages::before {
-  background-image: url(https://www.flaticon.com/svg/static/icons/svg/3050/3050153.svg);
+  background-image: url(../assets/images/icons-menu/beverages.png);
 }
 .statistic::before {
-  background-image: url(https://www.flaticon.com/svg/static/icons/svg/1088/1088950.svg);
+  background-image: url(../assets/images/icons-menu/statistic.png);
 }
 
 .hamburger {
@@ -223,7 +223,7 @@ button {
 .switch {
   &__label {
     position: relative;
-    
+
     display: inline-block;
     width: 140px;
     height: 40px;
@@ -444,7 +444,6 @@ button {
   transition-delay: 0ms, 0ms;
 }
 
-
 .cards > .category-card_train:hover {
   box-shadow: 3px 3px 16px 3px rgba(72, 255, 0, 0.71);
   transform: none;
@@ -532,6 +531,9 @@ button {
 }
 
 .repeat__btn {
+  width: 80px;
+  height: 80px;
+  background: #ebc8c8;
   margin-top: -57px;
   cursor: pointer;
   background-color: #f9f9f9;
@@ -543,7 +545,8 @@ button {
 }
 
 .repeat__btn img {
-  width: 80px;
+  width: 50px;
+  width: 50px;
   transition: all 0.2s;
 }
 
@@ -611,13 +614,6 @@ button {
   width: 50px;
   height: 50px;
   margin: 10px 5px;
-  border-radius: 50%;
-  box-shadow: 0 0 5px 2px rgb(17 17 17 / 55%);
-}
-
-.error-answer {
-  background: red;
-  border-radius: 50%;
 }
 
 .answers {

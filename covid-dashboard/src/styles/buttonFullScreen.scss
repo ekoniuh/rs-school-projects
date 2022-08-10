@@ -1,7 +1,7 @@
-.full-screen__active {
-  position: fixed !important;
-  width: 96% !important;
-  height: 83% !important;
+.box-shadow.full-screen__active {
+  position: fixed;
+  width: 96%;
+  height: 83%;
   background: #838fa0;
   display: flex;
   flex-direction: column;
@@ -10,8 +10,17 @@
   top: 8%;
   left: 2%;
   z-index: 1;
-  border: none !important;
-  box-shadow: 0 0 11px #4ea091 !important;
+  border: none;
+  box-shadow: 0 0 11px #4ea091;
+}
+
+.box-shadow.full-screen__active::before {
+  content: '';
+  z-index: -1;
+  position: fixed;
+  width: 100vw;
+  height: 101vh;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .full-screen__btn {

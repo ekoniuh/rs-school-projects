@@ -32,7 +32,7 @@ export default class Keyboard {
     );
 
     this.elements.main.appendChild(this.elements.keysContainer);
-    document.body.appendChild(this.elements.main);
+    document.querySelector(".footer").appendChild(this.elements.main);
 
     document.querySelectorAll('.use-keyboard-input').forEach((element) => {
       element.addEventListener('focus', () => {

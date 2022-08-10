@@ -1,11 +1,13 @@
 .footer {
   position: fixed;
   bottom: 0;
-  width: 100%;
   background: white;
   border-top: 1px red solid;
   box-shadow: 7px 4px 20px #b9a4a4;
-  z-index: 2;
+  width: 100%;
+  height: 60px;
+  margin-top: 30px;
+
   .wrap {
     display: flex;
     align-items: center;
